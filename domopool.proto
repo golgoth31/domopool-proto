@@ -4,7 +4,7 @@ package domopool;
 
 // import "google/protobuf/empty.proto";
 
-option go_package = "github.com/golgoth31/domopool-proto/golang;domopool_proto";
+option go_package = "github.com/golgoth31/domopool-proto/golang;golang";
 
 message NTP {
   uint32 dayLight = 1; // 3600 if daylight is observed or 0 if not

@@ -58,13 +58,6 @@ message Global {
   bool displayStartup = 5;
 }
 
-message Time {
-  bool initialized = 1;
-  uint32 dayLight = 2; // 3600 if daylight is observed or 0 if not
-  string ntpServer = 3;
-  uint32 timeZone = 4; // UTC offset in s: UTC+1=3600
-}
-
 message Pump {
   bool forceFilter = 1;
   bool forcePH = 2;
@@ -117,22 +110,9 @@ message Config {
   Network network = 1;
   Sensors sensors = 2;
   Global global = 3;
-  Time time = 4;
   Pump pump = 5;
   Metrics metrics = 6;
   States states = 7;
   Alarms alarms = 8;
   Tests tests = 9;
 }
-
-// // Users
-// service UserService {
-//   rpc Create(User) returns (User) {}
-//   rpc Read(User) returns (User) {}
-//   rpc Delete(User) returns (UserDelete) {}
-//   rpc FindAll(google.protobuf.Empty) returns (Users) {}
-//   rpc CheckJWT(UserCheckJWT) returns (UserCheckState) {}
-//   rpc Login(LoginRequest) returns (LoginResponse) {}
-//   // rpc Login (LoginRequest) returns (LoginResponse){}
-//   // rpc Logout (LogoutRequest) returns (google.protobuf.Empty){}
-// }

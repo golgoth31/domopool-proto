@@ -27,9 +27,6 @@ PB_BIND(domopool_Sensors, domopool_Sensors, AUTO)
 PB_BIND(domopool_Global, domopool_Global, AUTO)
 
 
-PB_BIND(domopool_Time, domopool_Time, AUTO)
-
-
 PB_BIND(domopool_Pump, domopool_Pump, AUTO)
 
 

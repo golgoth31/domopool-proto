@@ -18,7 +18,6 @@ typedef struct _domopool_Alarms {
     bool filter;
     bool ph;
     bool ch;
-    float phVal;
     bool rtc;
     bool storage;
 } domopool_Alarms;
@@ -29,21 +28,21 @@ typedef struct _domopool_AnalogSensor {
 } domopool_AnalogSensor;
 
 typedef struct _domopool_Global {
-    uint32_t lcdBacklightDuration;
-    uint32_t ackDuration;
-    double ackTone;
-    bool serialOut;
-    bool displayStartup;
+    uint32_t lcd_backlight_duration;
+    uint32_t ack_duration;
+    double ack_tone;
+    bool serial_out;
+    bool display_startup;
 } domopool_Global;
 
 typedef struct _domopool_Metrics {
-    float tempAmbiant;
-    float tempWater;
-    float savedTempWater;
+    float tamb;
+    float twater;
+    float savedtwater;
     float ph;
     float ch;
-    float waterPressure;
-    uint32_t over15Duration;
+    float water_pressure;
+    uint32_t over15duration;
     uint32_t hour;
 } domopool_Metrics;
 
@@ -53,26 +52,26 @@ typedef struct _domopool_Mqtt {
 } domopool_Mqtt;
 
 typedef struct _domopool_NTP {
-    uint32_t dayLight;
+    uint32_t day_light;
     char server[128];
-    uint32_t timeZone;
+    uint32_t timezone;
 } domopool_NTP;
 
 typedef struct _domopool_Pump {
-    bool forceFilter;
-    bool forcePH;
-    bool forceCH;
-    bool automatic;
-    bool forceCheck;
-    uint32_t forceDuration;
+    bool force_filter;
+    bool force_ph;
+    bool force_ch;
+    bool auto;
+    bool force_check;
+    uint32_t force_duration;
 } domopool_Pump;
 
 typedef struct _domopool_States {
     bool startup;
-    bool filterOn;
-    bool phOn;
-    bool chOn;
-    bool automatic;
+    bool filteron;
+    bool phon;
+    bool chon;
+    bool auto;
     bool net_active;
     bool ntp;
     bool rtc;
@@ -93,13 +92,28 @@ typedef struct _domopool_Tests {
     float pressure;
 } domopool_Tests;
 
+typedef struct _domopool_Versions {
+    char domopool[128];
+    char platformio[128];
+    char esp_idf[128];
+    char xtensa[128];
+    char tft_espi[128];
+} domopool_Versions;
+
+typedef struct _domopool_Infos {
+    char compile[128];
+    char board_name[128];
+    bool has_versions;
+    domopool_Versions versions;
+} domopool_Infos;
+
 typedef struct _domopool_Network {
     bool dhcp;
     char ip[15];
     char netmask[15];
     char gateway[15];
     char dns[15];
-    bool allowPost;
+    bool allow_post;
     bool has_mqtt;
     domopool_Mqtt mqtt;
     bool has_ntp;
@@ -113,14 +127,14 @@ typedef struct _domopool_Sensors {
     domopool_Temp twout;
     bool has_tamb;
     domopool_Temp tamb;
-    bool waitForConversion;
-    uint32_t tempResolution;
+    bool wait_for_conversion;
+    uint32_t temp_resolution;
     bool has_ph;
     domopool_AnalogSensor ph;
     bool has_ch;
     domopool_AnalogSensor ch;
-    bool has_waterPressure;
-    domopool_AnalogSensor waterPressure;
+    bool has_water_pressure;
+    domopool_AnalogSensor water_pressure;
 } domopool_Sensors;
 
 typedef struct _domopool_Config {
@@ -140,6 +154,8 @@ typedef struct _domopool_Config {
     domopool_Alarms alarms;
     bool has_tests;
     domopool_Tests tests;
+    bool has_infos;
+    domopool_Infos infos;
 } domopool_Config;
 
 
@@ -152,11 +168,13 @@ typedef struct _domopool_Config {
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0}
-#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0}
+#define domopool_Alarms_init_default             {0, 0, 0, 0, 0}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0}
-#define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default}
+#define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
+#define domopool_Versions_init_default           {"", "", "", "", ""}
+#define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default}
 #define domopool_NTP_init_zero                   {0, "", 0}
 #define domopool_Mqtt_init_zero                  {0, ""}
 #define domopool_Network_init_zero               {0, "", "", "", "", 0, false, domopool_Mqtt_init_zero, false, domopool_NTP_init_zero}
@@ -165,50 +183,51 @@ typedef struct _domopool_Config {
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0}
-#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0}
+#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0}
-#define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero}
+#define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
+#define domopool_Versions_init_zero              {"", "", "", "", ""}
+#define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define domopool_Alarms_filter_tag               1
 #define domopool_Alarms_ph_tag                   2
 #define domopool_Alarms_ch_tag                   3
-#define domopool_Alarms_phVal_tag                4
 #define domopool_Alarms_rtc_tag                  5
 #define domopool_Alarms_storage_tag              6
 #define domopool_AnalogSensor_enabled_tag        1
 #define domopool_AnalogSensor_threshold_tag      2
-#define domopool_Global_lcdBacklightDuration_tag 1
-#define domopool_Global_ackDuration_tag          2
-#define domopool_Global_ackTone_tag              3
-#define domopool_Global_serialOut_tag            4
-#define domopool_Global_displayStartup_tag       5
-#define domopool_Metrics_tempAmbiant_tag         1
-#define domopool_Metrics_tempWater_tag           2
-#define domopool_Metrics_savedTempWater_tag      3
+#define domopool_Global_lcd_backlight_duration_tag 1
+#define domopool_Global_ack_duration_tag         2
+#define domopool_Global_ack_tone_tag             3
+#define domopool_Global_serial_out_tag           4
+#define domopool_Global_display_startup_tag      5
+#define domopool_Metrics_tamb_tag                1
+#define domopool_Metrics_twater_tag              2
+#define domopool_Metrics_savedtwater_tag         3
 #define domopool_Metrics_ph_tag                  4
 #define domopool_Metrics_ch_tag                  5
-#define domopool_Metrics_waterPressure_tag       6
-#define domopool_Metrics_over15Duration_tag      7
+#define domopool_Metrics_water_pressure_tag      6
+#define domopool_Metrics_over15duration_tag      7
 #define domopool_Metrics_hour_tag                8
 #define domopool_Mqtt_enabled_tag                1
 #define domopool_Mqtt_server_tag                 2
-#define domopool_NTP_dayLight_tag                1
+#define domopool_NTP_day_light_tag               1
 #define domopool_NTP_server_tag                  2
-#define domopool_NTP_timeZone_tag                3
-#define domopool_Pump_forceFilter_tag            1
-#define domopool_Pump_forcePH_tag                2
-#define domopool_Pump_forceCH_tag                3
-#define domopool_Pump_automatic_tag              4
-#define domopool_Pump_forceCheck_tag             5
-#define domopool_Pump_forceDuration_tag          6
+#define domopool_NTP_timezone_tag                3
+#define domopool_Pump_force_filter_tag           1
+#define domopool_Pump_force_ph_tag               2
+#define domopool_Pump_force_ch_tag               3
+#define domopool_Pump_auto_tag                   4
+#define domopool_Pump_force_check_tag            5
+#define domopool_Pump_force_duration_tag         6
 #define domopool_States_startup_tag              1
-#define domopool_States_filterOn_tag             2
-#define domopool_States_phOn_tag                 3
-#define domopool_States_chOn_tag                 4
-#define domopool_States_automatic_tag            5
+#define domopool_States_filteron_tag             2
+#define domopool_States_phon_tag                 3
+#define domopool_States_chon_tag                 4
+#define domopool_States_auto_tag                 5
 #define domopool_States_net_active_tag           6
 #define domopool_States_ntp_tag                  7
 #define domopool_States_rtc_tag                  8
@@ -220,22 +239,30 @@ typedef struct _domopool_Config {
 #define domopool_Tests_tamb_tag                  3
 #define domopool_Tests_ph_tag                    4
 #define domopool_Tests_pressure_tag              5
+#define domopool_Versions_domopool_tag           1
+#define domopool_Versions_platformio_tag         2
+#define domopool_Versions_esp_idf_tag            3
+#define domopool_Versions_xtensa_tag             4
+#define domopool_Versions_tft_espi_tag           6
+#define domopool_Infos_compile_tag               1
+#define domopool_Infos_board_name_tag            2
+#define domopool_Infos_versions_tag              3
 #define domopool_Network_dhcp_tag                1
 #define domopool_Network_ip_tag                  2
 #define domopool_Network_netmask_tag             3
 #define domopool_Network_gateway_tag             4
 #define domopool_Network_dns_tag                 5
-#define domopool_Network_allowPost_tag           6
+#define domopool_Network_allow_post_tag          6
 #define domopool_Network_mqtt_tag                7
 #define domopool_Network_ntp_tag                 8
 #define domopool_Sensors_twin_tag                1
 #define domopool_Sensors_twout_tag               2
 #define domopool_Sensors_tamb_tag                3
-#define domopool_Sensors_waitForConversion_tag   4
-#define domopool_Sensors_tempResolution_tag      5
+#define domopool_Sensors_wait_for_conversion_tag 4
+#define domopool_Sensors_temp_resolution_tag     5
 #define domopool_Sensors_ph_tag                  6
 #define domopool_Sensors_ch_tag                  7
-#define domopool_Sensors_waterPressure_tag       8
+#define domopool_Sensors_water_pressure_tag      8
 #define domopool_Config_network_tag              1
 #define domopool_Config_sensors_tag              2
 #define domopool_Config_global_tag               3
@@ -244,12 +271,13 @@ typedef struct _domopool_Config {
 #define domopool_Config_states_tag               7
 #define domopool_Config_alarms_tag               8
 #define domopool_Config_tests_tag                9
+#define domopool_Config_infos_tag                10
 
 /* Struct field encoding specification for nanopb */
 #define domopool_NTP_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, UINT32,   dayLight,          1) \
+X(a, STATIC,   SINGULAR, UINT32,   day_light,         1) \
 X(a, STATIC,   SINGULAR, STRING,   server,            2) \
-X(a, STATIC,   SINGULAR, UINT32,   timeZone,          3)
+X(a, STATIC,   SINGULAR, UINT32,   timezone,          3)
 #define domopool_NTP_CALLBACK NULL
 #define domopool_NTP_DEFAULT NULL
 
@@ -265,7 +293,7 @@ X(a, STATIC,   SINGULAR, STRING,   ip,                2) \
 X(a, STATIC,   SINGULAR, STRING,   netmask,           3) \
 X(a, STATIC,   SINGULAR, STRING,   gateway,           4) \
 X(a, STATIC,   SINGULAR, STRING,   dns,               5) \
-X(a, STATIC,   SINGULAR, BOOL,     allowPost,         6) \
+X(a, STATIC,   SINGULAR, BOOL,     allow_post,        6) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  mqtt,              7) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ntp,               8)
 #define domopool_Network_CALLBACK NULL
@@ -290,11 +318,11 @@ X(a, STATIC,   SINGULAR, FLOAT,    threshold,         2)
 X(a, STATIC,   OPTIONAL, MESSAGE,  twin,              1) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  twout,             2) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  tamb,              3) \
-X(a, STATIC,   SINGULAR, BOOL,     waitForConversion,   4) \
-X(a, STATIC,   SINGULAR, UINT32,   tempResolution,    5) \
+X(a, STATIC,   SINGULAR, BOOL,     wait_for_conversion,   4) \
+X(a, STATIC,   SINGULAR, UINT32,   temp_resolution,   5) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ph,                6) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ch,                7) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  waterPressure,     8)
+X(a, STATIC,   OPTIONAL, MESSAGE,  water_pressure,    8)
 #define domopool_Sensors_CALLBACK NULL
 #define domopool_Sensors_DEFAULT NULL
 #define domopool_Sensors_twin_MSGTYPE domopool_Temp
@@ -302,24 +330,24 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  waterPressure,     8)
 #define domopool_Sensors_tamb_MSGTYPE domopool_Temp
 #define domopool_Sensors_ph_MSGTYPE domopool_AnalogSensor
 #define domopool_Sensors_ch_MSGTYPE domopool_AnalogSensor
-#define domopool_Sensors_waterPressure_MSGTYPE domopool_AnalogSensor
+#define domopool_Sensors_water_pressure_MSGTYPE domopool_AnalogSensor
 
 #define domopool_Global_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, UINT32,   lcdBacklightDuration,   1) \
-X(a, STATIC,   SINGULAR, UINT32,   ackDuration,       2) \
-X(a, STATIC,   SINGULAR, DOUBLE,   ackTone,           3) \
-X(a, STATIC,   SINGULAR, BOOL,     serialOut,         4) \
-X(a, STATIC,   SINGULAR, BOOL,     displayStartup,    5)
+X(a, STATIC,   SINGULAR, UINT32,   lcd_backlight_duration,   1) \
+X(a, STATIC,   SINGULAR, UINT32,   ack_duration,      2) \
+X(a, STATIC,   SINGULAR, DOUBLE,   ack_tone,          3) \
+X(a, STATIC,   SINGULAR, BOOL,     serial_out,        4) \
+X(a, STATIC,   SINGULAR, BOOL,     display_startup,   5)
 #define domopool_Global_CALLBACK NULL
 #define domopool_Global_DEFAULT NULL
 
 #define domopool_Pump_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, BOOL,     forceFilter,       1) \
-X(a, STATIC,   SINGULAR, BOOL,     forcePH,           2) \
-X(a, STATIC,   SINGULAR, BOOL,     forceCH,           3) \
-X(a, STATIC,   SINGULAR, BOOL,     automatic,         4) \
-X(a, STATIC,   SINGULAR, BOOL,     forceCheck,        5) \
-X(a, STATIC,   SINGULAR, UINT32,   forceDuration,     6)
+X(a, STATIC,   SINGULAR, BOOL,     force_filter,      1) \
+X(a, STATIC,   SINGULAR, BOOL,     force_ph,          2) \
+X(a, STATIC,   SINGULAR, BOOL,     force_ch,          3) \
+X(a, STATIC,   SINGULAR, BOOL,     auto,              4) \
+X(a, STATIC,   SINGULAR, BOOL,     force_check,       5) \
+X(a, STATIC,   SINGULAR, UINT32,   force_duration,    6)
 #define domopool_Pump_CALLBACK NULL
 #define domopool_Pump_DEFAULT NULL
 
@@ -327,7 +355,6 @@ X(a, STATIC,   SINGULAR, UINT32,   forceDuration,     6)
 X(a, STATIC,   SINGULAR, BOOL,     filter,            1) \
 X(a, STATIC,   SINGULAR, BOOL,     ph,                2) \
 X(a, STATIC,   SINGULAR, BOOL,     ch,                3) \
-X(a, STATIC,   SINGULAR, FLOAT,    phVal,             4) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               5) \
 X(a, STATIC,   SINGULAR, BOOL,     storage,           6)
 #define domopool_Alarms_CALLBACK NULL
@@ -343,28 +370,45 @@ X(a, STATIC,   SINGULAR, FLOAT,    pressure,          5)
 #define domopool_Tests_DEFAULT NULL
 
 #define domopool_Metrics_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, FLOAT,    tempAmbiant,       1) \
-X(a, STATIC,   SINGULAR, FLOAT,    tempWater,         2) \
-X(a, STATIC,   SINGULAR, FLOAT,    savedTempWater,    3) \
+X(a, STATIC,   SINGULAR, FLOAT,    tamb,              1) \
+X(a, STATIC,   SINGULAR, FLOAT,    twater,            2) \
+X(a, STATIC,   SINGULAR, FLOAT,    savedtwater,       3) \
 X(a, STATIC,   SINGULAR, FLOAT,    ph,                4) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch,                5) \
-X(a, STATIC,   SINGULAR, FLOAT,    waterPressure,     6) \
-X(a, STATIC,   SINGULAR, UINT32,   over15Duration,    7) \
+X(a, STATIC,   SINGULAR, FLOAT,    water_pressure,    6) \
+X(a, STATIC,   SINGULAR, UINT32,   over15duration,    7) \
 X(a, STATIC,   SINGULAR, UINT32,   hour,              8)
 #define domopool_Metrics_CALLBACK NULL
 #define domopool_Metrics_DEFAULT NULL
 
 #define domopool_States_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     startup,           1) \
-X(a, STATIC,   SINGULAR, BOOL,     filterOn,          2) \
-X(a, STATIC,   SINGULAR, BOOL,     phOn,              3) \
-X(a, STATIC,   SINGULAR, BOOL,     chOn,              4) \
-X(a, STATIC,   SINGULAR, BOOL,     automatic,         5) \
+X(a, STATIC,   SINGULAR, BOOL,     filteron,          2) \
+X(a, STATIC,   SINGULAR, BOOL,     phon,              3) \
+X(a, STATIC,   SINGULAR, BOOL,     chon,              4) \
+X(a, STATIC,   SINGULAR, BOOL,     auto,              5) \
 X(a, STATIC,   SINGULAR, BOOL,     net_active,        6) \
 X(a, STATIC,   SINGULAR, BOOL,     ntp,               7) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               8)
 #define domopool_States_CALLBACK NULL
 #define domopool_States_DEFAULT NULL
+
+#define domopool_Infos_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, STRING,   compile,           1) \
+X(a, STATIC,   SINGULAR, STRING,   board_name,        2) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  versions,          3)
+#define domopool_Infos_CALLBACK NULL
+#define domopool_Infos_DEFAULT NULL
+#define domopool_Infos_versions_MSGTYPE domopool_Versions
+
+#define domopool_Versions_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, STRING,   domopool,          1) \
+X(a, STATIC,   SINGULAR, STRING,   platformio,        2) \
+X(a, STATIC,   SINGULAR, STRING,   esp_idf,           3) \
+X(a, STATIC,   SINGULAR, STRING,   xtensa,            4) \
+X(a, STATIC,   SINGULAR, STRING,   tft_espi,          6)
+#define domopool_Versions_CALLBACK NULL
+#define domopool_Versions_DEFAULT NULL
 
 #define domopool_Config_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  network,           1) \
@@ -374,7 +418,8 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  pump,              5) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  metrics,           6) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  states,            7) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  alarms,            8) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  tests,             9)
+X(a, STATIC,   OPTIONAL, MESSAGE,  tests,             9) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  infos,            10)
 #define domopool_Config_CALLBACK NULL
 #define domopool_Config_DEFAULT NULL
 #define domopool_Config_network_MSGTYPE domopool_Network
@@ -385,6 +430,7 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  tests,             9)
 #define domopool_Config_states_MSGTYPE domopool_States
 #define domopool_Config_alarms_MSGTYPE domopool_Alarms
 #define domopool_Config_tests_MSGTYPE domopool_Tests
+#define domopool_Config_infos_MSGTYPE domopool_Infos
 
 extern const pb_msgdesc_t domopool_NTP_msg;
 extern const pb_msgdesc_t domopool_Mqtt_msg;
@@ -398,6 +444,8 @@ extern const pb_msgdesc_t domopool_Alarms_msg;
 extern const pb_msgdesc_t domopool_Tests_msg;
 extern const pb_msgdesc_t domopool_Metrics_msg;
 extern const pb_msgdesc_t domopool_States_msg;
+extern const pb_msgdesc_t domopool_Infos_msg;
+extern const pb_msgdesc_t domopool_Versions_msg;
 extern const pb_msgdesc_t domopool_Config_msg;
 
 /* Defines for backwards compatibility with code written before nanopb-0.4.0 */
@@ -413,6 +461,8 @@ extern const pb_msgdesc_t domopool_Config_msg;
 #define domopool_Tests_fields &domopool_Tests_msg
 #define domopool_Metrics_fields &domopool_Metrics_msg
 #define domopool_States_fields &domopool_States_msg
+#define domopool_Infos_fields &domopool_Infos_msg
+#define domopool_Versions_fields &domopool_Versions_msg
 #define domopool_Config_fields &domopool_Config_msg
 
 /* Maximum encoded size of messages (where known) */
@@ -424,11 +474,13 @@ extern const pb_msgdesc_t domopool_Config_msg;
 #define domopool_Sensors_size                    197
 #define domopool_Global_size                     25
 #define domopool_Pump_size                       16
-#define domopool_Alarms_size                     15
+#define domopool_Alarms_size                     10
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    42
 #define domopool_States_size                     16
-#define domopool_Config_size                     699
+#define domopool_Infos_size                      913
+#define domopool_Versions_size                   650
+#define domopool_Config_size                     1610
 
 #ifdef __cplusplus
 } /* extern "C" */

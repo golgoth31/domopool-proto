@@ -42,6 +42,12 @@ PB_BIND(domopool_Metrics, domopool_Metrics, AUTO)
 PB_BIND(domopool_States, domopool_States, AUTO)
 
 
+PB_BIND(domopool_Infos, domopool_Infos, 2)
+
+
+PB_BIND(domopool_Versions, domopool_Versions, 2)
+
+
 PB_BIND(domopool_Config, domopool_Config, 2)
 
 

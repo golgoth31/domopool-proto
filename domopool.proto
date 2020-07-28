@@ -7,9 +7,9 @@ package domopool;
 option go_package = "github.com/golgoth31/domopool-proto;domopool_proto";
 
 message NTP {
-  uint32 dayLight = 1; // 3600 if daylight is observed or 0 if not
+  uint32 day_light = 1; // 3600 if daylight is observed or 0 if not
   string server = 2;
-  uint32 timeZone = 3; // UTC offset in s: UTC+1=3600
+  uint32 timezone = 3; // UTC offset in s: UTC+1=3600
 }
 
 message Mqtt {
@@ -23,7 +23,7 @@ message Network {
   string netmask = 3;
   string gateway = 4;
   string dns = 5;
-  bool allowPost = 6;
+  bool allow_post = 6;
   Mqtt mqtt = 7;
   NTP ntp = 8;
 }
@@ -43,35 +43,34 @@ message Sensors {
   Temp twin = 1;
   Temp twout = 2;
   Temp tamb = 3;
-  bool waitForConversion = 4;
-  uint32 tempResolution = 5;
+  bool wait_for_conversion = 4;
+  uint32 temp_resolution = 5;
   AnalogSensor ph = 6;
   AnalogSensor ch = 7;
-  AnalogSensor waterPressure = 8;
+  AnalogSensor water_pressure = 8;
 }
 
 message Global {
-  uint32 lcdBacklightDuration = 1;
-  uint32 ackDuration = 2;
-  double ackTone = 3;
-  bool serialOut = 4;
-  bool displayStartup = 5;
+  uint32 lcd_backlight_duration = 1;
+  uint32 ack_duration = 2;
+  double ack_tone = 3;
+  bool serial_out = 4;
+  bool display_startup = 5;
 }
 
 message Pump {
-  bool forceFilter = 1;
-  bool forcePH = 2;
-  bool forceCH = 3;
-  bool automatic = 4;
-  bool forceCheck = 5;
-  uint32 forceDuration = 6;
+  bool force_filter = 1;
+  bool force_ph = 2;
+  bool force_ch = 3;
+  bool auto = 4;
+  bool force_check = 5;
+  uint32 force_duration = 6;
 }
 
 message Alarms {
   bool filter = 1;
   bool ph = 2;
   bool ch = 3;
-  float phVal = 4;
   bool rtc = 5;
   bool storage = 6;
 }
@@ -85,25 +84,39 @@ message Tests {
 }
 
 message Metrics {
-  float tempAmbiant = 1;
-  float tempWater = 2;
-  float savedTempWater = 3;
+  float tamb = 1;
+  float twater = 2;
+  float savedtwater = 3;
   float ph = 4;
   float ch = 5;
-  float waterPressure = 6;
-  uint32 over15Duration = 7;
+  float water_pressure = 6;
+  uint32 over15duration = 7;
   uint32 hour = 8;
 }
 
 message States {
   bool startup = 1;
-  bool filterOn = 2;
-  bool phOn = 3;
-  bool chOn = 4;
-  bool automatic = 5;
+  bool filteron = 2;
+  bool phon = 3;
+  bool chon = 4;
+  bool auto = 5;
   bool net_active = 6;
   bool ntp = 7;
   bool rtc = 8;
+}
+
+message Infos {
+  string compile = 1;
+  string board_name = 2;
+  Versions versions = 3;
+}
+
+message Versions {
+  string domopool = 1;
+  string platformio = 2;
+  string esp_idf = 3;
+  string xtensa = 4;
+  string tft_espi = 6;
 }
 
 message Config {
@@ -115,4 +128,5 @@ message Config {
   States states = 7;
   Alarms alarms = 8;
   Tests tests = 9;
+  Infos infos = 10;
 }

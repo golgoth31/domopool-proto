@@ -86,11 +86,11 @@ message Tests {
 message Metrics {
   float tamb = 1;
   float twater = 2;
-  float savedtwater = 3;
+  float saved_twater = 3;
   float ph = 4;
   float ch = 5;
   float water_pressure = 6;
-  uint32 over15duration = 7;
+  uint32 over_15_duration = 7;
   uint32 hour = 8;
 }
 

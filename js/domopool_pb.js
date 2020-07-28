@@ -2980,11 +2980,11 @@ proto.domopool.Metrics.toObject = function(includeInstance, msg) {
   var f, obj = {
     tamb: jspb.Message.getFloatingPointFieldWithDefault(msg, 1, 0.0),
     twater: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    savedtwater: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    savedTwater: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     ph: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     ch: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     waterPressure: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    over15duration: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    over15Duration: jspb.Message.getFieldWithDefault(msg, 7, 0),
     hour: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
@@ -3032,7 +3032,7 @@ proto.domopool.Metrics.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setSavedtwater(value);
+      msg.setSavedTwater(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readFloat());
@@ -3048,7 +3048,7 @@ proto.domopool.Metrics.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setOver15duration(value);
+      msg.setOver15Duration(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readUint32());
@@ -3097,7 +3097,7 @@ proto.domopool.Metrics.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getSavedtwater();
+  f = message.getSavedTwater();
   if (f !== 0.0) {
     writer.writeFloat(
       3,
@@ -3125,7 +3125,7 @@ proto.domopool.Metrics.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getOver15duration();
+  f = message.getOver15Duration();
   if (f !== 0) {
     writer.writeUint32(
       7,
@@ -3179,10 +3179,10 @@ proto.domopool.Metrics.prototype.setTwater = function(value) {
 
 
 /**
- * optional float savedtwater = 3;
+ * optional float saved_twater = 3;
  * @return {number}
  */
-proto.domopool.Metrics.prototype.getSavedtwater = function() {
+proto.domopool.Metrics.prototype.getSavedTwater = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
 };
 
@@ -3191,7 +3191,7 @@ proto.domopool.Metrics.prototype.getSavedtwater = function() {
  * @param {number} value
  * @return {!proto.domopool.Metrics} returns this
  */
-proto.domopool.Metrics.prototype.setSavedtwater = function(value) {
+proto.domopool.Metrics.prototype.setSavedTwater = function(value) {
   return jspb.Message.setProto3FloatField(this, 3, value);
 };
 
@@ -3251,10 +3251,10 @@ proto.domopool.Metrics.prototype.setWaterPressure = function(value) {
 
 
 /**
- * optional uint32 over15duration = 7;
+ * optional uint32 over_15_duration = 7;
  * @return {number}
  */
-proto.domopool.Metrics.prototype.getOver15duration = function() {
+proto.domopool.Metrics.prototype.getOver15Duration = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -3263,7 +3263,7 @@ proto.domopool.Metrics.prototype.getOver15duration = function() {
  * @param {number} value
  * @return {!proto.domopool.Metrics} returns this
  */
-proto.domopool.Metrics.prototype.setOver15duration = function(value) {
+proto.domopool.Metrics.prototype.setOver15Duration = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
 };
 

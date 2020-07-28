@@ -38,11 +38,11 @@ typedef struct _domopool_Global {
 typedef struct _domopool_Metrics {
     float tamb;
     float twater;
-    float savedtwater;
+    float saved_twater;
     float ph;
     float ch;
     float water_pressure;
-    uint32_t over15duration;
+    uint32_t over_15_duration;
     uint32_t hour;
 } domopool_Metrics;
 
@@ -206,11 +206,11 @@ typedef struct _domopool_Config {
 #define domopool_Global_display_startup_tag      5
 #define domopool_Metrics_tamb_tag                1
 #define domopool_Metrics_twater_tag              2
-#define domopool_Metrics_savedtwater_tag         3
+#define domopool_Metrics_saved_twater_tag        3
 #define domopool_Metrics_ph_tag                  4
 #define domopool_Metrics_ch_tag                  5
 #define domopool_Metrics_water_pressure_tag      6
-#define domopool_Metrics_over15duration_tag      7
+#define domopool_Metrics_over_15_duration_tag    7
 #define domopool_Metrics_hour_tag                8
 #define domopool_Mqtt_enabled_tag                1
 #define domopool_Mqtt_server_tag                 2
@@ -372,11 +372,11 @@ X(a, STATIC,   SINGULAR, FLOAT,    pressure,          5)
 #define domopool_Metrics_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, FLOAT,    tamb,              1) \
 X(a, STATIC,   SINGULAR, FLOAT,    twater,            2) \
-X(a, STATIC,   SINGULAR, FLOAT,    savedtwater,       3) \
+X(a, STATIC,   SINGULAR, FLOAT,    saved_twater,      3) \
 X(a, STATIC,   SINGULAR, FLOAT,    ph,                4) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch,                5) \
 X(a, STATIC,   SINGULAR, FLOAT,    water_pressure,    6) \
-X(a, STATIC,   SINGULAR, UINT32,   over15duration,    7) \
+X(a, STATIC,   SINGULAR, UINT32,   over_15_duration,   7) \
 X(a, STATIC,   SINGULAR, UINT32,   hour,              8)
 #define domopool_Metrics_CALLBACK NULL
 #define domopool_Metrics_DEFAULT NULL

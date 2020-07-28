@@ -93,11 +93,11 @@ typedef struct _domopool_Tests {
 } domopool_Tests;
 
 typedef struct _domopool_Versions {
-    char domopool[128];
-    char platformio[128];
+    char domopool[10];
+    uint32_t platformio;
     char esp_idf[128];
-    char xtensa[128];
-    char tft_espi[128];
+    char xtensa[10];
+    char tft_espi[10];
 } domopool_Versions;
 
 typedef struct _domopool_Infos {
@@ -173,7 +173,7 @@ typedef struct _domopool_Config {
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
-#define domopool_Versions_init_default           {"", "", "", "", ""}
+#define domopool_Versions_init_default           {"", 0, "", "", ""}
 #define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default}
 #define domopool_NTP_init_zero                   {0, "", 0}
 #define domopool_Mqtt_init_zero                  {0, ""}
@@ -188,7 +188,7 @@ typedef struct _domopool_Config {
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
-#define domopool_Versions_init_zero              {"", "", "", "", ""}
+#define domopool_Versions_init_zero              {"", 0, "", "", ""}
 #define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero}
 
 /* Field tags (for use in manual encoding/decoding) */
@@ -403,7 +403,7 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  versions,          3)
 
 #define domopool_Versions_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, STRING,   domopool,          1) \
-X(a, STATIC,   SINGULAR, STRING,   platformio,        2) \
+X(a, STATIC,   SINGULAR, UINT32,   platformio,        2) \
 X(a, STATIC,   SINGULAR, STRING,   esp_idf,           3) \
 X(a, STATIC,   SINGULAR, STRING,   xtensa,            4) \
 X(a, STATIC,   SINGULAR, STRING,   tft_espi,          6)
@@ -478,9 +478,9 @@ extern const pb_msgdesc_t domopool_Config_msg;
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    42
 #define domopool_States_size                     16
-#define domopool_Infos_size                      913
-#define domopool_Versions_size                   650
-#define domopool_Config_size                     1610
+#define domopool_Infos_size                      432
+#define domopool_Versions_size                   169
+#define domopool_Config_size                     1129
 
 #ifdef __cplusplus
 } /* extern "C" */

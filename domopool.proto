@@ -113,7 +113,7 @@ message Infos {
 
 message Versions {
   string domopool = 1;
-  string platformio = 2;
+  uint32 platformio = 2;
   string esp_idf = 3;
   string xtensa = 4;
   string tft_espi = 6;

@@ -3870,7 +3870,7 @@ proto.domopool.Versions.prototype.toObject = function(opt_includeInstance) {
 proto.domopool.Versions.toObject = function(includeInstance, msg) {
   var f, obj = {
     domopool: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    platformio: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    platformio: jspb.Message.getFieldWithDefault(msg, 2, 0),
     espIdf: jspb.Message.getFieldWithDefault(msg, 3, ""),
     xtensa: jspb.Message.getFieldWithDefault(msg, 4, ""),
     tftEspi: jspb.Message.getFieldWithDefault(msg, 6, "")
@@ -3915,7 +3915,7 @@ proto.domopool.Versions.deserializeBinaryFromReader = function(msg, reader) {
       msg.setDomopool(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setPlatformio(value);
       break;
     case 3:
@@ -3967,8 +3967,8 @@ proto.domopool.Versions.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getPlatformio();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0) {
+    writer.writeUint32(
       2,
       f
     );
@@ -4016,20 +4016,20 @@ proto.domopool.Versions.prototype.setDomopool = function(value) {
 
 
 /**
- * optional string platformio = 2;
- * @return {string}
+ * optional uint32 platformio = 2;
+ * @return {number}
  */
 proto.domopool.Versions.prototype.getPlatformio = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {string} value
+ * @param {number} value
  * @return {!proto.domopool.Versions} returns this
  */
 proto.domopool.Versions.prototype.setPlatformio = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 

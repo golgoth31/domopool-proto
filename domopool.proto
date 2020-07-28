@@ -96,9 +96,9 @@ message Metrics {
 
 message States {
   bool startup = 1;
-  bool filteron = 2;
-  bool phon = 3;
-  bool chon = 4;
+  bool filter_on = 2;
+  bool ph_on = 3;
+  bool ch_on = 4;
   bool auto = 5;
   bool net_active = 6;
   bool ntp = 7;

@@ -68,9 +68,9 @@ typedef struct _domopool_Pump {
 
 typedef struct _domopool_States {
     bool startup;
-    bool filteron;
-    bool phon;
-    bool chon;
+    bool filter_on;
+    bool ph_on;
+    bool ch_on;
     bool auto;
     bool net_active;
     bool ntp;
@@ -224,9 +224,9 @@ typedef struct _domopool_Config {
 #define domopool_Pump_force_check_tag            5
 #define domopool_Pump_force_duration_tag         6
 #define domopool_States_startup_tag              1
-#define domopool_States_filteron_tag             2
-#define domopool_States_phon_tag                 3
-#define domopool_States_chon_tag                 4
+#define domopool_States_filter_on_tag            2
+#define domopool_States_ph_on_tag                3
+#define domopool_States_ch_on_tag                4
 #define domopool_States_auto_tag                 5
 #define domopool_States_net_active_tag           6
 #define domopool_States_ntp_tag                  7
@@ -383,9 +383,9 @@ X(a, STATIC,   SINGULAR, UINT32,   hour,              8)
 
 #define domopool_States_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     startup,           1) \
-X(a, STATIC,   SINGULAR, BOOL,     filteron,          2) \
-X(a, STATIC,   SINGULAR, BOOL,     phon,              3) \
-X(a, STATIC,   SINGULAR, BOOL,     chon,              4) \
+X(a, STATIC,   SINGULAR, BOOL,     filter_on,         2) \
+X(a, STATIC,   SINGULAR, BOOL,     ph_on,             3) \
+X(a, STATIC,   SINGULAR, BOOL,     ch_on,             4) \
 X(a, STATIC,   SINGULAR, BOOL,     auto,              5) \
 X(a, STATIC,   SINGULAR, BOOL,     net_active,        6) \
 X(a, STATIC,   SINGULAR, BOOL,     ntp,               7) \

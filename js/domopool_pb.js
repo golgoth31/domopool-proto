@@ -3319,9 +3319,9 @@ proto.domopool.States.prototype.toObject = function(opt_includeInstance) {
 proto.domopool.States.toObject = function(includeInstance, msg) {
   var f, obj = {
     startup: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    filteron: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    phon: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    chon: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    filterOn: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    phOn: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    chOn: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     auto: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     netActive: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     ntp: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
@@ -3368,15 +3368,15 @@ proto.domopool.States.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setFilteron(value);
+      msg.setFilterOn(value);
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setPhon(value);
+      msg.setPhOn(value);
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setChon(value);
+      msg.setChOn(value);
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -3430,21 +3430,21 @@ proto.domopool.States.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getFilteron();
+  f = message.getFilterOn();
   if (f) {
     writer.writeBool(
       2,
       f
     );
   }
-  f = message.getPhon();
+  f = message.getPhOn();
   if (f) {
     writer.writeBool(
       3,
       f
     );
   }
-  f = message.getChon();
+  f = message.getChOn();
   if (f) {
     writer.writeBool(
       4,
@@ -3501,10 +3501,10 @@ proto.domopool.States.prototype.setStartup = function(value) {
 
 
 /**
- * optional bool filteron = 2;
+ * optional bool filter_on = 2;
  * @return {boolean}
  */
-proto.domopool.States.prototype.getFilteron = function() {
+proto.domopool.States.prototype.getFilterOn = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
 };
 
@@ -3513,16 +3513,16 @@ proto.domopool.States.prototype.getFilteron = function() {
  * @param {boolean} value
  * @return {!proto.domopool.States} returns this
  */
-proto.domopool.States.prototype.setFilteron = function(value) {
+proto.domopool.States.prototype.setFilterOn = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
 /**
- * optional bool phon = 3;
+ * optional bool ph_on = 3;
  * @return {boolean}
  */
-proto.domopool.States.prototype.getPhon = function() {
+proto.domopool.States.prototype.getPhOn = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
@@ -3531,16 +3531,16 @@ proto.domopool.States.prototype.getPhon = function() {
  * @param {boolean} value
  * @return {!proto.domopool.States} returns this
  */
-proto.domopool.States.prototype.setPhon = function(value) {
+proto.domopool.States.prototype.setPhOn = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
 /**
- * optional bool chon = 4;
+ * optional bool ch_on = 4;
  * @return {boolean}
  */
-proto.domopool.States.prototype.getChon = function() {
+proto.domopool.States.prototype.getChOn = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
@@ -3549,7 +3549,7 @@ proto.domopool.States.prototype.getChon = function() {
  * @param {boolean} value
  * @return {!proto.domopool.States} returns this
  */
-proto.domopool.States.prototype.setChon = function(value) {
+proto.domopool.States.prototype.setChOn = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 

@@ -62,7 +62,7 @@ message Pump {
   bool force_filter = 1;
   bool force_ph = 2;
   bool force_ch = 3;
-  bool auto = 4;
+  bool automatic = 4;
   bool force_check = 5;
   uint32 force_duration = 6;
 }
@@ -99,7 +99,7 @@ message States {
   bool filter_on = 2;
   bool ph_on = 3;
   bool ch_on = 4;
-  bool auto = 5;
+  bool automatic = 5;
   bool net_active = 6;
   bool ntp = 7;
   bool rtc = 8;

@@ -61,7 +61,7 @@ typedef struct _domopool_Pump {
     bool force_filter;
     bool force_ph;
     bool force_ch;
-    bool auto;
+    bool automatic;
     bool force_check;
     uint32_t force_duration;
 } domopool_Pump;
@@ -71,7 +71,7 @@ typedef struct _domopool_States {
     bool filter_on;
     bool ph_on;
     bool ch_on;
-    bool auto;
+    bool automatic;
     bool net_active;
     bool ntp;
     bool rtc;
@@ -220,14 +220,14 @@ typedef struct _domopool_Config {
 #define domopool_Pump_force_filter_tag           1
 #define domopool_Pump_force_ph_tag               2
 #define domopool_Pump_force_ch_tag               3
-#define domopool_Pump_auto_tag                   4
+#define domopool_Pump_automatic_tag              4
 #define domopool_Pump_force_check_tag            5
 #define domopool_Pump_force_duration_tag         6
 #define domopool_States_startup_tag              1
 #define domopool_States_filter_on_tag            2
 #define domopool_States_ph_on_tag                3
 #define domopool_States_ch_on_tag                4
-#define domopool_States_auto_tag                 5
+#define domopool_States_automatic_tag            5
 #define domopool_States_net_active_tag           6
 #define domopool_States_ntp_tag                  7
 #define domopool_States_rtc_tag                  8
@@ -345,7 +345,7 @@ X(a, STATIC,   SINGULAR, BOOL,     display_startup,   5)
 X(a, STATIC,   SINGULAR, BOOL,     force_filter,      1) \
 X(a, STATIC,   SINGULAR, BOOL,     force_ph,          2) \
 X(a, STATIC,   SINGULAR, BOOL,     force_ch,          3) \
-X(a, STATIC,   SINGULAR, BOOL,     auto,              4) \
+X(a, STATIC,   SINGULAR, BOOL,     automatic,         4) \
 X(a, STATIC,   SINGULAR, BOOL,     force_check,       5) \
 X(a, STATIC,   SINGULAR, UINT32,   force_duration,    6)
 #define domopool_Pump_CALLBACK NULL
@@ -386,7 +386,7 @@ X(a, STATIC,   SINGULAR, BOOL,     startup,           1) \
 X(a, STATIC,   SINGULAR, BOOL,     filter_on,         2) \
 X(a, STATIC,   SINGULAR, BOOL,     ph_on,             3) \
 X(a, STATIC,   SINGULAR, BOOL,     ch_on,             4) \
-X(a, STATIC,   SINGULAR, BOOL,     auto,              5) \
+X(a, STATIC,   SINGULAR, BOOL,     automatic,         5) \
 X(a, STATIC,   SINGULAR, BOOL,     net_active,        6) \
 X(a, STATIC,   SINGULAR, BOOL,     ntp,               7) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               8)

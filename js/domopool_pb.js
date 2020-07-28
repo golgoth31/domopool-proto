@@ -2201,7 +2201,7 @@ proto.domopool.Pump.toObject = function(includeInstance, msg) {
     forceFilter: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     forcePh: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     forceCh: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    auto: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    automatic: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     forceCheck: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     forceDuration: jspb.Message.getFieldWithDefault(msg, 6, 0)
   };
@@ -2254,7 +2254,7 @@ proto.domopool.Pump.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 4:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAuto(value);
+      msg.setAutomatic(value);
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -2314,7 +2314,7 @@ proto.domopool.Pump.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAuto();
+  f = message.getAutomatic();
   if (f) {
     writer.writeBool(
       4,
@@ -2393,10 +2393,10 @@ proto.domopool.Pump.prototype.setForceCh = function(value) {
 
 
 /**
- * optional bool auto = 4;
+ * optional bool automatic = 4;
  * @return {boolean}
  */
-proto.domopool.Pump.prototype.getAuto = function() {
+proto.domopool.Pump.prototype.getAutomatic = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
@@ -2405,7 +2405,7 @@ proto.domopool.Pump.prototype.getAuto = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Pump} returns this
  */
-proto.domopool.Pump.prototype.setAuto = function(value) {
+proto.domopool.Pump.prototype.setAutomatic = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
@@ -3322,7 +3322,7 @@ proto.domopool.States.toObject = function(includeInstance, msg) {
     filterOn: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     phOn: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     chOn: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    auto: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    automatic: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     netActive: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     ntp: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     rtc: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
@@ -3380,7 +3380,7 @@ proto.domopool.States.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAuto(value);
+      msg.setAutomatic(value);
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -3451,7 +3451,7 @@ proto.domopool.States.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAuto();
+  f = message.getAutomatic();
   if (f) {
     writer.writeBool(
       5,
@@ -3555,10 +3555,10 @@ proto.domopool.States.prototype.setChOn = function(value) {
 
 
 /**
- * optional bool auto = 5;
+ * optional bool automatic = 5;
  * @return {boolean}
  */
-proto.domopool.States.prototype.getAuto = function() {
+proto.domopool.States.prototype.getAutomatic = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
@@ -3567,7 +3567,7 @@ proto.domopool.States.prototype.getAuto = function() {
  * @param {boolean} value
  * @return {!proto.domopool.States} returns this
  */
-proto.domopool.States.prototype.setAuto = function(value) {
+proto.domopool.States.prototype.setAutomatic = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 

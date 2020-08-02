@@ -130,3 +130,14 @@ message Config {
   Tests tests = 9;
   Infos infos = 10;
 }
+
+enum Filter_states {
+  auto = 0;
+  start = 1;
+  stop = 2;
+}
+
+message Filters {
+  Filter_states state = 1;
+  uint32 duration = 2;
+}

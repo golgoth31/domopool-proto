@@ -51,6 +51,10 @@ PB_BIND(domopool_Versions, domopool_Versions, AUTO)
 PB_BIND(domopool_Config, domopool_Config, 2)
 
 
+PB_BIND(domopool_Filters, domopool_Filters, AUTO)
+
+
+
 
 #ifndef PB_CONVERT_DOUBLE_FLOAT
 /* On some platforms (such as AVR), double is really float.

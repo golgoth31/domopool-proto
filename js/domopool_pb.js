@@ -15,8 +15,8 @@ var global = Function('return this')();
 goog.exportSymbol('proto.domopool.Alarms', null, global);
 goog.exportSymbol('proto.domopool.AnalogSensor', null, global);
 goog.exportSymbol('proto.domopool.Config', null, global);
+goog.exportSymbol('proto.domopool.Filter', null, global);
 goog.exportSymbol('proto.domopool.Filter_states', null, global);
-goog.exportSymbol('proto.domopool.Filters', null, global);
 goog.exportSymbol('proto.domopool.Global', null, global);
 goog.exportSymbol('proto.domopool.Infos', null, global);
 goog.exportSymbol('proto.domopool.Metrics', null, global);
@@ -354,16 +354,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.domopool.Filters = function(opt_data) {
+proto.domopool.Filter = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.domopool.Filters, jspb.Message);
+goog.inherits(proto.domopool.Filter, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.domopool.Filters.displayName = 'proto.domopool.Filters';
+  proto.domopool.Filter.displayName = 'proto.domopool.Filter';
 }
 
 
@@ -4685,8 +4685,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.domopool.Filters.prototype.toObject = function(opt_includeInstance) {
-  return proto.domopool.Filters.toObject(opt_includeInstance, this);
+proto.domopool.Filter.prototype.toObject = function(opt_includeInstance) {
+  return proto.domopool.Filter.toObject(opt_includeInstance, this);
 };
 
 
@@ -4695,11 +4695,11 @@ proto.domopool.Filters.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.domopool.Filters} msg The msg instance to transform.
+ * @param {!proto.domopool.Filter} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.domopool.Filters.toObject = function(includeInstance, msg) {
+proto.domopool.Filter.toObject = function(includeInstance, msg) {
   var f, obj = {
     state: jspb.Message.getFieldWithDefault(msg, 1, 0),
     duration: jspb.Message.getFieldWithDefault(msg, 2, 0)
@@ -4716,23 +4716,23 @@ proto.domopool.Filters.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.domopool.Filters}
+ * @return {!proto.domopool.Filter}
  */
-proto.domopool.Filters.deserializeBinary = function(bytes) {
+proto.domopool.Filter.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.domopool.Filters;
-  return proto.domopool.Filters.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.domopool.Filter;
+  return proto.domopool.Filter.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.domopool.Filters} msg The message object to deserialize into.
+ * @param {!proto.domopool.Filter} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.domopool.Filters}
+ * @return {!proto.domopool.Filter}
  */
-proto.domopool.Filters.deserializeBinaryFromReader = function(msg, reader) {
+proto.domopool.Filter.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4760,9 +4760,9 @@ proto.domopool.Filters.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.domopool.Filters.prototype.serializeBinary = function() {
+proto.domopool.Filter.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.domopool.Filters.serializeBinaryToWriter(this, writer);
+  proto.domopool.Filter.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4770,11 +4770,11 @@ proto.domopool.Filters.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.domopool.Filters} message
+ * @param {!proto.domopool.Filter} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.domopool.Filters.serializeBinaryToWriter = function(message, writer) {
+proto.domopool.Filter.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getState();
   if (f !== 0.0) {
@@ -4797,16 +4797,16 @@ proto.domopool.Filters.serializeBinaryToWriter = function(message, writer) {
  * optional Filter_states state = 1;
  * @return {!proto.domopool.Filter_states}
  */
-proto.domopool.Filters.prototype.getState = function() {
+proto.domopool.Filter.prototype.getState = function() {
   return /** @type {!proto.domopool.Filter_states} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {!proto.domopool.Filter_states} value
- * @return {!proto.domopool.Filters} returns this
+ * @return {!proto.domopool.Filter} returns this
  */
-proto.domopool.Filters.prototype.setState = function(value) {
+proto.domopool.Filter.prototype.setState = function(value) {
   return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
@@ -4815,16 +4815,16 @@ proto.domopool.Filters.prototype.setState = function(value) {
  * optional uint32 duration = 2;
  * @return {number}
  */
-proto.domopool.Filters.prototype.getDuration = function() {
+proto.domopool.Filter.prototype.getDuration = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.domopool.Filters} returns this
+ * @return {!proto.domopool.Filter} returns this
  */
-proto.domopool.Filters.prototype.setDuration = function(value) {
+proto.domopool.Filter.prototype.setDuration = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 

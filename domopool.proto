@@ -137,7 +137,7 @@ enum Filter_states {
   stop = 2;
 }
 
-message Filters {
+message Filter {
   Filter_states state = 1;
   uint32 duration = 2;
 }

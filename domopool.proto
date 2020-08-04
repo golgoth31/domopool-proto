@@ -65,6 +65,7 @@ message Pump {
   bool automatic = 4;
   bool force_check = 5;
   uint32 force_duration = 6;
+  uint32 force_start_time = 7;
 }
 
 message Alarms {

@@ -2226,7 +2226,8 @@ proto.domopool.Pump.toObject = function(includeInstance, msg) {
     forceCh: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     automatic: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     forceCheck: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    forceDuration: jspb.Message.getFieldWithDefault(msg, 6, 0)
+    forceDuration: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    forceStartTime: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -2286,6 +2287,10 @@ proto.domopool.Pump.deserializeBinaryFromReader = function(msg, reader) {
     case 6:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setForceDuration(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setForceStartTime(value);
       break;
     default:
       reader.skipField();
@@ -2355,6 +2360,13 @@ proto.domopool.Pump.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint32(
       6,
+      f
+    );
+  }
+  f = message.getForceStartTime();
+  if (f !== 0) {
+    writer.writeUint32(
+      7,
       f
     );
   }
@@ -2466,6 +2478,24 @@ proto.domopool.Pump.prototype.getForceDuration = function() {
  */
 proto.domopool.Pump.prototype.setForceDuration = function(value) {
   return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional uint32 force_start_time = 7;
+ * @return {number}
+ */
+proto.domopool.Pump.prototype.getForceStartTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Pump} returns this
+ */
+proto.domopool.Pump.prototype.setForceStartTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 

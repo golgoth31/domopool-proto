@@ -76,6 +76,7 @@ typedef struct _domopool_Pump {
     bool automatic;
     bool force_check;
     uint32_t force_duration;
+    uint32_t force_start_time;
 } domopool_Pump;
 
 typedef struct _domopool_States {
@@ -185,7 +186,7 @@ typedef struct _domopool_Config {
 #define domopool_AnalogSensor_init_default       {0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0}
-#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0}
+#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0}
@@ -201,7 +202,7 @@ typedef struct _domopool_Config {
 #define domopool_AnalogSensor_init_zero          {0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0}
-#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0}
+#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0}
@@ -245,6 +246,7 @@ typedef struct _domopool_Config {
 #define domopool_Pump_automatic_tag              4
 #define domopool_Pump_force_check_tag            5
 #define domopool_Pump_force_duration_tag         6
+#define domopool_Pump_force_start_time_tag       7
 #define domopool_States_startup_tag              1
 #define domopool_States_filter_on_tag            2
 #define domopool_States_ph_on_tag                3
@@ -369,7 +371,8 @@ X(a, STATIC,   SINGULAR, BOOL,     force_ph,          2) \
 X(a, STATIC,   SINGULAR, BOOL,     force_ch,          3) \
 X(a, STATIC,   SINGULAR, BOOL,     automatic,         4) \
 X(a, STATIC,   SINGULAR, BOOL,     force_check,       5) \
-X(a, STATIC,   SINGULAR, UINT32,   force_duration,    6)
+X(a, STATIC,   SINGULAR, UINT32,   force_duration,    6) \
+X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   7)
 #define domopool_Pump_CALLBACK NULL
 #define domopool_Pump_DEFAULT NULL
 
@@ -503,14 +506,14 @@ extern const pb_msgdesc_t domopool_Filter_msg;
 #define domopool_AnalogSensor_size               7
 #define domopool_Sensors_size                    197
 #define domopool_Global_size                     25
-#define domopool_Pump_size                       16
+#define domopool_Pump_size                       22
 #define domopool_Alarms_size                     10
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    42
 #define domopool_States_size                     16
 #define domopool_Infos_size                      432
 #define domopool_Versions_size                   169
-#define domopool_Config_size                     1129
+#define domopool_Config_size                     1135
 #define domopool_Filter_size                     8
 
 #ifdef __cplusplus

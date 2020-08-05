@@ -4732,7 +4732,8 @@ proto.domopool.Filter.prototype.toObject = function(opt_includeInstance) {
 proto.domopool.Filter.toObject = function(includeInstance, msg) {
   var f, obj = {
     state: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    duration: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    duration: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    startTime: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -4777,6 +4778,10 @@ proto.domopool.Filter.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {number} */ (reader.readUint32());
       msg.setDuration(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setStartTime(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -4820,6 +4825,13 @@ proto.domopool.Filter.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getStartTime();
+  if (f !== 0) {
+    writer.writeUint32(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -4856,6 +4868,24 @@ proto.domopool.Filter.prototype.getDuration = function() {
  */
 proto.domopool.Filter.prototype.setDuration = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional uint32 start_time = 3;
+ * @return {number}
+ */
+proto.domopool.Filter.prototype.getStartTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Filter} returns this
+ */
+proto.domopool.Filter.prototype.setStartTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

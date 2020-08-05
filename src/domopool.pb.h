@@ -37,6 +37,7 @@ typedef struct _domopool_AnalogSensor {
 typedef struct _domopool_Filter {
     domopool_Filter_states state;
     uint32_t duration;
+    uint32_t start_time;
 } domopool_Filter;
 
 typedef struct _domopool_Global {
@@ -194,7 +195,7 @@ typedef struct _domopool_Config {
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
 #define domopool_Versions_init_default           {"", 0, "", "", ""}
 #define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default}
-#define domopool_Filter_init_default             {_domopool_Filter_states_MIN, 0}
+#define domopool_Filter_init_default             {_domopool_Filter_states_MIN, 0, 0}
 #define domopool_NTP_init_zero                   {0, "", 0}
 #define domopool_Mqtt_init_zero                  {0, ""}
 #define domopool_Network_init_zero               {0, "", "", "", "", 0, false, domopool_Mqtt_init_zero, false, domopool_NTP_init_zero}
@@ -210,7 +211,7 @@ typedef struct _domopool_Config {
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
 #define domopool_Versions_init_zero              {"", 0, "", "", ""}
 #define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero}
-#define domopool_Filter_init_zero                {_domopool_Filter_states_MIN, 0}
+#define domopool_Filter_init_zero                {_domopool_Filter_states_MIN, 0, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define domopool_Alarms_filter_tag               1
@@ -222,6 +223,7 @@ typedef struct _domopool_Config {
 #define domopool_AnalogSensor_threshold_tag      2
 #define domopool_Filter_state_tag                1
 #define domopool_Filter_duration_tag             2
+#define domopool_Filter_start_time_tag           3
 #define domopool_Global_lcd_backlight_duration_tag 1
 #define domopool_Global_ack_duration_tag         2
 #define domopool_Global_ack_tone_tag             3
@@ -459,7 +461,8 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  infos,            10)
 
 #define domopool_Filter_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, UENUM,    state,             1) \
-X(a, STATIC,   SINGULAR, UINT32,   duration,          2)
+X(a, STATIC,   SINGULAR, UINT32,   duration,          2) \
+X(a, STATIC,   SINGULAR, UINT32,   start_time,        3)
 #define domopool_Filter_CALLBACK NULL
 #define domopool_Filter_DEFAULT NULL
 
@@ -514,7 +517,7 @@ extern const pb_msgdesc_t domopool_Filter_msg;
 #define domopool_Infos_size                      432
 #define domopool_Versions_size                   169
 #define domopool_Config_size                     1135
-#define domopool_Filter_size                     8
+#define domopool_Filter_size                     14
 
 #ifdef __cplusplus
 } /* extern "C" */

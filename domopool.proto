@@ -37,6 +37,7 @@ message Temp {
 message AnalogSensor {
   bool enabled = 1;
   float threshold = 2;
+  uint32 adc_pin = 3;
 }
 
 message Sensors {
@@ -132,11 +133,7 @@ message Config {
   Infos infos = 10;
 }
 
-enum Filter_states {
-  auto = 0;
-  start = 1;
-  stop = 2;
-}
+enum Filter_states { auto = 0; start = 1; stop = 2; }
 
 message Filter {
   Filter_states state = 1;

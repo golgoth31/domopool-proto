@@ -42,9 +42,6 @@ PB_BIND(domopool_Metrics, domopool_Metrics, AUTO)
 PB_BIND(domopool_States, domopool_States, AUTO)
 
 
-PB_BIND(domopool_Libs, domopool_Libs, AUTO)
-
-
 PB_BIND(domopool_Versions, domopool_Versions, AUTO)
 
 

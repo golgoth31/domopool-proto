@@ -113,12 +113,14 @@ message Infos {
   Versions versions = 3;
 }
 
+message Libs { string dallastemperature = 1; }
 message Versions {
   string domopool = 1;
   uint32 platformio = 2;
   string esp_idf = 3;
   string xtensa = 4;
   string tft_espi = 6;
+  Libs libs = 7;
 }
 
 message Config {

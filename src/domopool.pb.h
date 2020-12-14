@@ -17,6 +17,10 @@ typedef enum _domopool_Filter_states {
 } domopool_Filter_states;
 
 /* Struct definitions */
+typedef struct _domopool_Libs {
+    pb_callback_t dallastemperature;
+} domopool_Libs;
+
 typedef struct _domopool_Alarms {
     bool filter;
     bool ph;
@@ -109,6 +113,8 @@ typedef struct _domopool_Versions {
     char esp_idf[128];
     char xtensa[10];
     char tft_espi[10];
+    bool has_libs;
+    domopool_Libs libs;
 } domopool_Versions;
 
 typedef struct _domopool_Infos {
@@ -194,7 +200,8 @@ extern "C" {
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
-#define domopool_Versions_init_default           {"", 0, "", "", ""}
+#define domopool_Libs_init_default               {{{NULL}, NULL}}
+#define domopool_Versions_init_default           {"", 0, "", "", "", false, domopool_Libs_init_default}
 #define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default}
 #define domopool_Filter_init_default             {_domopool_Filter_states_MIN, 0, 0}
 #define domopool_NTP_init_zero                   {0, "", 0}
@@ -210,11 +217,13 @@ extern "C" {
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
-#define domopool_Versions_init_zero              {"", 0, "", "", ""}
+#define domopool_Libs_init_zero                  {{{NULL}, NULL}}
+#define domopool_Versions_init_zero              {"", 0, "", "", "", false, domopool_Libs_init_zero}
 #define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero}
 #define domopool_Filter_init_zero                {_domopool_Filter_states_MIN, 0, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
+#define domopool_Libs_dallastemperature_tag      1
 #define domopool_Alarms_filter_tag               1
 #define domopool_Alarms_ph_tag                   2
 #define domopool_Alarms_ch_tag                   3
@@ -272,6 +281,7 @@ extern "C" {
 #define domopool_Versions_esp_idf_tag            3
 #define domopool_Versions_xtensa_tag             4
 #define domopool_Versions_tft_espi_tag           6
+#define domopool_Versions_libs_tag               7
 #define domopool_Infos_compile_tag               1
 #define domopool_Infos_board_name_tag            2
 #define domopool_Infos_versions_tag              3
@@ -431,14 +441,21 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  versions,          3)
 #define domopool_Infos_DEFAULT NULL
 #define domopool_Infos_versions_MSGTYPE domopool_Versions
 
+#define domopool_Libs_FIELDLIST(X, a) \
+X(a, CALLBACK, SINGULAR, STRING,   dallastemperature,   1)
+#define domopool_Libs_CALLBACK pb_default_field_callback
+#define domopool_Libs_DEFAULT NULL
+
 #define domopool_Versions_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, STRING,   domopool,          1) \
 X(a, STATIC,   SINGULAR, UINT32,   platformio,        2) \
 X(a, STATIC,   SINGULAR, STRING,   esp_idf,           3) \
 X(a, STATIC,   SINGULAR, STRING,   xtensa,            4) \
-X(a, STATIC,   SINGULAR, STRING,   tft_espi,          6)
+X(a, STATIC,   SINGULAR, STRING,   tft_espi,          6) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  libs,              7)
 #define domopool_Versions_CALLBACK NULL
 #define domopool_Versions_DEFAULT NULL
+#define domopool_Versions_libs_MSGTYPE domopool_Libs
 
 #define domopool_Config_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  network,           1) \
@@ -482,6 +499,7 @@ extern const pb_msgdesc_t domopool_Tests_msg;
 extern const pb_msgdesc_t domopool_Metrics_msg;
 extern const pb_msgdesc_t domopool_States_msg;
 extern const pb_msgdesc_t domopool_Infos_msg;
+extern const pb_msgdesc_t domopool_Libs_msg;
 extern const pb_msgdesc_t domopool_Versions_msg;
 extern const pb_msgdesc_t domopool_Config_msg;
 extern const pb_msgdesc_t domopool_Filter_msg;
@@ -500,6 +518,7 @@ extern const pb_msgdesc_t domopool_Filter_msg;
 #define domopool_Metrics_fields &domopool_Metrics_msg
 #define domopool_States_fields &domopool_States_msg
 #define domopool_Infos_fields &domopool_Infos_msg
+#define domopool_Libs_fields &domopool_Libs_msg
 #define domopool_Versions_fields &domopool_Versions_msg
 #define domopool_Config_fields &domopool_Config_msg
 #define domopool_Filter_fields &domopool_Filter_msg
@@ -517,9 +536,10 @@ extern const pb_msgdesc_t domopool_Filter_msg;
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    42
 #define domopool_States_size                     16
-#define domopool_Infos_size                      432
-#define domopool_Versions_size                   169
-#define domopool_Config_size                     1153
+/* domopool_Infos_size depends on runtime parameters */
+/* domopool_Libs_size depends on runtime parameters */
+/* domopool_Versions_size depends on runtime parameters */
+/* domopool_Config_size depends on runtime parameters */
 #define domopool_Filter_size                     14
 
 #ifdef __cplusplus

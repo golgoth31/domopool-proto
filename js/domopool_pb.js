@@ -3746,7 +3746,7 @@ proto.domopool.Versions.toObject = function(includeInstance, msg) {
     espIdf: jspb.Message.getFieldWithDefault(msg, 3, ""),
     xtensa: jspb.Message.getFieldWithDefault(msg, 4, ""),
     tftEspi: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    dallas: jspb.Message.getFieldWithDefault(msg, 7, "")
+    dallastemp: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -3805,7 +3805,7 @@ proto.domopool.Versions.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDallas(value);
+      msg.setDallastemp(value);
       break;
     default:
       reader.skipField();
@@ -3871,7 +3871,7 @@ proto.domopool.Versions.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getDallas();
+  f = message.getDallastemp();
   if (f.length > 0) {
     writer.writeString(
       7,
@@ -3972,10 +3972,10 @@ proto.domopool.Versions.prototype.setTftEspi = function(value) {
 
 
 /**
- * optional string dallas = 7;
+ * optional string dallastemp = 7;
  * @return {string}
  */
-proto.domopool.Versions.prototype.getDallas = function() {
+proto.domopool.Versions.prototype.getDallastemp = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -3984,7 +3984,7 @@ proto.domopool.Versions.prototype.getDallas = function() {
  * @param {string} value
  * @return {!proto.domopool.Versions} returns this
  */
-proto.domopool.Versions.prototype.setDallas = function(value) {
+proto.domopool.Versions.prototype.setDallastemp = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 

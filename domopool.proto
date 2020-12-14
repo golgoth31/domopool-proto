@@ -113,7 +113,7 @@ message Versions {
   string esp_idf = 3;
   string xtensa = 4;
   string tft_espi = 6;
-  string dallas = 7;
+  string dallastemp = 7;
 }
 
 message Infos {

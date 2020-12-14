@@ -1103,7 +1103,7 @@ proto.domopool.Network.prototype.hasNtp = function() {
  * @private {!Array<number>}
  * @const
  */
-proto.domopool.Temp.repeatedFields_ = [3];
+proto.domopool.Temp.repeatedFields_ = [8];
 
 
 
@@ -1138,7 +1138,7 @@ proto.domopool.Temp.toObject = function(includeInstance, msg) {
   var f, obj = {
     enabled: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     init: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    addrList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f
+    addrList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -1183,7 +1183,7 @@ proto.domopool.Temp.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setInit(value);
       break;
-    case 3:
+    case 8:
       var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
       msg.setAddrList(value);
       break;
@@ -1233,7 +1233,7 @@ proto.domopool.Temp.serializeBinaryToWriter = function(message, writer) {
   f = message.getAddrList();
   if (f.length > 0) {
     writer.writePackedUint32(
-      3,
+      8,
       f
     );
   }
@@ -1277,11 +1277,11 @@ proto.domopool.Temp.prototype.setInit = function(value) {
 
 
 /**
- * repeated uint32 addr = 3;
+ * repeated uint32 addr = 8;
  * @return {!Array<number>}
  */
 proto.domopool.Temp.prototype.getAddrList = function() {
-  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 3));
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
 
@@ -1290,7 +1290,7 @@ proto.domopool.Temp.prototype.getAddrList = function() {
  * @return {!proto.domopool.Temp} returns this
  */
 proto.domopool.Temp.prototype.setAddrList = function(value) {
-  return jspb.Message.setField(this, 3, value || []);
+  return jspb.Message.setField(this, 8, value || []);
 };
 
 
@@ -1300,7 +1300,7 @@ proto.domopool.Temp.prototype.setAddrList = function(value) {
  * @return {!proto.domopool.Temp} returns this
  */
 proto.domopool.Temp.prototype.addAddr = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+  return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
 

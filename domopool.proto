@@ -57,6 +57,7 @@ message Global {
   double ack_tone = 3;
   bool serial_out = 4;
   bool display_startup = 5;
+  bool force_light = 6;
 }
 
 message Pump {
@@ -105,6 +106,7 @@ message States {
   bool net_active = 6;
   bool ntp = 7;
   bool rtc = 8;
+  bool light_on = 9;
 }
 
 message Versions {

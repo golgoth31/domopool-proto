@@ -2027,7 +2027,8 @@ proto.domopool.Global.toObject = function(includeInstance, msg) {
     ackDuration: jspb.Message.getFieldWithDefault(msg, 2, 0),
     ackTone: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     serialOut: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    displayStartup: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
+    displayStartup: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    forceLight: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
   };
 
   if (includeInstance) {
@@ -2083,6 +2084,10 @@ proto.domopool.Global.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setDisplayStartup(value);
+      break;
+    case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setForceLight(value);
       break;
     default:
       reader.skipField();
@@ -2145,6 +2150,13 @@ proto.domopool.Global.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       5,
+      f
+    );
+  }
+  f = message.getForceLight();
+  if (f) {
+    writer.writeBool(
+      6,
       f
     );
   }
@@ -2238,6 +2250,24 @@ proto.domopool.Global.prototype.getDisplayStartup = function() {
  */
 proto.domopool.Global.prototype.setDisplayStartup = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
+};
+
+
+/**
+ * optional bool force_light = 6;
+ * @return {boolean}
+ */
+proto.domopool.Global.prototype.getForceLight = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.Global} returns this
+ */
+proto.domopool.Global.prototype.setForceLight = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
@@ -3430,7 +3460,8 @@ proto.domopool.States.toObject = function(includeInstance, msg) {
     automatic: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     netActive: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     ntp: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    rtc: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
+    rtc: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    lightOn: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
   };
 
   if (includeInstance) {
@@ -3498,6 +3529,10 @@ proto.domopool.States.deserializeBinaryFromReader = function(msg, reader) {
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setRtc(value);
+      break;
+    case 9:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setLightOn(value);
       break;
     default:
       reader.skipField();
@@ -3581,6 +3616,13 @@ proto.domopool.States.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       8,
+      f
+    );
+  }
+  f = message.getLightOn();
+  if (f) {
+    writer.writeBool(
+      9,
       f
     );
   }
@@ -3728,6 +3770,24 @@ proto.domopool.States.prototype.getRtc = function() {
  */
 proto.domopool.States.prototype.setRtc = function(value) {
   return jspb.Message.setProto3BooleanField(this, 8, value);
+};
+
+
+/**
+ * optional bool light_on = 9;
+ * @return {boolean}
+ */
+proto.domopool.States.prototype.getLightOn = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.States} returns this
+ */
+proto.domopool.States.prototype.setLightOn = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
 };
 
 

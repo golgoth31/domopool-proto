@@ -91,7 +91,7 @@ typedef struct _domopool_States {
 } domopool_States;
 
 typedef struct _domopool_Switch {
-    bool state;
+    domopool_Filter_states state;
 } domopool_Switch;
 
 typedef struct _domopool_Temp {
@@ -204,7 +204,7 @@ extern "C" {
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
 #define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default}
 #define domopool_Filter_init_default             {_domopool_Filter_states_MIN, 0, 0}
-#define domopool_Switch_init_default             {0}
+#define domopool_Switch_init_default             {_domopool_Filter_states_MIN}
 #define domopool_NTP_init_zero                   {0, "", 0}
 #define domopool_Mqtt_init_zero                  {0, ""}
 #define domopool_Network_init_zero               {0, "", "", "", "", 0, false, domopool_Mqtt_init_zero, false, domopool_NTP_init_zero}
@@ -221,7 +221,7 @@ extern "C" {
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
 #define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero}
 #define domopool_Filter_init_zero                {_domopool_Filter_states_MIN, 0, 0}
-#define domopool_Switch_init_zero                {0}
+#define domopool_Switch_init_zero                {_domopool_Filter_states_MIN}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define domopool_Alarms_filter_tag               1
@@ -486,7 +486,7 @@ X(a, STATIC,   SINGULAR, UINT32,   start_time,        3)
 #define domopool_Filter_DEFAULT NULL
 
 #define domopool_Switch_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, BOOL,     state,             1)
+X(a, STATIC,   SINGULAR, UENUM,    state,             1)
 #define domopool_Switch_CALLBACK NULL
 #define domopool_Switch_DEFAULT NULL
 

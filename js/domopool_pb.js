@@ -5063,7 +5063,7 @@ proto.domopool.Switch.prototype.toObject = function(opt_includeInstance) {
  */
 proto.domopool.Switch.toObject = function(includeInstance, msg) {
   var f, obj = {
-    state: jspb.Message.getBooleanFieldWithDefault(msg, 1, false)
+    state: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -5101,7 +5101,7 @@ proto.domopool.Switch.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {boolean} */ (reader.readBool());
+      var value = /** @type {!proto.domopool.Filter_states} */ (reader.readEnum());
       msg.setState(value);
       break;
     default:
@@ -5134,8 +5134,8 @@ proto.domopool.Switch.prototype.serializeBinary = function() {
 proto.domopool.Switch.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getState();
-  if (f) {
-    writer.writeBool(
+  if (f !== 0.0) {
+    writer.writeEnum(
       1,
       f
     );
@@ -5144,20 +5144,20 @@ proto.domopool.Switch.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional bool state = 1;
- * @return {boolean}
+ * optional Filter_states state = 1;
+ * @return {!proto.domopool.Filter_states}
  */
 proto.domopool.Switch.prototype.getState = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
+  return /** @type {!proto.domopool.Filter_states} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
- * @param {boolean} value
+ * @param {!proto.domopool.Filter_states} value
  * @return {!proto.domopool.Switch} returns this
  */
 proto.domopool.Switch.prototype.setState = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 1, value);
+  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 

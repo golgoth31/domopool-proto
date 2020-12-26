@@ -144,4 +144,4 @@ message Filter {
   uint32 start_time = 3;
 }
 
-message Switch { bool state = 1; }
+message Switch { Filter_states state = 1; }

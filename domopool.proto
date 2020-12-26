@@ -141,3 +141,5 @@ message Filter {
   uint32 duration = 2;
   uint32 start_time = 3;
 }
+
+message Switch { bool state = 1; }

@@ -1386,6 +1386,53 @@ func (x *Filter) GetStartTime() uint32 {
 	return 0
 }
 
+type Switch struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	State bool `protobuf:"varint,1,opt,name=state,proto3" json:"state,omitempty"`
+}
+
+func (x *Switch) Reset() {
+	*x = Switch{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_domopool_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Switch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Switch) ProtoMessage() {}
+
+func (x *Switch) ProtoReflect() protoreflect.Message {
+	mi := &file_domopool_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Switch.ProtoReflect.Descriptor instead.
+func (*Switch) Descriptor() ([]byte, []int) {
+	return file_domopool_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *Switch) GetState() bool {
+	if x != nil {
+		return x.State
+	}
+	return false
+}
+
 var File_domopool_proto protoreflect.FileDescriptor
 
 var file_domopool_proto_rawDesc = []byte{
@@ -1564,7 +1611,9 @@ var file_domopool_proto_rawDesc = []byte{
 	0x74, 0x61, 0x74, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x08, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e,
 	0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x74, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x0d, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x2a,
+	0x20, 0x01, 0x28, 0x0d, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x22,
+	0x1e, 0x0a, 0x06, 0x53, 0x77, 0x69, 0x74, 0x63, 0x68, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x74, 0x61,
+	0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2a,
 	0x2e, 0x0a, 0x0d, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x65, 0x73,
 	0x12, 0x08, 0x0a, 0x04, 0x61, 0x75, 0x74, 0x6f, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x73, 0x74,
 	0x61, 0x72, 0x74, 0x10, 0x01, 0x12, 0x08, 0x0a, 0x04, 0x73, 0x74, 0x6f, 0x70, 0x10, 0x02, 0x42,
@@ -1587,7 +1636,7 @@ func file_domopool_proto_rawDescGZIP() []byte {
 }
 
 var file_domopool_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_domopool_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_domopool_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_domopool_proto_goTypes = []interface{}{
 	(FilterStates)(0),    // 0: domopool.Filter_states
 	(*NTP)(nil),          // 1: domopool.NTP
@@ -1606,6 +1655,7 @@ var file_domopool_proto_goTypes = []interface{}{
 	(*Infos)(nil),        // 14: domopool.Infos
 	(*Config)(nil),       // 15: domopool.Config
 	(*Filter)(nil),       // 16: domopool.Filter
+	(*Switch)(nil),       // 17: domopool.Switch
 }
 var file_domopool_proto_depIdxs = []int32{
 	2,  // 0: domopool.Network.mqtt:type_name -> domopool.Mqtt
@@ -1832,6 +1882,18 @@ func file_domopool_proto_init() {
 				return nil
 			}
 		}
+		file_domopool_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Switch); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1839,7 +1901,7 @@ func file_domopool_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_domopool_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   16,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

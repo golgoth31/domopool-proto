@@ -5165,9 +5165,10 @@ proto.domopool.Switch.prototype.setState = function(value) {
  * @enum {number}
  */
 proto.domopool.Filter_states = {
-  AUTO: 0,
-  START: 1,
-  STOP: 2
+  DEF: 0,
+  AUTO: 1,
+  START: 2,
+  STOP: 3
 };
 
 goog.object.extend(exports, proto.domopool);

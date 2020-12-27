@@ -11,10 +11,9 @@
 
 /* Enum definitions */
 typedef enum _domopool_Filter_states {
-    domopool_Filter_states_def = 0,
-    domopool_Filter_states_auto = 1,
-    domopool_Filter_states_start = 2,
-    domopool_Filter_states_stop = 3
+    domopool_Filter_states_auto = 0,
+    domopool_Filter_states_start = 1,
+    domopool_Filter_states_stop = 2
 } domopool_Filter_states;
 
 /* Struct definitions */
@@ -179,7 +178,7 @@ typedef struct _domopool_Config {
 
 
 /* Helper constants for enums */
-#define _domopool_Filter_states_MIN domopool_Filter_states_def
+#define _domopool_Filter_states_MIN domopool_Filter_states_auto
 #define _domopool_Filter_states_MAX domopool_Filter_states_stop
 #define _domopool_Filter_states_ARRAYSIZE ((domopool_Filter_states)(domopool_Filter_states_stop+1))
 

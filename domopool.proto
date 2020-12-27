@@ -136,7 +136,7 @@ message Config {
   Infos infos = 10;
 }
 
-enum Filter_states { auto = 0; start = 1; stop = 2; }
+enum Filter_states { def = 0; auto = 1; start = 2; stop = 3; }
 
 message Filter {
   Filter_states state = 1;

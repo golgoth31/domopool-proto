@@ -30,6 +30,9 @@ PB_BIND(domopool_Global, domopool_Global, AUTO)
 PB_BIND(domopool_Pump, domopool_Pump, AUTO)
 
 
+PB_BIND(domopool_Ads115Alarms, domopool_Ads115Alarms, AUTO)
+
+
 PB_BIND(domopool_Alarms, domopool_Alarms, AUTO)
 
 

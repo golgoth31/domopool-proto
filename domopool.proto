@@ -70,13 +70,19 @@ message Pump {
   uint32 force_start_time = 7;
 }
 
+message Ads115Alarms {
+  bool ads1115_not_ready = 1;
+  bool ads1115_not_started = 2;
+  bool ads1115_not_connected = 3;
+}
+
 message Alarms {
   bool filter = 1;
   bool ph = 2;
   bool ch = 3;
   bool rtc = 5;
   bool wp = 6;
-  bool ads1115_not_ready = 7;
+  Ads115Alarms ads1115 = 7;
 }
 
 message Tests {

@@ -18,14 +18,11 @@ typedef enum _domopool_Filter_states {
 } domopool_Filter_states;
 
 /* Struct definitions */
-typedef struct _domopool_Alarms {
-    bool filter;
-    bool ph;
-    bool ch;
-    bool rtc;
-    bool wp;
+typedef struct _domopool_Ads115Alarms {
     bool ads1115_not_ready;
-} domopool_Alarms;
+    bool ads1115_not_started;
+    bool ads1115_not_connected;
+} domopool_Ads115Alarms;
 
 typedef struct _domopool_AnalogSensor {
     bool enabled;
@@ -120,6 +117,16 @@ typedef struct _domopool_Versions {
     char dallastemp[10];
 } domopool_Versions;
 
+typedef struct _domopool_Alarms {
+    bool filter;
+    bool ph;
+    bool ch;
+    bool rtc;
+    bool wp;
+    bool has_ads1115;
+    domopool_Ads115Alarms ads1115;
+} domopool_Alarms;
+
 typedef struct _domopool_Infos {
     char compile[128];
     char board_name[128];
@@ -198,7 +205,8 @@ extern "C" {
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0}
+#define domopool_Ads115Alarms_init_default       {0, 0, 0}
+#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -215,7 +223,8 @@ extern "C" {
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0}
+#define domopool_Ads115Alarms_init_zero          {0, 0, 0}
+#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -226,12 +235,9 @@ extern "C" {
 #define domopool_Switch_init_zero                {_domopool_Filter_states_MIN}
 
 /* Field tags (for use in manual encoding/decoding) */
-#define domopool_Alarms_filter_tag               1
-#define domopool_Alarms_ph_tag                   2
-#define domopool_Alarms_ch_tag                   3
-#define domopool_Alarms_rtc_tag                  5
-#define domopool_Alarms_wp_tag                   6
-#define domopool_Alarms_ads1115_not_ready_tag    7
+#define domopool_Ads115Alarms_ads1115_not_ready_tag 1
+#define domopool_Ads115Alarms_ads1115_not_started_tag 2
+#define domopool_Ads115Alarms_ads1115_not_connected_tag 3
 #define domopool_AnalogSensor_enabled_tag        1
 #define domopool_AnalogSensor_threshold_tag      2
 #define domopool_AnalogSensor_adc_pin_tag        3
@@ -288,6 +294,12 @@ extern "C" {
 #define domopool_Versions_xtensa_tag             4
 #define domopool_Versions_tft_espi_tag           6
 #define domopool_Versions_dallastemp_tag         7
+#define domopool_Alarms_filter_tag               1
+#define domopool_Alarms_ph_tag                   2
+#define domopool_Alarms_ch_tag                   3
+#define domopool_Alarms_rtc_tag                  5
+#define domopool_Alarms_wp_tag                   6
+#define domopool_Alarms_ads1115_tag              7
 #define domopool_Infos_compile_tag               1
 #define domopool_Infos_board_name_tag            2
 #define domopool_Infos_versions_tag              3
@@ -398,15 +410,23 @@ X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   7)
 #define domopool_Pump_CALLBACK NULL
 #define domopool_Pump_DEFAULT NULL
 
+#define domopool_Ads115Alarms_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_ready,   1) \
+X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_started,   2) \
+X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_connected,   3)
+#define domopool_Ads115Alarms_CALLBACK NULL
+#define domopool_Ads115Alarms_DEFAULT NULL
+
 #define domopool_Alarms_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     filter,            1) \
 X(a, STATIC,   SINGULAR, BOOL,     ph,                2) \
 X(a, STATIC,   SINGULAR, BOOL,     ch,                3) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               5) \
 X(a, STATIC,   SINGULAR, BOOL,     wp,                6) \
-X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_ready,   7)
+X(a, STATIC,   OPTIONAL, MESSAGE,  ads1115,           7)
 #define domopool_Alarms_CALLBACK NULL
 #define domopool_Alarms_DEFAULT NULL
+#define domopool_Alarms_ads1115_MSGTYPE domopool_Ads115Alarms
 
 #define domopool_Tests_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     enabled,           1) \
@@ -502,6 +522,7 @@ extern const pb_msgdesc_t domopool_AnalogSensor_msg;
 extern const pb_msgdesc_t domopool_Sensors_msg;
 extern const pb_msgdesc_t domopool_Global_msg;
 extern const pb_msgdesc_t domopool_Pump_msg;
+extern const pb_msgdesc_t domopool_Ads115Alarms_msg;
 extern const pb_msgdesc_t domopool_Alarms_msg;
 extern const pb_msgdesc_t domopool_Tests_msg;
 extern const pb_msgdesc_t domopool_Metrics_msg;
@@ -521,6 +542,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Sensors_fields &domopool_Sensors_msg
 #define domopool_Global_fields &domopool_Global_msg
 #define domopool_Pump_fields &domopool_Pump_msg
+#define domopool_Ads115Alarms_fields &domopool_Ads115Alarms_msg
 #define domopool_Alarms_fields &domopool_Alarms_msg
 #define domopool_Tests_fields &domopool_Tests_msg
 #define domopool_Metrics_fields &domopool_Metrics_msg
@@ -540,13 +562,14 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Sensors_size                    215
 #define domopool_Global_size                     27
 #define domopool_Pump_size                       22
-#define domopool_Alarms_size                     12
+#define domopool_Ads115Alarms_size               6
+#define domopool_Alarms_size                     18
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    42
 #define domopool_States_size                     18
 #define domopool_Versions_size                   180
 #define domopool_Infos_size                      443
-#define domopool_Config_size                     1170
+#define domopool_Config_size                     1176
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

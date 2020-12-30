@@ -2617,7 +2617,8 @@ proto.domopool.Alarms.toObject = function(includeInstance, msg) {
     ph: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     ch: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     rtc: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    storage: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+    wp: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    ads1115NotReady: jspb.Message.getBooleanFieldWithDefault(msg, 7, false)
   };
 
   if (includeInstance) {
@@ -2672,7 +2673,11 @@ proto.domopool.Alarms.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setStorage(value);
+      msg.setWp(value);
+      break;
+    case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAds1115NotReady(value);
       break;
     default:
       reader.skipField();
@@ -2731,10 +2736,17 @@ proto.domopool.Alarms.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getStorage();
+  f = message.getWp();
   if (f) {
     writer.writeBool(
       6,
+      f
+    );
+  }
+  f = message.getAds1115NotReady();
+  if (f) {
+    writer.writeBool(
+      7,
       f
     );
   }
@@ -2814,10 +2826,10 @@ proto.domopool.Alarms.prototype.setRtc = function(value) {
 
 
 /**
- * optional bool storage = 6;
+ * optional bool wp = 6;
  * @return {boolean}
  */
-proto.domopool.Alarms.prototype.getStorage = function() {
+proto.domopool.Alarms.prototype.getWp = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -2826,8 +2838,26 @@ proto.domopool.Alarms.prototype.getStorage = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Alarms} returns this
  */
-proto.domopool.Alarms.prototype.setStorage = function(value) {
+proto.domopool.Alarms.prototype.setWp = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
+ * optional bool ads1115_not_ready = 7;
+ * @return {boolean}
+ */
+proto.domopool.Alarms.prototype.getAds1115NotReady = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.Alarms} returns this
+ */
+proto.domopool.Alarms.prototype.setAds1115NotReady = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 

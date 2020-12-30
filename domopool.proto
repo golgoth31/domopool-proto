@@ -75,7 +75,8 @@ message Alarms {
   bool ph = 2;
   bool ch = 3;
   bool rtc = 5;
-  bool storage = 6;
+  bool wp = 6;
+  bool ads1115_not_ready = 7;
 }
 
 message Tests {

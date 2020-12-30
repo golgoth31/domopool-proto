@@ -23,7 +23,8 @@ typedef struct _domopool_Alarms {
     bool ph;
     bool ch;
     bool rtc;
-    bool storage;
+    bool wp;
+    bool ads1115_not_ready;
 } domopool_Alarms;
 
 typedef struct _domopool_AnalogSensor {
@@ -197,7 +198,7 @@ extern "C" {
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Alarms_init_default             {0, 0, 0, 0, 0}
+#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -214,7 +215,7 @@ extern "C" {
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0}
+#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -229,7 +230,8 @@ extern "C" {
 #define domopool_Alarms_ph_tag                   2
 #define domopool_Alarms_ch_tag                   3
 #define domopool_Alarms_rtc_tag                  5
-#define domopool_Alarms_storage_tag              6
+#define domopool_Alarms_wp_tag                   6
+#define domopool_Alarms_ads1115_not_ready_tag    7
 #define domopool_AnalogSensor_enabled_tag        1
 #define domopool_AnalogSensor_threshold_tag      2
 #define domopool_AnalogSensor_adc_pin_tag        3
@@ -401,7 +403,8 @@ X(a, STATIC,   SINGULAR, BOOL,     filter,            1) \
 X(a, STATIC,   SINGULAR, BOOL,     ph,                2) \
 X(a, STATIC,   SINGULAR, BOOL,     ch,                3) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               5) \
-X(a, STATIC,   SINGULAR, BOOL,     storage,           6)
+X(a, STATIC,   SINGULAR, BOOL,     wp,                6) \
+X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_ready,   7)
 #define domopool_Alarms_CALLBACK NULL
 #define domopool_Alarms_DEFAULT NULL
 
@@ -537,13 +540,13 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Sensors_size                    215
 #define domopool_Global_size                     27
 #define domopool_Pump_size                       22
-#define domopool_Alarms_size                     10
+#define domopool_Alarms_size                     12
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    42
 #define domopool_States_size                     18
 #define domopool_Versions_size                   180
 #define domopool_Infos_size                      443
-#define domopool_Config_size                     1168
+#define domopool_Config_size                     1170
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

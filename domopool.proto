@@ -71,9 +71,9 @@ message Pump {
 }
 
 message Ads115Alarms {
-  bool ads1115_not_ready = 1;
-  bool ads1115_not_started = 2;
-  bool ads1115_not_connected = 3;
+  bool not_ready = 1;
+  bool not_started = 2;
+  bool not_connected = 3;
 }
 
 message Alarms {

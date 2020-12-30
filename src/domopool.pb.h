@@ -19,9 +19,9 @@ typedef enum _domopool_Filter_states {
 
 /* Struct definitions */
 typedef struct _domopool_Ads115Alarms {
-    bool ads1115_not_ready;
-    bool ads1115_not_started;
-    bool ads1115_not_connected;
+    bool not_ready;
+    bool not_started;
+    bool not_connected;
 } domopool_Ads115Alarms;
 
 typedef struct _domopool_AnalogSensor {
@@ -235,9 +235,9 @@ extern "C" {
 #define domopool_Switch_init_zero                {_domopool_Filter_states_MIN}
 
 /* Field tags (for use in manual encoding/decoding) */
-#define domopool_Ads115Alarms_ads1115_not_ready_tag 1
-#define domopool_Ads115Alarms_ads1115_not_started_tag 2
-#define domopool_Ads115Alarms_ads1115_not_connected_tag 3
+#define domopool_Ads115Alarms_not_ready_tag      1
+#define domopool_Ads115Alarms_not_started_tag    2
+#define domopool_Ads115Alarms_not_connected_tag  3
 #define domopool_AnalogSensor_enabled_tag        1
 #define domopool_AnalogSensor_threshold_tag      2
 #define domopool_AnalogSensor_adc_pin_tag        3
@@ -411,9 +411,9 @@ X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   7)
 #define domopool_Pump_DEFAULT NULL
 
 #define domopool_Ads115Alarms_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_ready,   1) \
-X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_started,   2) \
-X(a, STATIC,   SINGULAR, BOOL,     ads1115_not_connected,   3)
+X(a, STATIC,   SINGULAR, BOOL,     not_ready,         1) \
+X(a, STATIC,   SINGULAR, BOOL,     not_started,       2) \
+X(a, STATIC,   SINGULAR, BOOL,     not_connected,     3)
 #define domopool_Ads115Alarms_CALLBACK NULL
 #define domopool_Ads115Alarms_DEFAULT NULL
 

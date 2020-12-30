@@ -2635,9 +2635,9 @@ proto.domopool.Ads115Alarms.prototype.toObject = function(opt_includeInstance) {
  */
 proto.domopool.Ads115Alarms.toObject = function(includeInstance, msg) {
   var f, obj = {
-    ads1115NotReady: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
-    ads1115NotStarted: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    ads1115NotConnected: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    notReady: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
+    notStarted: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
+    notConnected: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -2676,15 +2676,15 @@ proto.domopool.Ads115Alarms.deserializeBinaryFromReader = function(msg, reader) 
     switch (field) {
     case 1:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAds1115NotReady(value);
+      msg.setNotReady(value);
       break;
     case 2:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAds1115NotStarted(value);
+      msg.setNotStarted(value);
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAds1115NotConnected(value);
+      msg.setNotConnected(value);
       break;
     default:
       reader.skipField();
@@ -2715,21 +2715,21 @@ proto.domopool.Ads115Alarms.prototype.serializeBinary = function() {
  */
 proto.domopool.Ads115Alarms.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAds1115NotReady();
+  f = message.getNotReady();
   if (f) {
     writer.writeBool(
       1,
       f
     );
   }
-  f = message.getAds1115NotStarted();
+  f = message.getNotStarted();
   if (f) {
     writer.writeBool(
       2,
       f
     );
   }
-  f = message.getAds1115NotConnected();
+  f = message.getNotConnected();
   if (f) {
     writer.writeBool(
       3,
@@ -2740,10 +2740,10 @@ proto.domopool.Ads115Alarms.serializeBinaryToWriter = function(message, writer) 
 
 
 /**
- * optional bool ads1115_not_ready = 1;
+ * optional bool not_ready = 1;
  * @return {boolean}
  */
-proto.domopool.Ads115Alarms.prototype.getAds1115NotReady = function() {
+proto.domopool.Ads115Alarms.prototype.getNotReady = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 1, false));
 };
 
@@ -2752,16 +2752,16 @@ proto.domopool.Ads115Alarms.prototype.getAds1115NotReady = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Ads115Alarms} returns this
  */
-proto.domopool.Ads115Alarms.prototype.setAds1115NotReady = function(value) {
+proto.domopool.Ads115Alarms.prototype.setNotReady = function(value) {
   return jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
 /**
- * optional bool ads1115_not_started = 2;
+ * optional bool not_started = 2;
  * @return {boolean}
  */
-proto.domopool.Ads115Alarms.prototype.getAds1115NotStarted = function() {
+proto.domopool.Ads115Alarms.prototype.getNotStarted = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 2, false));
 };
 
@@ -2770,16 +2770,16 @@ proto.domopool.Ads115Alarms.prototype.getAds1115NotStarted = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Ads115Alarms} returns this
  */
-proto.domopool.Ads115Alarms.prototype.setAds1115NotStarted = function(value) {
+proto.domopool.Ads115Alarms.prototype.setNotStarted = function(value) {
   return jspb.Message.setProto3BooleanField(this, 2, value);
 };
 
 
 /**
- * optional bool ads1115_not_connected = 3;
+ * optional bool not_connected = 3;
  * @return {boolean}
  */
-proto.domopool.Ads115Alarms.prototype.getAds1115NotConnected = function() {
+proto.domopool.Ads115Alarms.prototype.getNotConnected = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
@@ -2788,7 +2788,7 @@ proto.domopool.Ads115Alarms.prototype.getAds1115NotConnected = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Ads115Alarms} returns this
  */
-proto.domopool.Ads115Alarms.prototype.setAds1115NotConnected = function(value) {
+proto.domopool.Ads115Alarms.prototype.setNotConnected = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 

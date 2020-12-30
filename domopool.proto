@@ -48,7 +48,7 @@ message Sensors {
   uint32 temp_resolution = 5;
   AnalogSensor ph = 6;
   AnalogSensor ch = 7;
-  AnalogSensor water_pressure = 8;
+  AnalogSensor wp = 8;
 }
 
 message Global {
@@ -99,9 +99,10 @@ message Metrics {
   float saved_twater = 3;
   float ph = 4;
   float ch = 5;
-  float water_pressure = 6;
-  uint32 over_15_duration = 7;
-  uint32 hour = 8;
+  float wp = 6;
+  float wp_volt = 7;
+  uint32 over_15_duration = 8;
+  uint32 hour = 9;
 }
 
 message States {

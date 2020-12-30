@@ -51,7 +51,8 @@ typedef struct _domopool_Metrics {
     float saved_twater;
     float ph;
     float ch;
-    float water_pressure;
+    float wp;
+    float wp_volt;
     uint32_t over_15_duration;
     uint32_t hour;
 } domopool_Metrics;
@@ -160,8 +161,8 @@ typedef struct _domopool_Sensors {
     domopool_AnalogSensor ph;
     bool has_ch;
     domopool_AnalogSensor ch;
-    bool has_water_pressure;
-    domopool_AnalogSensor water_pressure;
+    bool has_wp;
+    domopool_AnalogSensor wp;
 } domopool_Sensors;
 
 typedef struct _domopool_Config {
@@ -208,7 +209,7 @@ extern "C" {
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
-#define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_default           {"", 0, "", "", "", ""}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
@@ -226,7 +227,7 @@ extern "C" {
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
-#define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_zero              {"", 0, "", "", "", ""}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
@@ -255,9 +256,10 @@ extern "C" {
 #define domopool_Metrics_saved_twater_tag        3
 #define domopool_Metrics_ph_tag                  4
 #define domopool_Metrics_ch_tag                  5
-#define domopool_Metrics_water_pressure_tag      6
-#define domopool_Metrics_over_15_duration_tag    7
-#define domopool_Metrics_hour_tag                8
+#define domopool_Metrics_wp_tag                  6
+#define domopool_Metrics_wp_volt_tag             7
+#define domopool_Metrics_over_15_duration_tag    8
+#define domopool_Metrics_hour_tag                9
 #define domopool_Mqtt_enabled_tag                1
 #define domopool_Mqtt_server_tag                 2
 #define domopool_NTP_day_light_tag               1
@@ -318,7 +320,7 @@ extern "C" {
 #define domopool_Sensors_temp_resolution_tag     5
 #define domopool_Sensors_ph_tag                  6
 #define domopool_Sensors_ch_tag                  7
-#define domopool_Sensors_water_pressure_tag      8
+#define domopool_Sensors_wp_tag                  8
 #define domopool_Config_network_tag              1
 #define domopool_Config_sensors_tag              2
 #define domopool_Config_global_tag               3
@@ -379,7 +381,7 @@ X(a, STATIC,   SINGULAR, BOOL,     wait_for_conversion,   4) \
 X(a, STATIC,   SINGULAR, UINT32,   temp_resolution,   5) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ph,                6) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ch,                7) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  water_pressure,    8)
+X(a, STATIC,   OPTIONAL, MESSAGE,  wp,                8)
 #define domopool_Sensors_CALLBACK NULL
 #define domopool_Sensors_DEFAULT NULL
 #define domopool_Sensors_twin_MSGTYPE domopool_Temp
@@ -387,7 +389,7 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  water_pressure,    8)
 #define domopool_Sensors_tamb_MSGTYPE domopool_Temp
 #define domopool_Sensors_ph_MSGTYPE domopool_AnalogSensor
 #define domopool_Sensors_ch_MSGTYPE domopool_AnalogSensor
-#define domopool_Sensors_water_pressure_MSGTYPE domopool_AnalogSensor
+#define domopool_Sensors_wp_MSGTYPE domopool_AnalogSensor
 
 #define domopool_Global_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, UINT32,   lcd_backlight_duration,   1) \
@@ -443,9 +445,10 @@ X(a, STATIC,   SINGULAR, FLOAT,    twater,            2) \
 X(a, STATIC,   SINGULAR, FLOAT,    saved_twater,      3) \
 X(a, STATIC,   SINGULAR, FLOAT,    ph,                4) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch,                5) \
-X(a, STATIC,   SINGULAR, FLOAT,    water_pressure,    6) \
-X(a, STATIC,   SINGULAR, UINT32,   over_15_duration,   7) \
-X(a, STATIC,   SINGULAR, UINT32,   hour,              8)
+X(a, STATIC,   SINGULAR, FLOAT,    wp,                6) \
+X(a, STATIC,   SINGULAR, FLOAT,    wp_volt,           7) \
+X(a, STATIC,   SINGULAR, UINT32,   over_15_duration,   8) \
+X(a, STATIC,   SINGULAR, UINT32,   hour,              9)
 #define domopool_Metrics_CALLBACK NULL
 #define domopool_Metrics_DEFAULT NULL
 
@@ -565,11 +568,11 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     18
 #define domopool_Tests_size                      22
-#define domopool_Metrics_size                    42
+#define domopool_Metrics_size                    47
 #define domopool_States_size                     18
 #define domopool_Versions_size                   180
 #define domopool_Infos_size                      443
-#define domopool_Config_size                     1176
+#define domopool_Config_size                     1181
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

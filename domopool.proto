@@ -36,9 +36,11 @@ message Temp {
 
 message AnalogSensor {
   bool enabled = 1;
-  float threshold = 2;
   uint32 adc_pin = 3;
+  float threshold = 2;
   uint32 threshold_accuracy = 4;
+  float vmin = 5;
+  float vmax = 6;
 }
 
 message Sensors {

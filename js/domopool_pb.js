@@ -1391,7 +1391,8 @@ proto.domopool.AnalogSensor.toObject = function(includeInstance, msg) {
   var f, obj = {
     enabled: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     threshold: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    adcPin: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    adcPin: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    thresholdAccuracy: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -1440,6 +1441,10 @@ proto.domopool.AnalogSensor.deserializeBinaryFromReader = function(msg, reader) 
       var value = /** @type {number} */ (reader.readUint32());
       msg.setAdcPin(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setThresholdAccuracy(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1487,6 +1492,13 @@ proto.domopool.AnalogSensor.serializeBinaryToWriter = function(message, writer) 
   if (f !== 0) {
     writer.writeUint32(
       3,
+      f
+    );
+  }
+  f = message.getThresholdAccuracy();
+  if (f !== 0) {
+    writer.writeUint32(
+      4,
       f
     );
   }
@@ -1544,6 +1556,24 @@ proto.domopool.AnalogSensor.prototype.getAdcPin = function() {
  */
 proto.domopool.AnalogSensor.prototype.setAdcPin = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional uint32 threshold_accuracy = 4;
+ * @return {number}
+ */
+proto.domopool.AnalogSensor.prototype.getThresholdAccuracy = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.AnalogSensor} returns this
+ */
+proto.domopool.AnalogSensor.prototype.setThresholdAccuracy = function(value) {
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 

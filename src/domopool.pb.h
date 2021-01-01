@@ -28,6 +28,7 @@ typedef struct _domopool_AnalogSensor {
     bool enabled;
     float threshold;
     uint32_t adc_pin;
+    uint32_t threshold_accuracy;
 } domopool_AnalogSensor;
 
 typedef struct _domopool_Filter {
@@ -202,7 +203,7 @@ extern "C" {
 #define domopool_Mqtt_init_default               {0, ""}
 #define domopool_Network_init_default            {0, "", "", "", "", 0, false, domopool_Mqtt_init_default, false, domopool_NTP_init_default}
 #define domopool_Temp_init_default               {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
-#define domopool_AnalogSensor_init_default       {0, 0, 0}
+#define domopool_AnalogSensor_init_default       {0, 0, 0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
@@ -220,7 +221,7 @@ extern "C" {
 #define domopool_Mqtt_init_zero                  {0, ""}
 #define domopool_Network_init_zero               {0, "", "", "", "", 0, false, domopool_Mqtt_init_zero, false, domopool_NTP_init_zero}
 #define domopool_Temp_init_zero                  {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
-#define domopool_AnalogSensor_init_zero          {0, 0, 0}
+#define domopool_AnalogSensor_init_zero          {0, 0, 0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
@@ -242,6 +243,7 @@ extern "C" {
 #define domopool_AnalogSensor_enabled_tag        1
 #define domopool_AnalogSensor_threshold_tag      2
 #define domopool_AnalogSensor_adc_pin_tag        3
+#define domopool_AnalogSensor_threshold_accuracy_tag 4
 #define domopool_Filter_state_tag                1
 #define domopool_Filter_duration_tag             2
 #define domopool_Filter_start_time_tag           3
@@ -369,7 +371,8 @@ X(a, STATIC,   REPEATED, UINT32,   addr,              8)
 #define domopool_AnalogSensor_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     enabled,           1) \
 X(a, STATIC,   SINGULAR, FLOAT,    threshold,         2) \
-X(a, STATIC,   SINGULAR, UINT32,   adc_pin,           3)
+X(a, STATIC,   SINGULAR, UINT32,   adc_pin,           3) \
+X(a, STATIC,   SINGULAR, UINT32,   threshold_accuracy,   4)
 #define domopool_AnalogSensor_CALLBACK NULL
 #define domopool_AnalogSensor_DEFAULT NULL
 
@@ -561,8 +564,8 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Mqtt_size                       132
 #define domopool_Network_size                    348
 #define domopool_Temp_size                       52
-#define domopool_AnalogSensor_size               13
-#define domopool_Sensors_size                    215
+#define domopool_AnalogSensor_size               19
+#define domopool_Sensors_size                    233
 #define domopool_Global_size                     27
 #define domopool_Pump_size                       22
 #define domopool_Ads115Alarms_size               6
@@ -572,7 +575,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_States_size                     18
 #define domopool_Versions_size                   180
 #define domopool_Infos_size                      443
-#define domopool_Config_size                     1181
+#define domopool_Config_size                     1199
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

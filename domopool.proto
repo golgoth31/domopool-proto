@@ -34,6 +34,21 @@ message Temp {
   repeated uint32 addr = 8;
 }
 
+message Limits {
+  float wp_min = 1;
+  float wp_max = 2;
+  float ph_min = 3;
+  float ph_max = 4;
+  float ch_min = 5;
+  float ch_max = 6;
+  // number of hour to wait when temp is above 15 to activate ch
+  uint32 wait_before_ch = 7;
+  // temp threshold to activate ch
+  float ch_temp_threshold = 8;
+  // temp threshold to reset ch wait time
+  float ch_temp_wait_reset = 9;
+}
+
 message AnalogSensor {
   bool enabled = 1;
   uint32 adc_pin = 3;
@@ -145,6 +160,7 @@ message Config {
   Alarms alarms = 8;
   Tests tests = 9;
   Infos infos = 10;
+  Limits limits = 11;
 }
 
 enum Filter_states { def = 0; auto = 1; start = 2; stop = 3; }

@@ -18,6 +18,9 @@ PB_BIND(domopool_Network, domopool_Network, 2)
 PB_BIND(domopool_Temp, domopool_Temp, AUTO)
 
 
+PB_BIND(domopool_Limits, domopool_Limits, AUTO)
+
+
 PB_BIND(domopool_AnalogSensor, domopool_AnalogSensor, AUTO)
 
 

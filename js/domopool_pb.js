@@ -3311,7 +3311,8 @@ proto.domopool.Alarms.toObject = function(includeInstance, msg) {
     ph: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     ch: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     rtc: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    wp: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    wpHigh: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    wpLow: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     ads1115: (f = msg.getAds1115()) && proto.domopool.Ads115Alarms.toObject(includeInstance, f)
   };
 
@@ -3367,9 +3368,13 @@ proto.domopool.Alarms.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setWp(value);
+      msg.setWpHigh(value);
       break;
     case 7:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setWpLow(value);
+      break;
+    case 8:
       var value = new proto.domopool.Ads115Alarms;
       reader.readMessage(value,proto.domopool.Ads115Alarms.deserializeBinaryFromReader);
       msg.setAds1115(value);
@@ -3431,17 +3436,24 @@ proto.domopool.Alarms.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getWp();
+  f = message.getWpHigh();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
+  f = message.getWpLow();
+  if (f) {
+    writer.writeBool(
+      7,
+      f
+    );
+  }
   f = message.getAds1115();
   if (f != null) {
     writer.writeMessage(
-      7,
+      8,
       f,
       proto.domopool.Ads115Alarms.serializeBinaryToWriter
     );
@@ -3522,10 +3534,10 @@ proto.domopool.Alarms.prototype.setRtc = function(value) {
 
 
 /**
- * optional bool wp = 6;
+ * optional bool wp_high = 6;
  * @return {boolean}
  */
-proto.domopool.Alarms.prototype.getWp = function() {
+proto.domopool.Alarms.prototype.getWpHigh = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
@@ -3534,18 +3546,36 @@ proto.domopool.Alarms.prototype.getWp = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Alarms} returns this
  */
-proto.domopool.Alarms.prototype.setWp = function(value) {
+proto.domopool.Alarms.prototype.setWpHigh = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional Ads115Alarms ads1115 = 7;
+ * optional bool wp_low = 7;
+ * @return {boolean}
+ */
+proto.domopool.Alarms.prototype.getWpLow = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.Alarms} returns this
+ */
+proto.domopool.Alarms.prototype.setWpLow = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 7, value);
+};
+
+
+/**
+ * optional Ads115Alarms ads1115 = 8;
  * @return {?proto.domopool.Ads115Alarms}
  */
 proto.domopool.Alarms.prototype.getAds1115 = function() {
   return /** @type{?proto.domopool.Ads115Alarms} */ (
-    jspb.Message.getWrapperField(this, proto.domopool.Ads115Alarms, 7));
+    jspb.Message.getWrapperField(this, proto.domopool.Ads115Alarms, 8));
 };
 
 
@@ -3554,7 +3584,7 @@ proto.domopool.Alarms.prototype.getAds1115 = function() {
  * @return {!proto.domopool.Alarms} returns this
 */
 proto.domopool.Alarms.prototype.setAds1115 = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
+  return jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -3572,7 +3602,7 @@ proto.domopool.Alarms.prototype.clearAds1115 = function() {
  * @return {boolean}
  */
 proto.domopool.Alarms.prototype.hasAds1115 = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 

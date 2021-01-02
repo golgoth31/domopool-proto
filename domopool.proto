@@ -99,8 +99,9 @@ message Alarms {
   bool ph = 2;
   bool ch = 3;
   bool rtc = 5;
-  bool wp = 6;
-  Ads115Alarms ads1115 = 7;
+  bool wp_high = 6;
+  bool wp_low = 7;
+  Ads115Alarms ads1115 = 8;
 }
 
 message Tests {
@@ -163,7 +164,12 @@ message Config {
   Limits limits = 11;
 }
 
-enum Filter_states { def = 0; auto = 1; start = 2; stop = 3; }
+enum Filter_states {
+  def = 0;
+  auto = 1;
+  start = 2;
+  stop = 3;
+}
 
 message Filter {
   Filter_states state = 1;

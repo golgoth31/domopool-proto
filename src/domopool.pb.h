@@ -141,6 +141,7 @@ typedef struct _domopool_Alarms {
     bool rtc;
     bool wp_high;
     bool wp_low;
+    bool wp_outoforder;
     bool has_ads1115;
     domopool_Ads115Alarms ads1115;
 } domopool_Alarms;
@@ -227,7 +228,7 @@ extern "C" {
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
-#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default}
+#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -246,7 +247,7 @@ extern "C" {
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
-#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero}
+#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -336,7 +337,8 @@ extern "C" {
 #define domopool_Alarms_rtc_tag                  5
 #define domopool_Alarms_wp_high_tag              6
 #define domopool_Alarms_wp_low_tag               7
-#define domopool_Alarms_ads1115_tag              8
+#define domopool_Alarms_wp_outoforder_tag        8
+#define domopool_Alarms_ads1115_tag              9
 #define domopool_Infos_compile_tag               1
 #define domopool_Infos_board_name_tag            2
 #define domopool_Infos_versions_tag              3
@@ -479,7 +481,8 @@ X(a, STATIC,   SINGULAR, BOOL,     ch,                3) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               5) \
 X(a, STATIC,   SINGULAR, BOOL,     wp_high,           6) \
 X(a, STATIC,   SINGULAR, BOOL,     wp_low,            7) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  ads1115,           8)
+X(a, STATIC,   SINGULAR, BOOL,     wp_outoforder,     8) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  ads1115,           9)
 #define domopool_Alarms_CALLBACK NULL
 #define domopool_Alarms_DEFAULT NULL
 #define domopool_Alarms_ads1115_MSGTYPE domopool_Ads115Alarms
@@ -625,13 +628,13 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Global_size                     27
 #define domopool_Pump_size                       22
 #define domopool_Ads115Alarms_size               6
-#define domopool_Alarms_size                     20
+#define domopool_Alarms_size                     22
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    47
 #define domopool_States_size                     18
 #define domopool_Versions_size                   180
 #define domopool_Infos_size                      443
-#define domopool_Config_size                     1284
+#define domopool_Config_size                     1286
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

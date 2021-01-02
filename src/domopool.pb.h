@@ -141,7 +141,7 @@ typedef struct _domopool_Alarms {
     bool rtc;
     bool wp_high;
     bool wp_low;
-    bool wp_outoforder;
+    bool wp_broken;
     bool has_ads1115;
     domopool_Ads115Alarms ads1115;
 } domopool_Alarms;
@@ -337,7 +337,7 @@ extern "C" {
 #define domopool_Alarms_rtc_tag                  5
 #define domopool_Alarms_wp_high_tag              6
 #define domopool_Alarms_wp_low_tag               7
-#define domopool_Alarms_wp_outoforder_tag        8
+#define domopool_Alarms_wp_broken_tag            8
 #define domopool_Alarms_ads1115_tag              9
 #define domopool_Infos_compile_tag               1
 #define domopool_Infos_board_name_tag            2
@@ -481,7 +481,7 @@ X(a, STATIC,   SINGULAR, BOOL,     ch,                3) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               5) \
 X(a, STATIC,   SINGULAR, BOOL,     wp_high,           6) \
 X(a, STATIC,   SINGULAR, BOOL,     wp_low,            7) \
-X(a, STATIC,   SINGULAR, BOOL,     wp_outoforder,     8) \
+X(a, STATIC,   SINGULAR, BOOL,     wp_broken,         8) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ads1115,           9)
 #define domopool_Alarms_CALLBACK NULL
 #define domopool_Alarms_DEFAULT NULL

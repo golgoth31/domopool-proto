@@ -3343,7 +3343,7 @@ proto.domopool.Alarms.toObject = function(includeInstance, msg) {
     rtc: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     wpHigh: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     wpLow: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    wpOutoforder: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    wpBroken: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     ads1115: (f = msg.getAds1115()) && proto.domopool.Ads115Alarms.toObject(includeInstance, f)
   };
 
@@ -3407,7 +3407,7 @@ proto.domopool.Alarms.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 8:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setWpOutoforder(value);
+      msg.setWpBroken(value);
       break;
     case 9:
       var value = new proto.domopool.Ads115Alarms;
@@ -3485,7 +3485,7 @@ proto.domopool.Alarms.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getWpOutoforder();
+  f = message.getWpBroken();
   if (f) {
     writer.writeBool(
       8,
@@ -3612,10 +3612,10 @@ proto.domopool.Alarms.prototype.setWpLow = function(value) {
 
 
 /**
- * optional bool wp_outoforder = 8;
+ * optional bool wp_broken = 8;
  * @return {boolean}
  */
-proto.domopool.Alarms.prototype.getWpOutoforder = function() {
+proto.domopool.Alarms.prototype.getWpBroken = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
@@ -3624,7 +3624,7 @@ proto.domopool.Alarms.prototype.getWpOutoforder = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Alarms} returns this
  */
-proto.domopool.Alarms.prototype.setWpOutoforder = function(value) {
+proto.domopool.Alarms.prototype.setWpBroken = function(value) {
   return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 

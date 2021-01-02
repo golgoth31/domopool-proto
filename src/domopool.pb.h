@@ -58,6 +58,7 @@ typedef struct _domopool_Limits {
     uint32_t wait_before_ch;
     float ch_temp_threshold;
     float ch_temp_wait_reset;
+    float wp_0_derive;
 } domopool_Limits;
 
 typedef struct _domopool_Metrics {
@@ -220,7 +221,7 @@ extern "C" {
 #define domopool_Mqtt_init_default               {0, ""}
 #define domopool_Network_init_default            {0, "", "", "", "", 0, false, domopool_Mqtt_init_default, false, domopool_NTP_init_default}
 #define domopool_Temp_init_default               {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
-#define domopool_Limits_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_Limits_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_default       {0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
@@ -239,7 +240,7 @@ extern "C" {
 #define domopool_Mqtt_init_zero                  {0, ""}
 #define domopool_Network_init_zero               {0, "", "", "", "", 0, false, domopool_Mqtt_init_zero, false, domopool_NTP_init_zero}
 #define domopool_Temp_init_zero                  {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
-#define domopool_Limits_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_Limits_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_zero          {0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
@@ -283,6 +284,7 @@ extern "C" {
 #define domopool_Limits_wait_before_ch_tag       7
 #define domopool_Limits_ch_temp_threshold_tag    8
 #define domopool_Limits_ch_temp_wait_reset_tag   9
+#define domopool_Limits_wp_0_derive_tag          10
 #define domopool_Metrics_tamb_tag                1
 #define domopool_Metrics_twater_tag              2
 #define domopool_Metrics_saved_twater_tag        3
@@ -409,7 +411,8 @@ X(a, STATIC,   SINGULAR, FLOAT,    ch_min,            5) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch_max,            6) \
 X(a, STATIC,   SINGULAR, UINT32,   wait_before_ch,    7) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch_temp_threshold,   8) \
-X(a, STATIC,   SINGULAR, FLOAT,    ch_temp_wait_reset,   9)
+X(a, STATIC,   SINGULAR, FLOAT,    ch_temp_wait_reset,   9) \
+X(a, STATIC,   SINGULAR, FLOAT,    wp_0_derive,      10)
 #define domopool_Limits_CALLBACK NULL
 #define domopool_Limits_DEFAULT NULL
 
@@ -616,7 +619,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Mqtt_size                       132
 #define domopool_Network_size                    348
 #define domopool_Temp_size                       52
-#define domopool_Limits_size                     46
+#define domopool_Limits_size                     51
 #define domopool_AnalogSensor_size               29
 #define domopool_Sensors_size                    263
 #define domopool_Global_size                     27
@@ -628,7 +631,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_States_size                     18
 #define domopool_Versions_size                   180
 #define domopool_Infos_size                      443
-#define domopool_Config_size                     1279
+#define domopool_Config_size                     1284
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

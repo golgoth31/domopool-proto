@@ -1419,7 +1419,8 @@ proto.domopool.Limits.toObject = function(includeInstance, msg) {
     chMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
     waitBeforeCh: jspb.Message.getFieldWithDefault(msg, 7, 0),
     chTempThreshold: jspb.Message.getFloatingPointFieldWithDefault(msg, 8, 0.0),
-    chTempWaitReset: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0)
+    chTempWaitReset: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
+    wp0Derive: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0)
   };
 
   if (includeInstance) {
@@ -1491,6 +1492,10 @@ proto.domopool.Limits.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setChTempWaitReset(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setWp0Derive(value);
       break;
     default:
       reader.skipField();
@@ -1581,6 +1586,13 @@ proto.domopool.Limits.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0.0) {
     writer.writeFloat(
       9,
+      f
+    );
+  }
+  f = message.getWp0Derive();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      10,
       f
     );
   }
@@ -1746,6 +1758,24 @@ proto.domopool.Limits.prototype.getChTempWaitReset = function() {
  */
 proto.domopool.Limits.prototype.setChTempWaitReset = function(value) {
   return jspb.Message.setProto3FloatField(this, 9, value);
+};
+
+
+/**
+ * optional float wp_0_derive = 10;
+ * @return {number}
+ */
+proto.domopool.Limits.prototype.getWp0Derive = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 10, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Limits} returns this
+ */
+proto.domopool.Limits.prototype.setWp0Derive = function(value) {
+  return jspb.Message.setProto3FloatField(this, 10, value);
 };
 
 

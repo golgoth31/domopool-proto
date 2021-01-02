@@ -47,6 +47,7 @@ message Limits {
   float ch_temp_threshold = 8;
   // temp threshold to reset ch wait time
   float ch_temp_wait_reset = 9;
+  float wp_0_derive = 10;
 }
 
 message AnalogSensor {

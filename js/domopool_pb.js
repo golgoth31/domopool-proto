@@ -3436,7 +3436,8 @@ proto.domopool.Alarms.toObject = function(includeInstance, msg) {
     wpBroken: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     ads1115: (f = msg.getAds1115()) && proto.domopool.Ads115Alarms.toObject(includeInstance, f),
     twFrost: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    tambFrost: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
+    twHigh: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    tambFrost: jspb.Message.getBooleanFieldWithDefault(msg, 12, false)
   };
 
   if (includeInstance) {
@@ -3511,6 +3512,10 @@ proto.domopool.Alarms.deserializeBinaryFromReader = function(msg, reader) {
       msg.setTwFrost(value);
       break;
     case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTwHigh(value);
+      break;
+    case 12:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setTambFrost(value);
       break;
@@ -3607,10 +3612,17 @@ proto.domopool.Alarms.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTambFrost();
+  f = message.getTwHigh();
   if (f) {
     writer.writeBool(
       11,
+      f
+    );
+  }
+  f = message.getTambFrost();
+  if (f) {
+    writer.writeBool(
+      12,
       f
     );
   }
@@ -3799,10 +3811,10 @@ proto.domopool.Alarms.prototype.setTwFrost = function(value) {
 
 
 /**
- * optional bool tamb_frost = 11;
+ * optional bool tw_high = 11;
  * @return {boolean}
  */
-proto.domopool.Alarms.prototype.getTambFrost = function() {
+proto.domopool.Alarms.prototype.getTwHigh = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
 };
 
@@ -3811,8 +3823,26 @@ proto.domopool.Alarms.prototype.getTambFrost = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Alarms} returns this
  */
-proto.domopool.Alarms.prototype.setTambFrost = function(value) {
+proto.domopool.Alarms.prototype.setTwHigh = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
+};
+
+
+/**
+ * optional bool tamb_frost = 12;
+ * @return {boolean}
+ */
+proto.domopool.Alarms.prototype.getTambFrost = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 12, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.Alarms} returns this
+ */
+proto.domopool.Alarms.prototype.setTambFrost = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 12, value);
 };
 
 

@@ -107,6 +107,8 @@ message Alarms {
   bool wp_low = 7;
   bool wp_broken = 8;
   Ads115Alarms ads1115 = 9;
+  bool tw_frost = 10;
+  bool tamb_frost = 11;
 }
 
 message Tests {

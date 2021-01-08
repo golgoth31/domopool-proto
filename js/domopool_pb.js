@@ -3434,7 +3434,9 @@ proto.domopool.Alarms.toObject = function(includeInstance, msg) {
     wpHigh: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     wpLow: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     wpBroken: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    ads1115: (f = msg.getAds1115()) && proto.domopool.Ads115Alarms.toObject(includeInstance, f)
+    ads1115: (f = msg.getAds1115()) && proto.domopool.Ads115Alarms.toObject(includeInstance, f),
+    twFrost: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    tambFrost: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
   };
 
   if (includeInstance) {
@@ -3503,6 +3505,14 @@ proto.domopool.Alarms.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.domopool.Ads115Alarms;
       reader.readMessage(value,proto.domopool.Ads115Alarms.deserializeBinaryFromReader);
       msg.setAds1115(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTwFrost(value);
+      break;
+    case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTambFrost(value);
       break;
     default:
       reader.skipField();
@@ -3588,6 +3598,20 @@ proto.domopool.Alarms.serializeBinaryToWriter = function(message, writer) {
       9,
       f,
       proto.domopool.Ads115Alarms.serializeBinaryToWriter
+    );
+  }
+  f = message.getTwFrost();
+  if (f) {
+    writer.writeBool(
+      10,
+      f
+    );
+  }
+  f = message.getTambFrost();
+  if (f) {
+    writer.writeBool(
+      11,
+      f
     );
   }
 };
@@ -3753,6 +3777,42 @@ proto.domopool.Alarms.prototype.clearAds1115 = function() {
  */
 proto.domopool.Alarms.prototype.hasAds1115 = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional bool tw_frost = 10;
+ * @return {boolean}
+ */
+proto.domopool.Alarms.prototype.getTwFrost = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.Alarms} returns this
+ */
+proto.domopool.Alarms.prototype.setTwFrost = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 10, value);
+};
+
+
+/**
+ * optional bool tamb_frost = 11;
+ * @return {boolean}
+ */
+proto.domopool.Alarms.prototype.getTambFrost = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.Alarms} returns this
+ */
+proto.domopool.Alarms.prototype.setTambFrost = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 

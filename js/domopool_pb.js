@@ -1509,7 +1509,7 @@ proto.domopool.Limits.deserializeBinaryFromReader = function(msg, reader) {
       msg.setTwMax(value);
       break;
     case 13:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {number} */ (reader.readInt32());
       msg.setTambMin(value);
       break;
     default:
@@ -1627,7 +1627,7 @@ proto.domopool.Limits.serializeBinaryToWriter = function(message, writer) {
   }
   f = message.getTambMin();
   if (f !== 0) {
-    writer.writeUint32(
+    writer.writeInt32(
       13,
       f
     );
@@ -1852,7 +1852,7 @@ proto.domopool.Limits.prototype.setTwMax = function(value) {
 
 
 /**
- * optional uint32 tamb_min = 13;
+ * optional int32 tamb_min = 13;
  * @return {number}
  */
 proto.domopool.Limits.prototype.getTambMin = function() {

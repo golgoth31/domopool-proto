@@ -50,7 +50,7 @@ message Limits {
   float wp_0_derive = 10;
   uint32 tw_min = 11;
   uint32 tw_max = 12;
-  uint32 tamb_min = 13;
+  int32 tamb_min = 13;
 }
 
 message AnalogSensor {

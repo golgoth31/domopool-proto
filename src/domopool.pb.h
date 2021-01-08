@@ -61,7 +61,7 @@ typedef struct _domopool_Limits {
     float wp_0_derive;
     uint32_t tw_min;
     uint32_t tw_max;
-    uint32_t tamb_min;
+    int32_t tamb_min;
 } domopool_Limits;
 
 typedef struct _domopool_Metrics {
@@ -423,7 +423,7 @@ X(a, STATIC,   SINGULAR, FLOAT,    ch_temp_wait_reset,   9) \
 X(a, STATIC,   SINGULAR, FLOAT,    wp_0_derive,      10) \
 X(a, STATIC,   SINGULAR, UINT32,   tw_min,           11) \
 X(a, STATIC,   SINGULAR, UINT32,   tw_max,           12) \
-X(a, STATIC,   SINGULAR, UINT32,   tamb_min,         13)
+X(a, STATIC,   SINGULAR, INT32,    tamb_min,         13)
 #define domopool_Limits_CALLBACK NULL
 #define domopool_Limits_DEFAULT NULL
 
@@ -631,7 +631,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Mqtt_size                       132
 #define domopool_Network_size                    348
 #define domopool_Temp_size                       52
-#define domopool_Limits_size                     69
+#define domopool_Limits_size                     74
 #define domopool_AnalogSensor_size               29
 #define domopool_Sensors_size                    263
 #define domopool_Global_size                     27
@@ -643,7 +643,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_States_size                     18
 #define domopool_Versions_size                   180
 #define domopool_Infos_size                      443
-#define domopool_Config_size                     1304
+#define domopool_Config_size                     1309
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

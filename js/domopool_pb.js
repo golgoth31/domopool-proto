@@ -1422,7 +1422,8 @@ proto.domopool.Limits.toObject = function(includeInstance, msg) {
     chTempWaitReset: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     wp0Derive: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
     twMin: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    twMax: jspb.Message.getFieldWithDefault(msg, 12, 0)
+    twMax: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    tambMin: jspb.Message.getFieldWithDefault(msg, 13, 0)
   };
 
   if (includeInstance) {
@@ -1506,6 +1507,10 @@ proto.domopool.Limits.deserializeBinaryFromReader = function(msg, reader) {
     case 12:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setTwMax(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setTambMin(value);
       break;
     default:
       reader.skipField();
@@ -1617,6 +1622,13 @@ proto.domopool.Limits.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint32(
       12,
+      f
+    );
+  }
+  f = message.getTambMin();
+  if (f !== 0) {
+    writer.writeUint32(
+      13,
       f
     );
   }
@@ -1836,6 +1848,24 @@ proto.domopool.Limits.prototype.getTwMax = function() {
  */
 proto.domopool.Limits.prototype.setTwMax = function(value) {
   return jspb.Message.setProto3IntField(this, 12, value);
+};
+
+
+/**
+ * optional uint32 tamb_min = 13;
+ * @return {number}
+ */
+proto.domopool.Limits.prototype.getTambMin = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Limits} returns this
+ */
+proto.domopool.Limits.prototype.setTambMin = function(value) {
+  return jspb.Message.setProto3IntField(this, 13, value);
 };
 
 

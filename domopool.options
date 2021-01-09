@@ -12,3 +12,6 @@ domopool.Versions.esp_idf max_size:128
 domopool.Versions.xtensa max_size:10
 domopool.Versions.tft_espi max_size:10
 domopool.Versions.dallastemp max_size:10
+domopool.Versions.nanopb max_size:10
+domopool.Versions.ads1115 max_size:10
+domopool.Versions.mqtt max_size:10

@@ -11,9 +11,6 @@ import (
 	io "io"
 	math "math"
 	math_bits "math/bits"
-	reflect "reflect"
-	strconv "strconv"
-	strings "strings"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -30,10 +27,10 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type FilterStates int32
 
 const (
-	def   FilterStates = 0
-	auto  FilterStates = 1
-	start FilterStates = 2
-	stop  FilterStates = 3
+	FilterStates_def   FilterStates = 0
+	FilterStates_auto  FilterStates = 1
+	FilterStates_start FilterStates = 2
+	FilterStates_stop  FilterStates = 3
 )
 
 var FilterStates_name = map[int32]string{
@@ -50,18 +47,26 @@ var FilterStates_value = map[string]int32{
 	"stop":  3,
 }
 
+func (x FilterStates) String() string {
+	return proto.EnumName(FilterStates_name, int32(x))
+}
+
 func (FilterStates) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{0}
 }
 
 type NTP struct {
-	DayLight uint32 `protobuf:"varint,1,opt,name=day_light,json=dayLight,proto3" json:"day_light,omitempty"`
-	Server   string `protobuf:"bytes,2,opt,name=server,proto3" json:"server,omitempty"`
-	Timezone uint32 `protobuf:"varint,3,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	DayLight             uint32   `protobuf:"varint,1,opt,name=day_light,json=dayLight,proto3" json:"day_light,omitempty"`
+	Server               string   `protobuf:"bytes,2,opt,name=server,proto3" json:"server,omitempty"`
+	Timezone             uint32   `protobuf:"varint,3,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *NTP) Reset()      { *m = NTP{} }
-func (*NTP) ProtoMessage() {}
+func (m *NTP) Reset()         { *m = NTP{} }
+func (m *NTP) String() string { return proto.CompactTextString(m) }
+func (*NTP) ProtoMessage()    {}
 func (*NTP) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{0}
 }
@@ -114,12 +119,16 @@ func (m *NTP) GetTimezone() uint32 {
 }
 
 type Mqtt struct {
-	Enabled bool   `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	Server  string `protobuf:"bytes,2,opt,name=server,proto3" json:"server,omitempty"`
+	Enabled              bool     `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Server               string   `protobuf:"bytes,2,opt,name=server,proto3" json:"server,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Mqtt) Reset()      { *m = Mqtt{} }
-func (*Mqtt) ProtoMessage() {}
+func (m *Mqtt) Reset()         { *m = Mqtt{} }
+func (m *Mqtt) String() string { return proto.CompactTextString(m) }
+func (*Mqtt) ProtoMessage()    {}
 func (*Mqtt) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{1}
 }
@@ -165,18 +174,22 @@ func (m *Mqtt) GetServer() string {
 }
 
 type Network struct {
-	Dhcp      bool   `protobuf:"varint,1,opt,name=dhcp,proto3" json:"dhcp,omitempty"`
-	Ip        string `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
-	Netmask   string `protobuf:"bytes,3,opt,name=netmask,proto3" json:"netmask,omitempty"`
-	Gateway   string `protobuf:"bytes,4,opt,name=gateway,proto3" json:"gateway,omitempty"`
-	Dns       string `protobuf:"bytes,5,opt,name=dns,proto3" json:"dns,omitempty"`
-	AllowPost bool   `protobuf:"varint,6,opt,name=allow_post,json=allowPost,proto3" json:"allow_post,omitempty"`
-	Mqtt      *Mqtt  `protobuf:"bytes,7,opt,name=mqtt,proto3" json:"mqtt,omitempty"`
-	Ntp       *NTP   `protobuf:"bytes,8,opt,name=ntp,proto3" json:"ntp,omitempty"`
+	Dhcp                 bool     `protobuf:"varint,1,opt,name=dhcp,proto3" json:"dhcp,omitempty"`
+	Ip                   string   `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
+	Netmask              string   `protobuf:"bytes,3,opt,name=netmask,proto3" json:"netmask,omitempty"`
+	Gateway              string   `protobuf:"bytes,4,opt,name=gateway,proto3" json:"gateway,omitempty"`
+	Dns                  string   `protobuf:"bytes,5,opt,name=dns,proto3" json:"dns,omitempty"`
+	AllowPost            bool     `protobuf:"varint,6,opt,name=allow_post,json=allowPost,proto3" json:"allow_post,omitempty"`
+	Mqtt                 *Mqtt    `protobuf:"bytes,7,opt,name=mqtt,proto3" json:"mqtt,omitempty"`
+	Ntp                  *NTP     `protobuf:"bytes,8,opt,name=ntp,proto3" json:"ntp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Network) Reset()      { *m = Network{} }
-func (*Network) ProtoMessage() {}
+func (m *Network) Reset()         { *m = Network{} }
+func (m *Network) String() string { return proto.CompactTextString(m) }
+func (*Network) ProtoMessage()    {}
 func (*Network) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{2}
 }
@@ -264,13 +277,17 @@ func (m *Network) GetNtp() *NTP {
 }
 
 type Temp struct {
-	Enabled bool     `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	Init    bool     `protobuf:"varint,2,opt,name=init,proto3" json:"init,omitempty"`
-	Addr    []uint32 `protobuf:"varint,8,rep,packed,name=addr,proto3" json:"addr,omitempty"`
+	Enabled              bool     `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Init                 bool     `protobuf:"varint,2,opt,name=init,proto3" json:"init,omitempty"`
+	Addr                 []uint32 `protobuf:"varint,8,rep,packed,name=addr,proto3" json:"addr,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Temp) Reset()      { *m = Temp{} }
-func (*Temp) ProtoMessage() {}
+func (m *Temp) Reset()         { *m = Temp{} }
+func (m *Temp) String() string { return proto.CompactTextString(m) }
+func (*Temp) ProtoMessage()    {}
 func (*Temp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{3}
 }
@@ -334,15 +351,19 @@ type Limits struct {
 	// temp threshold to activate ch
 	ChTempThreshold float32 `protobuf:"fixed32,8,opt,name=ch_temp_threshold,json=chTempThreshold,proto3" json:"ch_temp_threshold,omitempty"`
 	// temp threshold to reset ch wait time
-	ChTempWaitReset float32 `protobuf:"fixed32,9,opt,name=ch_temp_wait_reset,json=chTempWaitReset,proto3" json:"ch_temp_wait_reset,omitempty"`
-	Wp_0Derive      float32 `protobuf:"fixed32,10,opt,name=wp_0_derive,json=wp0Derive,proto3" json:"wp_0_derive,omitempty"`
-	TwMin           uint32  `protobuf:"varint,11,opt,name=tw_min,json=twMin,proto3" json:"tw_min,omitempty"`
-	TwMax           uint32  `protobuf:"varint,12,opt,name=tw_max,json=twMax,proto3" json:"tw_max,omitempty"`
-	TambMin         int32   `protobuf:"varint,13,opt,name=tamb_min,json=tambMin,proto3" json:"tamb_min,omitempty"`
+	ChTempWaitReset      float32  `protobuf:"fixed32,9,opt,name=ch_temp_wait_reset,json=chTempWaitReset,proto3" json:"ch_temp_wait_reset,omitempty"`
+	Wp_0Derive           float32  `protobuf:"fixed32,10,opt,name=wp_0_derive,json=wp0Derive,proto3" json:"wp_0_derive,omitempty"`
+	TwMin                uint32   `protobuf:"varint,11,opt,name=tw_min,json=twMin,proto3" json:"tw_min,omitempty"`
+	TwMax                uint32   `protobuf:"varint,12,opt,name=tw_max,json=twMax,proto3" json:"tw_max,omitempty"`
+	TambMin              int32    `protobuf:"varint,13,opt,name=tamb_min,json=tambMin,proto3" json:"tamb_min,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Limits) Reset()      { *m = Limits{} }
-func (*Limits) ProtoMessage() {}
+func (m *Limits) Reset()         { *m = Limits{} }
+func (m *Limits) String() string { return proto.CompactTextString(m) }
+func (*Limits) ProtoMessage()    {}
 func (*Limits) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{4}
 }
@@ -465,17 +486,21 @@ func (m *Limits) GetTambMin() int32 {
 }
 
 type AnalogSensor struct {
-	Enabled           bool    `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	AdcPin            uint32  `protobuf:"varint,3,opt,name=adc_pin,json=adcPin,proto3" json:"adc_pin,omitempty"`
-	Threshold         float32 `protobuf:"fixed32,2,opt,name=threshold,proto3" json:"threshold,omitempty"`
-	ThresholdAccuracy uint32  `protobuf:"varint,4,opt,name=threshold_accuracy,json=thresholdAccuracy,proto3" json:"threshold_accuracy,omitempty"`
-	Vmin              float32 `protobuf:"fixed32,5,opt,name=vmin,proto3" json:"vmin,omitempty"`
-	Vmax              float32 `protobuf:"fixed32,6,opt,name=vmax,proto3" json:"vmax,omitempty"`
-	PrecisionFactor   uint32  `protobuf:"varint,7,opt,name=precision_factor,json=precisionFactor,proto3" json:"precision_factor,omitempty"`
+	Enabled              bool     `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	AdcPin               uint32   `protobuf:"varint,3,opt,name=adc_pin,json=adcPin,proto3" json:"adc_pin,omitempty"`
+	Threshold            float32  `protobuf:"fixed32,2,opt,name=threshold,proto3" json:"threshold,omitempty"`
+	ThresholdAccuracy    uint32   `protobuf:"varint,4,opt,name=threshold_accuracy,json=thresholdAccuracy,proto3" json:"threshold_accuracy,omitempty"`
+	Vmin                 float32  `protobuf:"fixed32,5,opt,name=vmin,proto3" json:"vmin,omitempty"`
+	Vmax                 float32  `protobuf:"fixed32,6,opt,name=vmax,proto3" json:"vmax,omitempty"`
+	PrecisionFactor      uint32   `protobuf:"varint,7,opt,name=precision_factor,json=precisionFactor,proto3" json:"precision_factor,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *AnalogSensor) Reset()      { *m = AnalogSensor{} }
-func (*AnalogSensor) ProtoMessage() {}
+func (m *AnalogSensor) Reset()         { *m = AnalogSensor{} }
+func (m *AnalogSensor) String() string { return proto.CompactTextString(m) }
+func (*AnalogSensor) ProtoMessage()    {}
 func (*AnalogSensor) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{5}
 }
@@ -556,19 +581,23 @@ func (m *AnalogSensor) GetPrecisionFactor() uint32 {
 }
 
 type Sensors struct {
-	Twin              *Temp         `protobuf:"bytes,1,opt,name=twin,proto3" json:"twin,omitempty"`
-	Twout             *Temp         `protobuf:"bytes,2,opt,name=twout,proto3" json:"twout,omitempty"`
-	Tamb              *Temp         `protobuf:"bytes,3,opt,name=tamb,proto3" json:"tamb,omitempty"`
-	WaitForConversion bool          `protobuf:"varint,4,opt,name=wait_for_conversion,json=waitForConversion,proto3" json:"wait_for_conversion,omitempty"`
-	TempResolution    uint32        `protobuf:"varint,5,opt,name=temp_resolution,json=tempResolution,proto3" json:"temp_resolution,omitempty"`
-	PrecisionFactor   uint32        `protobuf:"varint,6,opt,name=precision_factor,json=precisionFactor,proto3" json:"precision_factor,omitempty"`
-	Ph                *AnalogSensor `protobuf:"bytes,7,opt,name=ph,proto3" json:"ph,omitempty"`
-	Ch                *AnalogSensor `protobuf:"bytes,8,opt,name=ch,proto3" json:"ch,omitempty"`
-	Wp                *AnalogSensor `protobuf:"bytes,9,opt,name=wp,proto3" json:"wp,omitempty"`
+	Twin                 *Temp         `protobuf:"bytes,1,opt,name=twin,proto3" json:"twin,omitempty"`
+	Twout                *Temp         `protobuf:"bytes,2,opt,name=twout,proto3" json:"twout,omitempty"`
+	Tamb                 *Temp         `protobuf:"bytes,3,opt,name=tamb,proto3" json:"tamb,omitempty"`
+	WaitForConversion    bool          `protobuf:"varint,4,opt,name=wait_for_conversion,json=waitForConversion,proto3" json:"wait_for_conversion,omitempty"`
+	TempResolution       uint32        `protobuf:"varint,5,opt,name=temp_resolution,json=tempResolution,proto3" json:"temp_resolution,omitempty"`
+	PrecisionFactor      uint32        `protobuf:"varint,6,opt,name=precision_factor,json=precisionFactor,proto3" json:"precision_factor,omitempty"`
+	Ph                   *AnalogSensor `protobuf:"bytes,7,opt,name=ph,proto3" json:"ph,omitempty"`
+	Ch                   *AnalogSensor `protobuf:"bytes,8,opt,name=ch,proto3" json:"ch,omitempty"`
+	Wp                   *AnalogSensor `protobuf:"bytes,9,opt,name=wp,proto3" json:"wp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *Sensors) Reset()      { *m = Sensors{} }
-func (*Sensors) ProtoMessage() {}
+func (m *Sensors) Reset()         { *m = Sensors{} }
+func (m *Sensors) String() string { return proto.CompactTextString(m) }
+func (*Sensors) ProtoMessage()    {}
 func (*Sensors) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{6}
 }
@@ -663,16 +692,20 @@ func (m *Sensors) GetWp() *AnalogSensor {
 }
 
 type Global struct {
-	LcdBacklightDuration uint32  `protobuf:"varint,1,opt,name=lcd_backlight_duration,json=lcdBacklightDuration,proto3" json:"lcd_backlight_duration,omitempty"`
-	AckDuration          uint32  `protobuf:"varint,2,opt,name=ack_duration,json=ackDuration,proto3" json:"ack_duration,omitempty"`
-	AckTone              float64 `protobuf:"fixed64,3,opt,name=ack_tone,json=ackTone,proto3" json:"ack_tone,omitempty"`
-	SerialOut            bool    `protobuf:"varint,4,opt,name=serial_out,json=serialOut,proto3" json:"serial_out,omitempty"`
-	DisplayStartup       bool    `protobuf:"varint,5,opt,name=display_startup,json=displayStartup,proto3" json:"display_startup,omitempty"`
-	ForceLight           bool    `protobuf:"varint,6,opt,name=force_light,json=forceLight,proto3" json:"force_light,omitempty"`
+	LcdBacklightDuration uint32   `protobuf:"varint,1,opt,name=lcd_backlight_duration,json=lcdBacklightDuration,proto3" json:"lcd_backlight_duration,omitempty"`
+	AckDuration          uint32   `protobuf:"varint,2,opt,name=ack_duration,json=ackDuration,proto3" json:"ack_duration,omitempty"`
+	AckTone              float64  `protobuf:"fixed64,3,opt,name=ack_tone,json=ackTone,proto3" json:"ack_tone,omitempty"`
+	SerialOut            bool     `protobuf:"varint,4,opt,name=serial_out,json=serialOut,proto3" json:"serial_out,omitempty"`
+	DisplayStartup       bool     `protobuf:"varint,5,opt,name=display_startup,json=displayStartup,proto3" json:"display_startup,omitempty"`
+	ForceLight           bool     `protobuf:"varint,6,opt,name=force_light,json=forceLight,proto3" json:"force_light,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Global) Reset()      { *m = Global{} }
-func (*Global) ProtoMessage() {}
+func (m *Global) Reset()         { *m = Global{} }
+func (m *Global) String() string { return proto.CompactTextString(m) }
+func (*Global) ProtoMessage()    {}
 func (*Global) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{7}
 }
@@ -746,17 +779,21 @@ func (m *Global) GetForceLight() bool {
 }
 
 type Pump struct {
-	ForceFilter    bool   `protobuf:"varint,1,opt,name=force_filter,json=forceFilter,proto3" json:"force_filter,omitempty"`
-	ForcePh        bool   `protobuf:"varint,2,opt,name=force_ph,json=forcePh,proto3" json:"force_ph,omitempty"`
-	ForceCh        bool   `protobuf:"varint,3,opt,name=force_ch,json=forceCh,proto3" json:"force_ch,omitempty"`
-	Automatic      bool   `protobuf:"varint,4,opt,name=automatic,proto3" json:"automatic,omitempty"`
-	ForceCheck     bool   `protobuf:"varint,5,opt,name=force_check,json=forceCheck,proto3" json:"force_check,omitempty"`
-	ForceDuration  uint32 `protobuf:"varint,6,opt,name=force_duration,json=forceDuration,proto3" json:"force_duration,omitempty"`
-	ForceStartTime uint32 `protobuf:"varint,7,opt,name=force_start_time,json=forceStartTime,proto3" json:"force_start_time,omitempty"`
+	ForceFilter          bool     `protobuf:"varint,1,opt,name=force_filter,json=forceFilter,proto3" json:"force_filter,omitempty"`
+	ForcePh              bool     `protobuf:"varint,2,opt,name=force_ph,json=forcePh,proto3" json:"force_ph,omitempty"`
+	ForceCh              bool     `protobuf:"varint,3,opt,name=force_ch,json=forceCh,proto3" json:"force_ch,omitempty"`
+	Automatic            bool     `protobuf:"varint,4,opt,name=automatic,proto3" json:"automatic,omitempty"`
+	ForceCheck           bool     `protobuf:"varint,5,opt,name=force_check,json=forceCheck,proto3" json:"force_check,omitempty"`
+	ForceDuration        uint32   `protobuf:"varint,6,opt,name=force_duration,json=forceDuration,proto3" json:"force_duration,omitempty"`
+	ForceStartTime       uint32   `protobuf:"varint,7,opt,name=force_start_time,json=forceStartTime,proto3" json:"force_start_time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Pump) Reset()      { *m = Pump{} }
-func (*Pump) ProtoMessage() {}
+func (m *Pump) Reset()         { *m = Pump{} }
+func (m *Pump) String() string { return proto.CompactTextString(m) }
+func (*Pump) ProtoMessage()    {}
 func (*Pump) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{8}
 }
@@ -837,13 +874,17 @@ func (m *Pump) GetForceStartTime() uint32 {
 }
 
 type Ads115Alarms struct {
-	NotReady     bool `protobuf:"varint,1,opt,name=not_ready,json=notReady,proto3" json:"not_ready,omitempty"`
-	NotStarted   bool `protobuf:"varint,2,opt,name=not_started,json=notStarted,proto3" json:"not_started,omitempty"`
-	NotConnected bool `protobuf:"varint,3,opt,name=not_connected,json=notConnected,proto3" json:"not_connected,omitempty"`
+	NotReady             bool     `protobuf:"varint,1,opt,name=not_ready,json=notReady,proto3" json:"not_ready,omitempty"`
+	NotStarted           bool     `protobuf:"varint,2,opt,name=not_started,json=notStarted,proto3" json:"not_started,omitempty"`
+	NotConnected         bool     `protobuf:"varint,3,opt,name=not_connected,json=notConnected,proto3" json:"not_connected,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Ads115Alarms) Reset()      { *m = Ads115Alarms{} }
-func (*Ads115Alarms) ProtoMessage() {}
+func (m *Ads115Alarms) Reset()         { *m = Ads115Alarms{} }
+func (m *Ads115Alarms) String() string { return proto.CompactTextString(m) }
+func (*Ads115Alarms) ProtoMessage()    {}
 func (*Ads115Alarms) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{9}
 }
@@ -896,21 +937,25 @@ func (m *Ads115Alarms) GetNotConnected() bool {
 }
 
 type Alarms struct {
-	Filter    bool          `protobuf:"varint,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	Ph        bool          `protobuf:"varint,2,opt,name=ph,proto3" json:"ph,omitempty"`
-	Ch        bool          `protobuf:"varint,3,opt,name=ch,proto3" json:"ch,omitempty"`
-	Rtc       bool          `protobuf:"varint,5,opt,name=rtc,proto3" json:"rtc,omitempty"`
-	WpHigh    bool          `protobuf:"varint,6,opt,name=wp_high,json=wpHigh,proto3" json:"wp_high,omitempty"`
-	WpLow     bool          `protobuf:"varint,7,opt,name=wp_low,json=wpLow,proto3" json:"wp_low,omitempty"`
-	WpBroken  bool          `protobuf:"varint,8,opt,name=wp_broken,json=wpBroken,proto3" json:"wp_broken,omitempty"`
-	Ads1115   *Ads115Alarms `protobuf:"bytes,9,opt,name=ads1115,proto3" json:"ads1115,omitempty"`
-	TwFrost   bool          `protobuf:"varint,10,opt,name=tw_frost,json=twFrost,proto3" json:"tw_frost,omitempty"`
-	TwHigh    bool          `protobuf:"varint,11,opt,name=tw_high,json=twHigh,proto3" json:"tw_high,omitempty"`
-	TambFrost bool          `protobuf:"varint,12,opt,name=tamb_frost,json=tambFrost,proto3" json:"tamb_frost,omitempty"`
+	Filter               bool          `protobuf:"varint,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	Ph                   bool          `protobuf:"varint,2,opt,name=ph,proto3" json:"ph,omitempty"`
+	Ch                   bool          `protobuf:"varint,3,opt,name=ch,proto3" json:"ch,omitempty"`
+	Rtc                  bool          `protobuf:"varint,5,opt,name=rtc,proto3" json:"rtc,omitempty"`
+	WpHigh               bool          `protobuf:"varint,6,opt,name=wp_high,json=wpHigh,proto3" json:"wp_high,omitempty"`
+	WpLow                bool          `protobuf:"varint,7,opt,name=wp_low,json=wpLow,proto3" json:"wp_low,omitempty"`
+	WpBroken             bool          `protobuf:"varint,8,opt,name=wp_broken,json=wpBroken,proto3" json:"wp_broken,omitempty"`
+	Ads1115              *Ads115Alarms `protobuf:"bytes,9,opt,name=ads1115,proto3" json:"ads1115,omitempty"`
+	TwFrost              bool          `protobuf:"varint,10,opt,name=tw_frost,json=twFrost,proto3" json:"tw_frost,omitempty"`
+	TwHigh               bool          `protobuf:"varint,11,opt,name=tw_high,json=twHigh,proto3" json:"tw_high,omitempty"`
+	TambFrost            bool          `protobuf:"varint,12,opt,name=tamb_frost,json=tambFrost,proto3" json:"tamb_frost,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *Alarms) Reset()      { *m = Alarms{} }
-func (*Alarms) ProtoMessage() {}
+func (m *Alarms) Reset()         { *m = Alarms{} }
+func (m *Alarms) String() string { return proto.CompactTextString(m) }
+func (*Alarms) ProtoMessage()    {}
 func (*Alarms) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{10}
 }
@@ -1019,15 +1064,19 @@ func (m *Alarms) GetTambFrost() bool {
 }
 
 type Tests struct {
-	Enabled  bool    `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	Twater   float32 `protobuf:"fixed32,2,opt,name=twater,proto3" json:"twater,omitempty"`
-	Tamb     float32 `protobuf:"fixed32,3,opt,name=tamb,proto3" json:"tamb,omitempty"`
-	Ph       float32 `protobuf:"fixed32,4,opt,name=ph,proto3" json:"ph,omitempty"`
-	Pressure float32 `protobuf:"fixed32,5,opt,name=pressure,proto3" json:"pressure,omitempty"`
+	Enabled              bool     `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	Twater               float32  `protobuf:"fixed32,2,opt,name=twater,proto3" json:"twater,omitempty"`
+	Tamb                 float32  `protobuf:"fixed32,3,opt,name=tamb,proto3" json:"tamb,omitempty"`
+	Ph                   float32  `protobuf:"fixed32,4,opt,name=ph,proto3" json:"ph,omitempty"`
+	Pressure             float32  `protobuf:"fixed32,5,opt,name=pressure,proto3" json:"pressure,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Tests) Reset()      { *m = Tests{} }
-func (*Tests) ProtoMessage() {}
+func (m *Tests) Reset()         { *m = Tests{} }
+func (m *Tests) String() string { return proto.CompactTextString(m) }
+func (*Tests) ProtoMessage()    {}
 func (*Tests) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{11}
 }
@@ -1094,19 +1143,23 @@ func (m *Tests) GetPressure() float32 {
 }
 
 type Metrics struct {
-	Tamb            float32 `protobuf:"fixed32,1,opt,name=tamb,proto3" json:"tamb,omitempty"`
-	Twater          float32 `protobuf:"fixed32,2,opt,name=twater,proto3" json:"twater,omitempty"`
-	SavedTwater     float32 `protobuf:"fixed32,3,opt,name=saved_twater,json=savedTwater,proto3" json:"saved_twater,omitempty"`
-	Ph              float32 `protobuf:"fixed32,4,opt,name=ph,proto3" json:"ph,omitempty"`
-	Ch              float32 `protobuf:"fixed32,5,opt,name=ch,proto3" json:"ch,omitempty"`
-	Wp              float32 `protobuf:"fixed32,6,opt,name=wp,proto3" json:"wp,omitempty"`
-	WpVolt          float32 `protobuf:"fixed32,7,opt,name=wp_volt,json=wpVolt,proto3" json:"wp_volt,omitempty"`
-	Over_15Duration uint32  `protobuf:"varint,8,opt,name=over_15_duration,json=over15Duration,proto3" json:"over_15_duration,omitempty"`
-	Hour            uint32  `protobuf:"varint,9,opt,name=hour,proto3" json:"hour,omitempty"`
+	Tamb                 float32  `protobuf:"fixed32,1,opt,name=tamb,proto3" json:"tamb,omitempty"`
+	Twater               float32  `protobuf:"fixed32,2,opt,name=twater,proto3" json:"twater,omitempty"`
+	SavedTwater          float32  `protobuf:"fixed32,3,opt,name=saved_twater,json=savedTwater,proto3" json:"saved_twater,omitempty"`
+	Ph                   float32  `protobuf:"fixed32,4,opt,name=ph,proto3" json:"ph,omitempty"`
+	Ch                   float32  `protobuf:"fixed32,5,opt,name=ch,proto3" json:"ch,omitempty"`
+	Wp                   float32  `protobuf:"fixed32,6,opt,name=wp,proto3" json:"wp,omitempty"`
+	WpVolt               float32  `protobuf:"fixed32,7,opt,name=wp_volt,json=wpVolt,proto3" json:"wp_volt,omitempty"`
+	Over_15Duration      uint32   `protobuf:"varint,8,opt,name=over_15_duration,json=over15Duration,proto3" json:"over_15_duration,omitempty"`
+	Hour                 uint32   `protobuf:"varint,9,opt,name=hour,proto3" json:"hour,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Metrics) Reset()      { *m = Metrics{} }
-func (*Metrics) ProtoMessage() {}
+func (m *Metrics) Reset()         { *m = Metrics{} }
+func (m *Metrics) String() string { return proto.CompactTextString(m) }
+func (*Metrics) ProtoMessage()    {}
 func (*Metrics) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{12}
 }
@@ -1201,19 +1254,23 @@ func (m *Metrics) GetHour() uint32 {
 }
 
 type States struct {
-	Startup   bool `protobuf:"varint,1,opt,name=startup,proto3" json:"startup,omitempty"`
-	FilterOn  bool `protobuf:"varint,2,opt,name=filter_on,json=filterOn,proto3" json:"filter_on,omitempty"`
-	PhOn      bool `protobuf:"varint,3,opt,name=ph_on,json=phOn,proto3" json:"ph_on,omitempty"`
-	ChOn      bool `protobuf:"varint,4,opt,name=ch_on,json=chOn,proto3" json:"ch_on,omitempty"`
-	Automatic bool `protobuf:"varint,5,opt,name=automatic,proto3" json:"automatic,omitempty"`
-	NetActive bool `protobuf:"varint,6,opt,name=net_active,json=netActive,proto3" json:"net_active,omitempty"`
-	Ntp       bool `protobuf:"varint,7,opt,name=ntp,proto3" json:"ntp,omitempty"`
-	Rtc       bool `protobuf:"varint,8,opt,name=rtc,proto3" json:"rtc,omitempty"`
-	LightOn   bool `protobuf:"varint,9,opt,name=light_on,json=lightOn,proto3" json:"light_on,omitempty"`
+	Startup              bool     `protobuf:"varint,1,opt,name=startup,proto3" json:"startup,omitempty"`
+	FilterOn             bool     `protobuf:"varint,2,opt,name=filter_on,json=filterOn,proto3" json:"filter_on,omitempty"`
+	PhOn                 bool     `protobuf:"varint,3,opt,name=ph_on,json=phOn,proto3" json:"ph_on,omitempty"`
+	ChOn                 bool     `protobuf:"varint,4,opt,name=ch_on,json=chOn,proto3" json:"ch_on,omitempty"`
+	Automatic            bool     `protobuf:"varint,5,opt,name=automatic,proto3" json:"automatic,omitempty"`
+	NetActive            bool     `protobuf:"varint,6,opt,name=net_active,json=netActive,proto3" json:"net_active,omitempty"`
+	Ntp                  bool     `protobuf:"varint,7,opt,name=ntp,proto3" json:"ntp,omitempty"`
+	Rtc                  bool     `protobuf:"varint,8,opt,name=rtc,proto3" json:"rtc,omitempty"`
+	LightOn              bool     `protobuf:"varint,9,opt,name=light_on,json=lightOn,proto3" json:"light_on,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *States) Reset()      { *m = States{} }
-func (*States) ProtoMessage() {}
+func (m *States) Reset()         { *m = States{} }
+func (m *States) String() string { return proto.CompactTextString(m) }
+func (*States) ProtoMessage()    {}
 func (*States) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{13}
 }
@@ -1308,19 +1365,23 @@ func (m *States) GetLightOn() bool {
 }
 
 type Versions struct {
-	Domopool   string `protobuf:"bytes,1,opt,name=domopool,proto3" json:"domopool,omitempty"`
-	Platformio uint32 `protobuf:"varint,2,opt,name=platformio,proto3" json:"platformio,omitempty"`
-	EspIdf     string `protobuf:"bytes,3,opt,name=esp_idf,json=espIdf,proto3" json:"esp_idf,omitempty"`
-	Xtensa     string `protobuf:"bytes,4,opt,name=xtensa,proto3" json:"xtensa,omitempty"`
-	TftEspi    string `protobuf:"bytes,6,opt,name=tft_espi,json=tftEspi,proto3" json:"tft_espi,omitempty"`
-	Dallastemp string `protobuf:"bytes,7,opt,name=dallastemp,proto3" json:"dallastemp,omitempty"`
-	Ads1115    string `protobuf:"bytes,8,opt,name=ads1115,proto3" json:"ads1115,omitempty"`
-	Nanopb     string `protobuf:"bytes,9,opt,name=nanopb,proto3" json:"nanopb,omitempty"`
-	Mqtt       string `protobuf:"bytes,10,opt,name=mqtt,proto3" json:"mqtt,omitempty"`
+	Domopool             string   `protobuf:"bytes,1,opt,name=domopool,proto3" json:"domopool,omitempty"`
+	Platformio           uint32   `protobuf:"varint,2,opt,name=platformio,proto3" json:"platformio,omitempty"`
+	EspIdf               string   `protobuf:"bytes,3,opt,name=esp_idf,json=espIdf,proto3" json:"esp_idf,omitempty"`
+	Xtensa               string   `protobuf:"bytes,4,opt,name=xtensa,proto3" json:"xtensa,omitempty"`
+	TftEspi              string   `protobuf:"bytes,6,opt,name=tft_espi,json=tftEspi,proto3" json:"tft_espi,omitempty"`
+	Dallastemp           string   `protobuf:"bytes,7,opt,name=dallastemp,proto3" json:"dallastemp,omitempty"`
+	Ads1115              string   `protobuf:"bytes,8,opt,name=ads1115,proto3" json:"ads1115,omitempty"`
+	Nanopb               string   `protobuf:"bytes,9,opt,name=nanopb,proto3" json:"nanopb,omitempty"`
+	Mqtt                 string   `protobuf:"bytes,10,opt,name=mqtt,proto3" json:"mqtt,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Versions) Reset()      { *m = Versions{} }
-func (*Versions) ProtoMessage() {}
+func (m *Versions) Reset()         { *m = Versions{} }
+func (m *Versions) String() string { return proto.CompactTextString(m) }
+func (*Versions) ProtoMessage()    {}
 func (*Versions) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{14}
 }
@@ -1415,13 +1476,17 @@ func (m *Versions) GetMqtt() string {
 }
 
 type Infos struct {
-	Compile   string    `protobuf:"bytes,1,opt,name=compile,proto3" json:"compile,omitempty"`
-	BoardName string    `protobuf:"bytes,2,opt,name=board_name,json=boardName,proto3" json:"board_name,omitempty"`
-	Versions  *Versions `protobuf:"bytes,3,opt,name=versions,proto3" json:"versions,omitempty"`
+	Compile              string    `protobuf:"bytes,1,opt,name=compile,proto3" json:"compile,omitempty"`
+	BoardName            string    `protobuf:"bytes,2,opt,name=board_name,json=boardName,proto3" json:"board_name,omitempty"`
+	Versions             *Versions `protobuf:"bytes,3,opt,name=versions,proto3" json:"versions,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
 }
 
-func (m *Infos) Reset()      { *m = Infos{} }
-func (*Infos) ProtoMessage() {}
+func (m *Infos) Reset()         { *m = Infos{} }
+func (m *Infos) String() string { return proto.CompactTextString(m) }
+func (*Infos) ProtoMessage()    {}
 func (*Infos) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{15}
 }
@@ -1474,20 +1539,24 @@ func (m *Infos) GetVersions() *Versions {
 }
 
 type Config struct {
-	Network *Network `protobuf:"bytes,1,opt,name=network,proto3" json:"network,omitempty"`
-	Sensors *Sensors `protobuf:"bytes,2,opt,name=sensors,proto3" json:"sensors,omitempty"`
-	Global  *Global  `protobuf:"bytes,3,opt,name=global,proto3" json:"global,omitempty"`
-	Pump    *Pump    `protobuf:"bytes,5,opt,name=pump,proto3" json:"pump,omitempty"`
-	Metrics *Metrics `protobuf:"bytes,6,opt,name=metrics,proto3" json:"metrics,omitempty"`
-	States  *States  `protobuf:"bytes,7,opt,name=states,proto3" json:"states,omitempty"`
-	Alarms  *Alarms  `protobuf:"bytes,8,opt,name=alarms,proto3" json:"alarms,omitempty"`
-	Tests   *Tests   `protobuf:"bytes,9,opt,name=tests,proto3" json:"tests,omitempty"`
-	Infos   *Infos   `protobuf:"bytes,10,opt,name=infos,proto3" json:"infos,omitempty"`
-	Limits  *Limits  `protobuf:"bytes,11,opt,name=limits,proto3" json:"limits,omitempty"`
+	Network              *Network `protobuf:"bytes,1,opt,name=network,proto3" json:"network,omitempty"`
+	Sensors              *Sensors `protobuf:"bytes,2,opt,name=sensors,proto3" json:"sensors,omitempty"`
+	Global               *Global  `protobuf:"bytes,3,opt,name=global,proto3" json:"global,omitempty"`
+	Pump                 *Pump    `protobuf:"bytes,5,opt,name=pump,proto3" json:"pump,omitempty"`
+	Metrics              *Metrics `protobuf:"bytes,6,opt,name=metrics,proto3" json:"metrics,omitempty"`
+	States               *States  `protobuf:"bytes,7,opt,name=states,proto3" json:"states,omitempty"`
+	Alarms               *Alarms  `protobuf:"bytes,8,opt,name=alarms,proto3" json:"alarms,omitempty"`
+	Tests                *Tests   `protobuf:"bytes,9,opt,name=tests,proto3" json:"tests,omitempty"`
+	Infos                *Infos   `protobuf:"bytes,10,opt,name=infos,proto3" json:"infos,omitempty"`
+	Limits               *Limits  `protobuf:"bytes,11,opt,name=limits,proto3" json:"limits,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Config) Reset()      { *m = Config{} }
-func (*Config) ProtoMessage() {}
+func (m *Config) Reset()         { *m = Config{} }
+func (m *Config) String() string { return proto.CompactTextString(m) }
+func (*Config) ProtoMessage()    {}
 func (*Config) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{16}
 }
@@ -1589,13 +1658,17 @@ func (m *Config) GetLimits() *Limits {
 }
 
 type Filter struct {
-	State     FilterStates `protobuf:"varint,1,opt,name=state,proto3,enum=domopool.FilterStates" json:"state,omitempty"`
-	Duration  uint32       `protobuf:"varint,2,opt,name=duration,proto3" json:"duration,omitempty"`
-	StartTime uint32       `protobuf:"varint,3,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	State                FilterStates `protobuf:"varint,1,opt,name=state,proto3,enum=domopool.FilterStates" json:"state,omitempty"`
+	Duration             uint32       `protobuf:"varint,2,opt,name=duration,proto3" json:"duration,omitempty"`
+	StartTime            uint32       `protobuf:"varint,3,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
-func (m *Filter) Reset()      { *m = Filter{} }
-func (*Filter) ProtoMessage() {}
+func (m *Filter) Reset()         { *m = Filter{} }
+func (m *Filter) String() string { return proto.CompactTextString(m) }
+func (*Filter) ProtoMessage()    {}
 func (*Filter) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{17}
 }
@@ -1630,7 +1703,7 @@ func (m *Filter) GetState() FilterStates {
 	if m != nil {
 		return m.State
 	}
-	return def
+	return FilterStates_def
 }
 
 func (m *Filter) GetDuration() uint32 {
@@ -1648,11 +1721,15 @@ func (m *Filter) GetStartTime() uint32 {
 }
 
 type Switch struct {
-	State FilterStates `protobuf:"varint,1,opt,name=state,proto3,enum=domopool.FilterStates" json:"state,omitempty"`
+	State                FilterStates `protobuf:"varint,1,opt,name=state,proto3,enum=domopool.FilterStates" json:"state,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
-func (m *Switch) Reset()      { *m = Switch{} }
-func (*Switch) ProtoMessage() {}
+func (m *Switch) Reset()         { *m = Switch{} }
+func (m *Switch) String() string { return proto.CompactTextString(m) }
+func (*Switch) ProtoMessage()    {}
 func (*Switch) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6d32c57b52397a6e, []int{18}
 }
@@ -1687,7 +1764,7 @@ func (m *Switch) GetState() FilterStates {
 	if m != nil {
 		return m.State
 	}
-	return def
+	return FilterStates_def
 }
 
 func init() {
@@ -1716,1242 +1793,125 @@ func init() {
 func init() { proto.RegisterFile("domopool.proto", fileDescriptor_6d32c57b52397a6e) }
 
 var fileDescriptor_6d32c57b52397a6e = []byte{
-	// 1899 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x57, 0x4b, 0x8f, 0x1c, 0x49,
-	0x11, 0x9e, 0xea, 0x67, 0x75, 0xcc, 0x74, 0x7b, 0x9c, 0x0b, 0xde, 0x5e, 0x83, 0x7b, 0xbd, 0xcd,
-	0x2e, 0x0c, 0xbb, 0xf2, 0xd8, 0xe3, 0xc5, 0x5a, 0x24, 0x4e, 0xe3, 0x59, 0xcc, 0xae, 0xe4, 0xc7,
-	0x28, 0x67, 0x64, 0x24, 0x2e, 0xa5, 0xec, 0xaa, 0xec, 0xae, 0xd2, 0x54, 0x55, 0xa6, 0xab, 0xb2,
-	0xa7, 0x66, 0x38, 0xf1, 0x13, 0xf8, 0x11, 0x1c, 0xe0, 0x9f, 0x70, 0xf4, 0x8d, 0xbd, 0x81, 0xc7,
-	0x42, 0xe2, 0xc6, 0x4a, 0x5c, 0x10, 0x27, 0x14, 0x91, 0x59, 0xd5, 0xdd, 0x8b, 0x6d, 0x89, 0x53,
-	0x57, 0x7c, 0xf1, 0xe5, 0x23, 0x1e, 0x19, 0x11, 0x0d, 0xa3, 0x48, 0x65, 0x4a, 0x2b, 0x95, 0xee,
-	0xeb, 0x42, 0x19, 0xc5, 0xfc, 0x5a, 0xbe, 0x79, 0x67, 0x91, 0x98, 0x78, 0x39, 0xdb, 0x0f, 0x55,
-	0x76, 0x77, 0xa1, 0x16, 0xea, 0x2e, 0x11, 0x66, 0xcb, 0x39, 0x49, 0x24, 0xd0, 0x97, 0x5d, 0x38,
-	0x7d, 0x0e, 0xed, 0xa7, 0xa7, 0xc7, 0xec, 0x07, 0x30, 0x88, 0xc4, 0x65, 0x90, 0x26, 0x8b, 0xd8,
-	0x8c, 0xbd, 0xdb, 0xde, 0xde, 0x90, 0xfb, 0x91, 0xb8, 0x7c, 0x8c, 0x32, 0xbb, 0x01, 0xbd, 0x52,
-	0x16, 0xe7, 0xb2, 0x18, 0xb7, 0x6e, 0x7b, 0x7b, 0x03, 0xee, 0x24, 0x76, 0x13, 0x7c, 0x93, 0x64,
-	0xf2, 0xb7, 0x2a, 0x97, 0xe3, 0xb6, 0x5d, 0x53, 0xcb, 0xd3, 0x9f, 0x43, 0xe7, 0xc9, 0x0b, 0x63,
-	0xd8, 0x18, 0xfa, 0x32, 0x17, 0xb3, 0x54, 0x46, 0xb4, 0xad, 0xcf, 0x6b, 0xf1, 0x6d, 0xbb, 0x4e,
-	0xff, 0xe2, 0x41, 0xff, 0xa9, 0x34, 0x95, 0x2a, 0xce, 0x18, 0x83, 0x4e, 0x14, 0x87, 0xda, 0x2d,
-	0xa5, 0x6f, 0x36, 0x82, 0x56, 0xa2, 0xdd, 0x9a, 0x56, 0xa2, 0xf1, 0x84, 0x5c, 0x9a, 0x4c, 0x94,
-	0x67, 0x74, 0x89, 0x01, 0xaf, 0x45, 0xd4, 0x2c, 0x84, 0x91, 0x95, 0xb8, 0x1c, 0x77, 0xac, 0xc6,
-	0x89, 0x6c, 0x17, 0xda, 0x51, 0x5e, 0x8e, 0xbb, 0x84, 0xe2, 0x27, 0xbb, 0x05, 0x20, 0xd2, 0x54,
-	0x55, 0x81, 0x56, 0xa5, 0x19, 0xf7, 0xe8, 0xbc, 0x01, 0x21, 0xc7, 0xaa, 0x34, 0x6c, 0x0a, 0x9d,
-	0xec, 0x85, 0x31, 0xe3, 0xfe, 0x6d, 0x6f, 0x6f, 0xfb, 0xfe, 0x68, 0xbf, 0x71, 0x3f, 0x1a, 0xc9,
-	0x49, 0xc7, 0x3e, 0x84, 0x76, 0x6e, 0xf4, 0xd8, 0x27, 0xca, 0x70, 0x45, 0x79, 0x7a, 0x7a, 0xcc,
-	0x51, 0x33, 0xfd, 0x0a, 0x3a, 0xa7, 0x32, 0xd3, 0xef, 0xf0, 0x09, 0x83, 0x4e, 0x92, 0x27, 0x86,
-	0xac, 0xf3, 0x39, 0x7d, 0x23, 0x26, 0xa2, 0xa8, 0x18, 0xfb, 0xb7, 0xdb, 0x7b, 0x43, 0x4e, 0xdf,
-	0xd3, 0xff, 0xb4, 0xa0, 0xf7, 0x38, 0xc9, 0x12, 0x53, 0xb2, 0xef, 0x43, 0xaf, 0xd2, 0x41, 0x96,
-	0xe4, 0xb4, 0x57, 0x8b, 0x77, 0x2b, 0xfd, 0x24, 0xc9, 0x6b, 0x58, 0x5c, 0xd0, 0x5e, 0x16, 0x16,
-	0x17, 0x08, 0xeb, 0x98, 0xd8, 0x6d, 0x0b, 0xeb, 0xd8, 0xb1, 0x11, 0x16, 0x17, 0xe4, 0x28, 0x0b,
-	0x5b, 0x76, 0x68, 0xd9, 0x5d, 0x0b, 0x87, 0x35, 0x3b, 0xb4, 0xec, 0x5e, 0x03, 0x8b, 0x0b, 0xf6,
-	0x31, 0x8c, 0x2a, 0x91, 0x98, 0x60, 0x26, 0xe7, 0xaa, 0x90, 0x41, 0x18, 0x93, 0xb7, 0x86, 0x7c,
-	0x07, 0xd1, 0x87, 0x04, 0x1e, 0xc5, 0xec, 0x53, 0xb8, 0x1e, 0xc6, 0x81, 0x91, 0x99, 0x0e, 0x4c,
-	0x5c, 0xc8, 0x32, 0x56, 0x69, 0x44, 0x3e, 0x6b, 0xf1, 0x6b, 0x61, 0x8c, 0xfe, 0x39, 0xad, 0x61,
-	0xf6, 0x19, 0xb0, 0x9a, 0x4b, 0x3b, 0x17, 0xb2, 0x94, 0x66, 0x3c, 0x58, 0x27, 0xff, 0x5a, 0x24,
-	0x86, 0x23, 0xcc, 0x26, 0xb0, 0x5d, 0xe9, 0xe0, 0x5e, 0x10, 0xc9, 0x22, 0x39, 0x97, 0x63, 0x20,
-	0xd6, 0xa0, 0xd2, 0xf7, 0xbe, 0x24, 0x00, 0x6f, 0x6d, 0x2a, 0x32, 0x66, 0x9b, 0xae, 0xd5, 0x35,
-	0x95, 0x33, 0x06, 0x61, 0x71, 0x31, 0xde, 0x69, 0x60, 0x71, 0xc1, 0x3e, 0x00, 0xdf, 0x88, 0x6c,
-	0x46, 0xfc, 0xe1, 0x6d, 0x6f, 0xaf, 0xcb, 0xfb, 0x28, 0x3f, 0x49, 0xf2, 0xe9, 0x2b, 0x0f, 0x76,
-	0x0e, 0x73, 0x91, 0xaa, 0xc5, 0x89, 0xcc, 0x4b, 0x55, 0xbc, 0x23, 0x9e, 0xef, 0x43, 0x5f, 0x44,
-	0x61, 0xa0, 0x9d, 0xbf, 0x87, 0xbc, 0x27, 0xa2, 0xf0, 0x38, 0xc9, 0xd9, 0x0f, 0x61, 0xb0, 0xb2,
-	0xde, 0x46, 0x68, 0x05, 0xb0, 0x3b, 0xc0, 0x1a, 0x21, 0x10, 0x61, 0xb8, 0x2c, 0x44, 0x68, 0x73,
-	0x78, 0xc8, 0xaf, 0x37, 0x9a, 0x43, 0xa7, 0xc0, 0x0c, 0x39, 0x5f, 0x05, 0x89, 0xbe, 0x2d, 0xd6,
-	0x44, 0x88, 0xbe, 0xd9, 0x4f, 0x61, 0x57, 0x17, 0x32, 0x4c, 0xca, 0x44, 0xe5, 0xc1, 0x5c, 0x84,
-	0x46, 0x15, 0x2e, 0x44, 0xd7, 0x1a, 0xfc, 0x11, 0xc1, 0xd3, 0x7f, 0xb5, 0xa0, 0x6f, 0xad, 0x2b,
-	0x31, 0xf7, 0x4d, 0xe5, 0xf2, 0x6b, 0x23, 0xf7, 0xd1, 0xff, 0x9c, 0x74, 0xec, 0x63, 0xe8, 0x9a,
-	0x4a, 0x2d, 0x6d, 0xe6, 0xfe, 0x2f, 0xc9, 0x2a, 0x69, 0x27, 0x91, 0xcd, 0xc8, 0x17, 0x6f, 0xda,
-	0x49, 0x64, 0x33, 0xb6, 0x0f, 0xef, 0x51, 0xac, 0xe7, 0xaa, 0x08, 0x42, 0x95, 0x9f, 0xcb, 0x02,
-	0xaf, 0x45, 0xc6, 0xfb, 0xfc, 0x3a, 0xaa, 0x1e, 0xa9, 0xe2, 0xa8, 0x51, 0xb0, 0x9f, 0xc0, 0x35,
-	0x4a, 0x90, 0x42, 0x96, 0x2a, 0x5d, 0x1a, 0xe4, 0x76, 0xc9, 0xa6, 0x11, 0xc2, 0xbc, 0x41, 0xdf,
-	0x68, 0x7d, 0xef, 0x8d, 0xd6, 0xb3, 0x1f, 0x43, 0x4b, 0xc7, 0xee, 0xad, 0xdf, 0x58, 0xdd, 0x72,
-	0x3d, 0xe8, 0xbc, 0xa5, 0x63, 0xe4, 0x85, 0xb1, 0x7b, 0xf0, 0x6f, 0xe5, 0x85, 0xc4, 0xab, 0x34,
-	0xe5, 0xed, 0x3b, 0x78, 0x95, 0x9e, 0xfe, 0xdd, 0x83, 0xde, 0xaf, 0x52, 0x35, 0x13, 0x29, 0xfb,
-	0x19, 0xdc, 0x48, 0xc3, 0x28, 0x98, 0x89, 0xf0, 0x8c, 0x8a, 0x72, 0x10, 0x2d, 0x0b, 0x41, 0xd6,
-	0xd9, 0xea, 0xfc, 0xbd, 0x34, 0x8c, 0x1e, 0xd6, 0xca, 0x2f, 0x9d, 0x8e, 0x7d, 0x04, 0x3b, 0x22,
-	0x3c, 0x5b, 0x71, 0x5b, 0xc4, 0xdd, 0x16, 0xe1, 0x59, 0x43, 0xf9, 0x00, 0x7c, 0xa4, 0x98, 0xba,
-	0x68, 0x7b, 0xbc, 0x2f, 0xc2, 0xb3, 0x53, 0x95, 0x4b, 0xac, 0x81, 0xa5, 0x2c, 0x12, 0x91, 0x06,
-	0x18, 0x49, 0xeb, 0xf1, 0x81, 0x45, 0x9e, 0x2d, 0x0d, 0x7a, 0x3a, 0x4a, 0x4a, 0x9d, 0x8a, 0xcb,
-	0xa0, 0x34, 0xa2, 0x30, 0x4b, 0x4d, 0x9e, 0xf6, 0xf9, 0xc8, 0xc1, 0x27, 0x16, 0x65, 0x1f, 0xc2,
-	0xf6, 0x5c, 0x15, 0xa1, 0x74, 0xed, 0xc4, 0x16, 0x53, 0x20, 0x88, 0x1a, 0xca, 0xf4, 0x9f, 0x1e,
-	0x74, 0x8e, 0x97, 0x99, 0xc6, 0xfb, 0x5a, 0xe6, 0x3c, 0x49, 0x8d, 0x2c, 0xdc, 0xf3, 0xb1, 0xab,
-	0x1f, 0x11, 0x84, 0xf7, 0xb5, 0x14, 0x1d, 0xbb, 0xb2, 0xd8, 0x27, 0xf9, 0x38, 0x5e, 0xa9, 0xc2,
-	0x98, 0x4c, 0xa9, 0x55, 0x47, 0x31, 0xbe, 0x2f, 0xb1, 0x34, 0x2a, 0x13, 0x26, 0x09, 0x6b, 0x4b,
-	0x1a, 0x60, 0x75, 0xc1, 0x30, 0x96, 0xe1, 0x99, 0xb3, 0x02, 0xdc, 0x5a, 0x19, 0x9e, 0xb1, 0x4f,
-	0x60, 0x64, 0x09, 0x8d, 0x27, 0x6d, 0xa6, 0x0c, 0x09, 0x6d, 0x7c, 0xb9, 0x07, 0xbb, 0x96, 0x46,
-	0xfe, 0x08, 0xb0, 0xf9, 0xb9, 0x07, 0x65, 0x97, 0x93, 0x43, 0x4e, 0x93, 0x4c, 0x4e, 0x5f, 0xc0,
-	0xce, 0x61, 0x54, 0x1e, 0x1c, 0x3c, 0x38, 0x4c, 0x45, 0x91, 0x95, 0xd8, 0x6f, 0x73, 0x85, 0x05,
-	0x4d, 0x44, 0x97, 0xce, 0x6a, 0x3f, 0x57, 0x86, 0xa3, 0x8c, 0xd7, 0x43, 0x25, 0x6d, 0x2a, 0x23,
-	0x67, 0x35, 0xe4, 0xca, 0x9c, 0x58, 0x84, 0xfd, 0x08, 0x86, 0x48, 0x08, 0x55, 0x9e, 0xcb, 0x10,
-	0x29, 0xd6, 0xfa, 0x9d, 0x5c, 0x99, 0xa3, 0x1a, 0x9b, 0xfe, 0xa1, 0x05, 0x3d, 0x77, 0xda, 0x0d,
-	0xe8, 0x6d, 0x38, 0xd8, 0x49, 0xd8, 0x4a, 0x1b, 0xaf, 0x62, 0x3e, 0x8f, 0x28, 0x9f, 0xed, 0x66,
-	0x98, 0xb7, 0xbb, 0xd0, 0x2e, 0x4c, 0xe8, 0xfc, 0x83, 0x9f, 0x58, 0xd0, 0x2a, 0x1d, 0xc4, 0xc9,
-	0x22, 0x76, 0x61, 0xed, 0x55, 0xfa, 0xab, 0x64, 0x11, 0xbb, 0x7e, 0x93, 0xaa, 0x8a, 0x1c, 0xe0,
-	0x63, 0xbf, 0x79, 0xac, 0x2a, 0xb4, 0xb3, 0xd2, 0xc1, 0xac, 0x50, 0x67, 0x32, 0xa7, 0x87, 0xe2,
-	0x73, 0xbf, 0xd2, 0x0f, 0x49, 0x66, 0xf7, 0xb0, 0x3a, 0x96, 0x07, 0x07, 0x07, 0x0f, 0xde, 0xf0,
-	0x36, 0xd6, 0xbc, 0xc5, 0x6b, 0x1a, 0x55, 0xe5, 0x2a, 0x98, 0x17, 0xd8, 0xa3, 0xc1, 0x46, 0xdc,
-	0x54, 0x8f, 0x50, 0xc4, 0x9b, 0x99, 0xca, 0xde, 0x6c, 0xdb, 0xde, 0xcc, 0x54, 0x74, 0xb3, 0x5b,
-	0x00, 0x54, 0xc9, 0xed, 0xaa, 0x1d, 0x9b, 0x0b, 0x88, 0xd0, 0xba, 0xe9, 0x25, 0x74, 0x4f, 0x65,
-	0x69, 0xca, 0x77, 0x4f, 0x2a, 0xa6, 0x12, 0xc6, 0x4d, 0x2a, 0x2d, 0xee, 0x24, 0xac, 0xb1, 0x4d,
-	0x39, 0x6b, 0xb9, 0xf2, 0x65, 0x5d, 0x6a, 0xbb, 0x28, 0xba, 0xf4, 0x26, 0xf8, 0xba, 0x90, 0x65,
-	0xb9, 0x2c, 0xa4, 0xab, 0xcf, 0x8d, 0x3c, 0xfd, 0xab, 0x07, 0xfd, 0x27, 0xd2, 0x14, 0x49, 0x58,
-	0x36, 0x7b, 0x79, 0x6b, 0x7b, 0xbd, 0xed, 0xdc, 0x8f, 0x60, 0xa7, 0x14, 0xe7, 0x32, 0x0a, 0x9c,
-	0xd6, 0x9e, 0xbf, 0x4d, 0xd8, 0xa9, 0xa5, 0x7c, 0xf7, 0x1a, 0x36, 0xb2, 0xf6, 0x02, 0x18, 0xd9,
-	0x11, 0x55, 0x24, 0xdb, 0x1c, 0x5a, 0x95, 0x76, 0x71, 0x3d, 0x57, 0xa9, 0x1d, 0x71, 0x5a, 0x18,
-	0xd7, 0xe7, 0x2a, 0x35, 0x98, 0xe2, 0xea, 0x5c, 0x16, 0xc1, 0xc1, 0x83, 0xd5, 0x5b, 0xf0, 0x6d,
-	0x8a, 0x23, 0x7e, 0xf0, 0xa0, 0x79, 0x0c, 0x0c, 0x3a, 0xb1, 0x5a, 0x16, 0x14, 0xca, 0x21, 0xa7,
-	0x6f, 0x2a, 0x68, 0x27, 0x46, 0x18, 0x49, 0xee, 0xad, 0xab, 0x86, 0x73, 0xaf, 0x13, 0x31, 0x47,
-	0x6c, 0x3e, 0x06, 0xae, 0x62, 0xf9, 0xdc, 0xb7, 0xc0, 0xb3, 0x9c, 0xbd, 0x07, 0x5d, 0x1d, 0xa3,
-	0xc2, 0x66, 0x65, 0x47, 0xc7, 0x16, 0x0c, 0x09, 0xb4, 0x2f, 0xbb, 0x13, 0x22, 0xb8, 0xf1, 0xe4,
-	0xbb, 0xdf, 0x7d, 0xf2, 0xb7, 0x00, 0x72, 0x69, 0x02, 0x11, 0x1a, 0x1c, 0x0e, 0xdc, 0x7c, 0x97,
-	0x4b, 0x73, 0x48, 0x00, 0x66, 0x3a, 0xce, 0x6e, 0x36, 0x77, 0xf1, 0xb3, 0xce, 0x7d, 0x7f, 0x95,
-	0xfb, 0x1f, 0x80, 0x6f, 0x4b, 0xb1, 0xca, 0xc9, 0x48, 0x9f, 0xf7, 0x49, 0x7e, 0x96, 0x4f, 0xff,
-	0xed, 0x81, 0xff, 0xdc, 0x36, 0xa4, 0x12, 0x43, 0x5e, 0xa7, 0x31, 0x99, 0x3a, 0xe0, 0x8d, 0xcc,
-	0x26, 0x00, 0x3a, 0x15, 0x66, 0xae, 0x8a, 0x2c, 0x51, 0xae, 0x3c, 0xaf, 0x21, 0x18, 0x07, 0x59,
-	0xea, 0x20, 0x89, 0xe6, 0x6e, 0x98, 0xed, 0xc9, 0x52, 0x7f, 0x1d, 0xcd, 0x31, 0x17, 0x2e, 0x8c,
-	0xcc, 0x4b, 0xe1, 0x46, 0x59, 0x27, 0xd1, 0x8b, 0x98, 0x9b, 0x40, 0x96, 0x3a, 0x21, 0xab, 0x06,
-	0xbc, 0x6f, 0xe6, 0xe6, 0x97, 0xa5, 0x4e, 0xf0, 0xac, 0x48, 0xa4, 0xa9, 0x28, 0xb1, 0x11, 0x92,
-	0x69, 0x03, 0xbe, 0x86, 0x60, 0x44, 0xea, 0xe7, 0xe7, 0xdb, 0x95, 0xf5, 0x33, 0xbb, 0x01, 0xbd,
-	0x5c, 0xe4, 0x4a, 0xcf, 0xc8, 0xce, 0x01, 0x77, 0x12, 0x86, 0x98, 0xa6, 0x60, 0x20, 0x94, 0xbe,
-	0xa7, 0x1a, 0xba, 0x5f, 0xe7, 0x73, 0x45, 0x01, 0x0e, 0x55, 0xa6, 0x93, 0x54, 0x3a, 0xab, 0x6b,
-	0x11, 0x7d, 0x3f, 0x53, 0xa2, 0x88, 0x82, 0x5c, 0x64, 0xd2, 0x4d, 0xee, 0x03, 0x42, 0x9e, 0x8a,
-	0x4c, 0xb2, 0x7d, 0xf0, 0x5d, 0x33, 0x2f, 0xdd, 0x64, 0xc0, 0x56, 0x75, 0xa0, 0xf6, 0x2a, 0x6f,
-	0x38, 0xd3, 0x3f, 0xb5, 0xa1, 0x77, 0xa4, 0xf2, 0x79, 0xb2, 0x60, 0x9f, 0xd1, 0xec, 0x8f, 0x7f,
-	0x15, 0xdc, 0x74, 0x72, 0x7d, 0x6d, 0xec, 0xb6, 0x0a, 0x5e, 0x33, 0x90, 0x5c, 0xda, 0x91, 0xc6,
-	0x4d, 0x29, 0x6b, 0x64, 0x37, 0xeb, 0xf0, 0x9a, 0xc1, 0xf6, 0xa0, 0xb7, 0xa0, 0x4e, 0xec, 0xae,
-	0xb4, 0xbb, 0xe2, 0xda, 0x0e, 0xcd, 0x9d, 0x1e, 0x87, 0x1a, 0xbd, 0xcc, 0x6c, 0x2f, 0xdc, 0x18,
-	0x6a, 0xb0, 0xc3, 0x71, 0xd2, 0xe1, 0xd1, 0x99, 0x7d, 0xe8, 0x14, 0xa4, 0x8d, 0xa3, 0x5d, 0x05,
-	0xe0, 0x35, 0x03, 0x8f, 0x2e, 0xe9, 0xcd, 0xb8, 0x09, 0x64, 0xed, 0x68, 0xfb, 0x96, 0xb8, 0xd3,
-	0x23, 0x53, 0x50, 0x85, 0x74, 0x33, 0xc8, 0x1a, 0xd3, 0x55, 0x4e, 0xa7, 0x67, 0x9f, 0x40, 0xd7,
-	0x60, 0x95, 0x73, 0x85, 0xf6, 0xda, 0xfa, 0xe8, 0x55, 0x9a, 0x92, 0x5b, 0x2d, 0xd2, 0x12, 0x0c,
-	0x26, 0x45, 0x78, 0x83, 0x46, 0x31, 0xe6, 0x56, 0x8b, 0xe7, 0xa6, 0xf4, 0xef, 0x83, 0x4a, 0xed,
-	0xc6, 0xb9, 0xf6, 0x5f, 0x09, 0x77, 0xfa, 0x69, 0x01, 0x3d, 0xd7, 0xc7, 0xef, 0x40, 0x97, 0x6e,
-	0x4d, 0x81, 0x1a, 0xdd, 0x7f, 0x7f, 0xb5, 0xc4, 0x12, 0x02, 0x6b, 0x13, 0xb7, 0x2c, 0x7a, 0x44,
-	0x9b, 0x53, 0x4c, 0x23, 0xd3, 0x9c, 0xb2, 0x6a, 0xb8, 0x76, 0xb0, 0x1e, 0x94, 0x4d, 0xaf, 0xfd,
-	0x02, 0x7a, 0x27, 0x55, 0x62, 0xc2, 0xf8, 0xff, 0x3c, 0xf3, 0xd3, 0x2f, 0x60, 0xb8, 0x81, 0xb3,
-	0x3e, 0xb4, 0x23, 0x39, 0xdf, 0xdd, 0x62, 0x3e, 0x74, 0xb0, 0x94, 0xec, 0x7a, 0x6c, 0x40, 0x5b,
-	0x16, 0x66, 0xb7, 0x85, 0x60, 0x69, 0x94, 0xde, 0x6d, 0x3f, 0x8c, 0x5f, 0xbe, 0x9a, 0x6c, 0x7d,
-	0xf3, 0x6a, 0xb2, 0xf5, 0xed, 0xab, 0x89, 0xf7, 0xbb, 0xab, 0x89, 0xf7, 0xc7, 0xab, 0x89, 0xf7,
-	0xe7, 0xab, 0x89, 0xf7, 0xf2, 0x6a, 0xe2, 0xfd, 0xed, 0x6a, 0xe2, 0xfd, 0xe3, 0x6a, 0xb2, 0xf5,
-	0xed, 0xd5, 0xc4, 0xfb, 0xfd, 0xeb, 0xc9, 0xd6, 0xcb, 0xd7, 0x93, 0xad, 0x6f, 0x5e, 0x4f, 0xb6,
-	0x7e, 0x73, 0x7f, 0xe3, 0x9f, 0x7a, 0xba, 0x50, 0x26, 0xfe, 0xfc, 0xe0, 0x6e, 0x7d, 0xc5, 0x3b,
-	0xf4, 0xff, 0xfc, 0x17, 0xb5, 0x18, 0xd8, 0xbf, 0xf1, 0x3d, 0xfa, 0xf9, 0xfc, 0xbf, 0x01, 0x00,
-	0x00, 0xff, 0xff, 0xdd, 0x2e, 0x13, 0xd4, 0x00, 0x10, 0x00, 0x00,
+	// 1848 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x57, 0xcd, 0x6f, 0x1c, 0x49,
+	0x15, 0x67, 0xbe, 0x7b, 0x9e, 0x3d, 0x13, 0xa7, 0x16, 0xbc, 0x93, 0x40, 0xbc, 0xde, 0x61, 0x17,
+	0xcc, 0xae, 0xe2, 0xc4, 0x59, 0xa2, 0x45, 0xe2, 0x82, 0xe3, 0x25, 0xec, 0x4a, 0xf9, 0xb0, 0xca,
+	0x56, 0x90, 0xb8, 0xb4, 0x6a, 0xaa, 0x6b, 0xa6, 0x5b, 0xd3, 0xdd, 0x55, 0xe9, 0xae, 0x71, 0xdb,
+	0xfc, 0x3d, 0x5c, 0xf8, 0x4f, 0x38, 0x72, 0xe3, 0x08, 0x44, 0xe2, 0xcc, 0x81, 0x0b, 0xe2, 0x84,
+	0xde, 0xab, 0xea, 0x9e, 0x99, 0x90, 0x44, 0xe2, 0x34, 0xfd, 0x7e, 0xef, 0x57, 0x1f, 0xef, 0xa3,
+	0xde, 0x7b, 0x03, 0xe3, 0x48, 0x67, 0xda, 0x68, 0x9d, 0x1e, 0x9b, 0x42, 0x5b, 0xcd, 0x82, 0x5a,
+	0xbe, 0x7b, 0x7f, 0x91, 0xd8, 0x78, 0x35, 0x3b, 0x96, 0x3a, 0x7b, 0xb0, 0xd0, 0x0b, 0xfd, 0x80,
+	0x08, 0xb3, 0xd5, 0x9c, 0x24, 0x12, 0xe8, 0xcb, 0x2d, 0x9c, 0xbe, 0x82, 0xce, 0x8b, 0xcb, 0x73,
+	0xf6, 0x43, 0x18, 0x46, 0xe2, 0x26, 0x4c, 0x93, 0x45, 0x6c, 0x27, 0xad, 0xc3, 0xd6, 0xd1, 0x88,
+	0x07, 0x91, 0xb8, 0x79, 0x86, 0x32, 0xdb, 0x87, 0x7e, 0xa9, 0x8a, 0x2b, 0x55, 0x4c, 0xda, 0x87,
+	0xad, 0xa3, 0x21, 0xf7, 0x12, 0xbb, 0x0b, 0x81, 0x4d, 0x32, 0xf5, 0x7b, 0x9d, 0xab, 0x49, 0xc7,
+	0xad, 0xa9, 0xe5, 0xe9, 0x2f, 0xa0, 0xfb, 0xfc, 0xb5, 0xb5, 0x6c, 0x02, 0x03, 0x95, 0x8b, 0x59,
+	0xaa, 0x22, 0xda, 0x36, 0xe0, 0xb5, 0xf8, 0xbe, 0x5d, 0xa7, 0x7f, 0x69, 0xc1, 0xe0, 0x85, 0xb2,
+	0x95, 0x2e, 0x96, 0x8c, 0x41, 0x37, 0x8a, 0xa5, 0xf1, 0x4b, 0xe9, 0x9b, 0x8d, 0xa1, 0x9d, 0x18,
+	0xbf, 0xa6, 0x9d, 0x18, 0x3c, 0x21, 0x57, 0x36, 0x13, 0xe5, 0x92, 0x2e, 0x31, 0xe4, 0xb5, 0x88,
+	0x9a, 0x85, 0xb0, 0xaa, 0x12, 0x37, 0x93, 0xae, 0xd3, 0x78, 0x91, 0xed, 0x41, 0x27, 0xca, 0xcb,
+	0x49, 0x8f, 0x50, 0xfc, 0x64, 0xf7, 0x00, 0x44, 0x9a, 0xea, 0x2a, 0x34, 0xba, 0xb4, 0x93, 0x3e,
+	0x9d, 0x37, 0x24, 0xe4, 0x5c, 0x97, 0x96, 0x4d, 0xa1, 0x9b, 0xbd, 0xb6, 0x76, 0x32, 0x38, 0x6c,
+	0x1d, 0xed, 0x3c, 0x1a, 0x1f, 0x37, 0xee, 0x47, 0x23, 0x39, 0xe9, 0xd8, 0x27, 0xd0, 0xc9, 0xad,
+	0x99, 0x04, 0x44, 0x19, 0xad, 0x29, 0x2f, 0x2e, 0xcf, 0x39, 0x6a, 0xa6, 0xdf, 0x42, 0xf7, 0x52,
+	0x65, 0xe6, 0x03, 0x3e, 0x61, 0xd0, 0x4d, 0xf2, 0xc4, 0x92, 0x75, 0x01, 0xa7, 0x6f, 0xc4, 0x44,
+	0x14, 0x15, 0x93, 0xe0, 0xb0, 0x73, 0x34, 0xe2, 0xf4, 0x3d, 0xfd, 0x4f, 0x1b, 0xfa, 0xcf, 0x92,
+	0x2c, 0xb1, 0x25, 0xfb, 0x01, 0xf4, 0x2b, 0x13, 0x66, 0x49, 0x4e, 0x7b, 0xb5, 0x79, 0xaf, 0x32,
+	0xcf, 0x93, 0xbc, 0x86, 0xc5, 0x35, 0xed, 0xe5, 0x60, 0x71, 0x8d, 0xb0, 0x89, 0x89, 0xdd, 0x71,
+	0xb0, 0x89, 0x3d, 0x1b, 0x61, 0x71, 0x4d, 0x8e, 0x72, 0xb0, 0x63, 0x4b, 0xc7, 0xee, 0x39, 0x58,
+	0xd6, 0x6c, 0xe9, 0xd8, 0xfd, 0x06, 0x16, 0xd7, 0xec, 0x33, 0x18, 0x57, 0x22, 0xb1, 0xe1, 0x4c,
+	0xcd, 0x75, 0xa1, 0x42, 0x19, 0x93, 0xb7, 0x46, 0x7c, 0x17, 0xd1, 0x27, 0x04, 0x9e, 0xc5, 0xec,
+	0x0b, 0xb8, 0x2d, 0xe3, 0xd0, 0xaa, 0xcc, 0x84, 0x36, 0x2e, 0x54, 0x19, 0xeb, 0x34, 0x22, 0x9f,
+	0xb5, 0xf9, 0x2d, 0x19, 0xa3, 0x7f, 0x2e, 0x6b, 0x98, 0x7d, 0x09, 0xac, 0xe6, 0xd2, 0xce, 0x85,
+	0x2a, 0x95, 0x9d, 0x0c, 0x37, 0xc9, 0xbf, 0x15, 0x89, 0xe5, 0x08, 0xb3, 0x03, 0xd8, 0xa9, 0x4c,
+	0xf8, 0x30, 0x8c, 0x54, 0x91, 0x5c, 0xa9, 0x09, 0x10, 0x6b, 0x58, 0x99, 0x87, 0xdf, 0x10, 0x80,
+	0xb7, 0xb6, 0x15, 0x19, 0xb3, 0x43, 0xd7, 0xea, 0xd9, 0xca, 0x1b, 0x83, 0xb0, 0xb8, 0x9e, 0xec,
+	0x36, 0xb0, 0xb8, 0x66, 0x77, 0x20, 0xb0, 0x22, 0x9b, 0x11, 0x7f, 0x74, 0xd8, 0x3a, 0xea, 0xf1,
+	0x01, 0xca, 0xcf, 0x93, 0x7c, 0xfa, 0xf7, 0x16, 0xec, 0x9e, 0xe6, 0x22, 0xd5, 0x8b, 0x0b, 0x95,
+	0x97, 0xba, 0xf8, 0x40, 0x3c, 0x3f, 0x86, 0x81, 0x88, 0x64, 0x68, 0xbc, 0xbf, 0x47, 0xbc, 0x2f,
+	0x22, 0x79, 0x9e, 0xe4, 0xec, 0x47, 0x30, 0x5c, 0x5b, 0xef, 0x22, 0xb4, 0x06, 0xd8, 0x7d, 0x60,
+	0x8d, 0x10, 0x0a, 0x29, 0x57, 0x85, 0x90, 0x2e, 0x87, 0x47, 0xfc, 0x76, 0xa3, 0x39, 0xf5, 0x0a,
+	0xcc, 0x90, 0xab, 0x75, 0x90, 0xe8, 0xdb, 0x61, 0x4d, 0x84, 0xe8, 0x9b, 0xfd, 0x0c, 0xf6, 0x4c,
+	0xa1, 0x64, 0x52, 0x26, 0x3a, 0x0f, 0xe7, 0x42, 0x5a, 0x5d, 0xf8, 0x10, 0xdd, 0x6a, 0xf0, 0xa7,
+	0x04, 0x4f, 0xff, 0xd5, 0x86, 0x81, 0xb3, 0xae, 0xc4, 0xdc, 0xb7, 0x95, 0xcf, 0xaf, 0xad, 0xdc,
+	0x47, 0xff, 0x73, 0xd2, 0xb1, 0xcf, 0xa0, 0x67, 0x2b, 0xbd, 0x72, 0x99, 0xfb, 0xbf, 0x24, 0xa7,
+	0xa4, 0x9d, 0x44, 0x36, 0x23, 0x5f, 0xbc, 0x6b, 0x27, 0x91, 0xcd, 0xd8, 0x31, 0x7c, 0x44, 0xb1,
+	0x9e, 0xeb, 0x22, 0x94, 0x3a, 0xbf, 0x52, 0x05, 0x5e, 0x8b, 0x8c, 0x0f, 0xf8, 0x6d, 0x54, 0x3d,
+	0xd5, 0xc5, 0x59, 0xa3, 0x60, 0x3f, 0x85, 0x5b, 0x94, 0x20, 0x85, 0x2a, 0x75, 0xba, 0xb2, 0xc8,
+	0xed, 0x91, 0x4d, 0x63, 0x84, 0x79, 0x83, 0xbe, 0xd3, 0xfa, 0xfe, 0x3b, 0xad, 0x67, 0x3f, 0x81,
+	0xb6, 0x89, 0xfd, 0x5b, 0xdf, 0x5f, 0xdf, 0x72, 0x33, 0xe8, 0xbc, 0x6d, 0x62, 0xe4, 0xc9, 0xd8,
+	0x3f, 0xf8, 0xf7, 0xf2, 0x24, 0xf1, 0x2a, 0x43, 0x79, 0xfb, 0x01, 0x5e, 0x65, 0xa6, 0xff, 0x68,
+	0x41, 0xff, 0x37, 0xa9, 0x9e, 0x89, 0x94, 0xfd, 0x1c, 0xf6, 0x53, 0x19, 0x85, 0x33, 0x21, 0x97,
+	0x54, 0x94, 0xc3, 0x68, 0x55, 0x08, 0xb2, 0xce, 0x55, 0xe7, 0xef, 0xa7, 0x32, 0x7a, 0x52, 0x2b,
+	0xbf, 0xf1, 0x3a, 0xf6, 0x29, 0xec, 0x0a, 0xb9, 0x5c, 0x73, 0xdb, 0xc4, 0xdd, 0x11, 0x72, 0xd9,
+	0x50, 0xee, 0x40, 0x80, 0x14, 0x5b, 0x17, 0xed, 0x16, 0x1f, 0x08, 0xb9, 0xbc, 0xd4, 0xb9, 0xc2,
+	0x1a, 0x58, 0xaa, 0x22, 0x11, 0x69, 0x88, 0x91, 0x74, 0x1e, 0x1f, 0x3a, 0xe4, 0xe5, 0xca, 0xa2,
+	0xa7, 0xa3, 0xa4, 0x34, 0xa9, 0xb8, 0x09, 0x4b, 0x2b, 0x0a, 0xbb, 0x32, 0xe4, 0xe9, 0x80, 0x8f,
+	0x3d, 0x7c, 0xe1, 0x50, 0xf6, 0x09, 0xec, 0xcc, 0x75, 0x21, 0x95, 0x6f, 0x27, 0xae, 0x98, 0x02,
+	0x41, 0xd4, 0x50, 0xa6, 0xff, 0x6c, 0x41, 0xf7, 0x7c, 0x95, 0x19, 0xbc, 0xaf, 0x63, 0xce, 0x93,
+	0xd4, 0xaa, 0xc2, 0x3f, 0x1f, 0xb7, 0xfa, 0x29, 0x41, 0x78, 0x5f, 0x47, 0x31, 0xb1, 0x2f, 0x8b,
+	0x03, 0x92, 0xcf, 0xe3, 0xb5, 0x4a, 0xc6, 0x64, 0x4a, 0xad, 0x3a, 0x8b, 0xf1, 0x7d, 0x89, 0x95,
+	0xd5, 0x99, 0xb0, 0x89, 0xac, 0x2d, 0x69, 0x80, 0xf5, 0x05, 0x65, 0xac, 0xe4, 0xd2, 0x5b, 0x01,
+	0x7e, 0xad, 0x92, 0x4b, 0xf6, 0x39, 0x8c, 0x1d, 0xa1, 0xf1, 0xa4, 0xcb, 0x94, 0x11, 0xa1, 0x8d,
+	0x2f, 0x8f, 0x60, 0xcf, 0xd1, 0xc8, 0x1f, 0x21, 0x36, 0x3f, 0xff, 0xa0, 0xdc, 0x72, 0x72, 0xc8,
+	0x65, 0x92, 0xa9, 0xe9, 0x6b, 0xd8, 0x3d, 0x8d, 0xca, 0x93, 0x93, 0xc7, 0xa7, 0xa9, 0x28, 0xb2,
+	0x12, 0xfb, 0x6d, 0xae, 0xb1, 0xa0, 0x89, 0xe8, 0xc6, 0x5b, 0x1d, 0xe4, 0xda, 0x72, 0x94, 0xf1,
+	0x7a, 0xa8, 0xa4, 0x4d, 0x55, 0xe4, 0xad, 0x86, 0x5c, 0xdb, 0x0b, 0x87, 0xb0, 0x1f, 0xc3, 0x08,
+	0x09, 0x52, 0xe7, 0xb9, 0x92, 0x48, 0x71, 0xd6, 0xef, 0xe6, 0xda, 0x9e, 0xd5, 0xd8, 0xf4, 0x0f,
+	0x6d, 0xe8, 0xfb, 0xd3, 0xf6, 0xa1, 0xbf, 0xe5, 0x60, 0x2f, 0x61, 0x2b, 0x6d, 0xbc, 0x8a, 0xf9,
+	0x3c, 0xa6, 0x7c, 0x76, 0x9b, 0x61, 0xde, 0xee, 0x41, 0xa7, 0xb0, 0xd2, 0xfb, 0x07, 0x3f, 0xb1,
+	0xa0, 0x55, 0x26, 0x8c, 0x93, 0x45, 0xec, 0xc3, 0xda, 0xaf, 0xcc, 0xb7, 0xc9, 0x22, 0xf6, 0xfd,
+	0x26, 0xd5, 0x15, 0x39, 0x20, 0xc0, 0x7e, 0xf3, 0x4c, 0x57, 0x68, 0x67, 0x65, 0xc2, 0x59, 0xa1,
+	0x97, 0x2a, 0xa7, 0x87, 0x12, 0xf0, 0xa0, 0x32, 0x4f, 0x48, 0x66, 0x0f, 0xb1, 0x3a, 0x96, 0x27,
+	0x27, 0x27, 0x8f, 0xdf, 0xf1, 0x36, 0x36, 0xbc, 0xc5, 0x6b, 0x1a, 0x55, 0xe5, 0x2a, 0x9c, 0x17,
+	0xd8, 0xa3, 0xc1, 0x45, 0xdc, 0x56, 0x4f, 0x51, 0xc4, 0x9b, 0xd9, 0xca, 0xdd, 0x6c, 0xc7, 0xdd,
+	0xcc, 0x56, 0x74, 0xb3, 0x7b, 0x00, 0x54, 0xc9, 0xdd, 0xaa, 0x5d, 0x97, 0x0b, 0x88, 0xd0, 0xba,
+	0xe9, 0x0d, 0xf4, 0x2e, 0x55, 0x69, 0xcb, 0x0f, 0x4f, 0x2a, 0xb6, 0x12, 0xd6, 0x4f, 0x2a, 0x6d,
+	0xee, 0x25, 0xac, 0xb1, 0x4d, 0x39, 0x6b, 0xfb, 0xf2, 0xe5, 0x5c, 0xea, 0xba, 0x28, 0xba, 0xf4,
+	0x2e, 0x04, 0xa6, 0x50, 0x65, 0xb9, 0x2a, 0x94, 0xaf, 0xcf, 0x8d, 0x3c, 0xfd, 0x6b, 0x0b, 0x06,
+	0xcf, 0x95, 0x2d, 0x12, 0x59, 0x36, 0x7b, 0xb5, 0x36, 0xf6, 0x7a, 0xdf, 0xb9, 0x9f, 0xc2, 0x6e,
+	0x29, 0xae, 0x54, 0x14, 0x7a, 0xad, 0x3b, 0x7f, 0x87, 0xb0, 0x4b, 0x47, 0x79, 0xfb, 0x1a, 0x2e,
+	0xb2, 0xee, 0x02, 0x18, 0xd9, 0x31, 0x55, 0x24, 0xd7, 0x1c, 0xda, 0x95, 0xf1, 0x71, 0xbd, 0xd2,
+	0xa9, 0x1b, 0x71, 0xda, 0x18, 0xd7, 0x57, 0x3a, 0xb5, 0x98, 0xe2, 0xfa, 0x4a, 0x15, 0xe1, 0xc9,
+	0xe3, 0xf5, 0x5b, 0x08, 0x5c, 0x8a, 0x23, 0x7e, 0xf2, 0xb8, 0x79, 0x0c, 0x0c, 0xba, 0xb1, 0x5e,
+	0x15, 0x14, 0xca, 0x11, 0xa7, 0x6f, 0x2a, 0x68, 0x17, 0x56, 0x58, 0x45, 0xee, 0xad, 0xab, 0x86,
+	0x77, 0xaf, 0x17, 0x31, 0x47, 0x5c, 0x3e, 0x86, 0xbe, 0x62, 0x05, 0x3c, 0x70, 0xc0, 0xcb, 0x9c,
+	0x7d, 0x04, 0x3d, 0x13, 0xa3, 0xc2, 0x65, 0x65, 0xd7, 0xc4, 0x0e, 0x94, 0x04, 0xba, 0x97, 0xdd,
+	0x95, 0x08, 0x6e, 0x3d, 0xf9, 0xde, 0xdb, 0x4f, 0xfe, 0x1e, 0x40, 0xae, 0x6c, 0x28, 0xa4, 0xc5,
+	0xe1, 0xc0, 0xcf, 0x77, 0xb9, 0xb2, 0xa7, 0x04, 0x60, 0xa6, 0xe3, 0xec, 0xe6, 0x72, 0x17, 0x3f,
+	0xeb, 0xdc, 0x0f, 0xd6, 0xb9, 0x7f, 0x07, 0x02, 0x57, 0x8a, 0x75, 0x4e, 0x46, 0x06, 0x7c, 0x40,
+	0xf2, 0xcb, 0x7c, 0xfa, 0xef, 0x16, 0x04, 0xaf, 0x5c, 0x43, 0x2a, 0x31, 0xe4, 0x75, 0x1a, 0x93,
+	0xa9, 0x43, 0xde, 0xc8, 0xec, 0x00, 0xc0, 0xa4, 0xc2, 0xce, 0x75, 0x91, 0x25, 0xda, 0x97, 0xe7,
+	0x0d, 0x04, 0xe3, 0xa0, 0x4a, 0x13, 0x26, 0xd1, 0xdc, 0x0f, 0xb3, 0x7d, 0x55, 0x9a, 0xef, 0xa2,
+	0x39, 0xe6, 0xc2, 0xb5, 0x55, 0x79, 0x29, 0xfc, 0x28, 0xeb, 0x25, 0x7a, 0x11, 0x73, 0x1b, 0xaa,
+	0xd2, 0x24, 0x64, 0xd5, 0x90, 0x0f, 0xec, 0xdc, 0xfe, 0xba, 0x34, 0x09, 0x9e, 0x15, 0x89, 0x34,
+	0x15, 0x25, 0x36, 0x42, 0x32, 0x6d, 0xc8, 0x37, 0x10, 0x8c, 0x48, 0xfd, 0xfc, 0x02, 0xb7, 0xb2,
+	0x7e, 0x66, 0xfb, 0xd0, 0xcf, 0x45, 0xae, 0xcd, 0x8c, 0xec, 0x1c, 0x72, 0x2f, 0x61, 0x88, 0x69,
+	0x0a, 0x06, 0x42, 0xe9, 0x7b, 0x6a, 0xa0, 0xf7, 0x5d, 0x3e, 0xd7, 0x14, 0x60, 0xa9, 0x33, 0x93,
+	0xa4, 0xca, 0x5b, 0x5d, 0x8b, 0xe8, 0xfb, 0x99, 0x16, 0x45, 0x14, 0xe6, 0x22, 0x53, 0x7e, 0x72,
+	0x1f, 0x12, 0xf2, 0x42, 0x64, 0x8a, 0x1d, 0x43, 0xe0, 0x9b, 0x79, 0xe9, 0x27, 0x03, 0xb6, 0xae,
+	0x03, 0xb5, 0x57, 0x79, 0xc3, 0x99, 0xfe, 0xb1, 0x03, 0xfd, 0x33, 0x9d, 0xcf, 0x93, 0x05, 0xfb,
+	0x92, 0x66, 0x7f, 0xfc, 0xab, 0xe0, 0xa7, 0x93, 0xdb, 0x1b, 0x63, 0xb7, 0x53, 0xf0, 0x9a, 0x81,
+	0xe4, 0xd2, 0x8d, 0x34, 0x7e, 0x4a, 0xd9, 0x20, 0xfb, 0x59, 0x87, 0xd7, 0x0c, 0x76, 0x04, 0xfd,
+	0x05, 0x75, 0x62, 0x7f, 0xa5, 0xbd, 0x35, 0xd7, 0x75, 0x68, 0xee, 0xf5, 0x38, 0xd4, 0x98, 0x55,
+	0xe6, 0x7a, 0xe1, 0xd6, 0x50, 0x83, 0x1d, 0x8e, 0x93, 0x0e, 0x8f, 0xce, 0xdc, 0x43, 0xa7, 0x20,
+	0x6d, 0x1d, 0xed, 0x2b, 0x00, 0xaf, 0x19, 0x78, 0x74, 0x49, 0x6f, 0xc6, 0x4f, 0x20, 0x1b, 0x47,
+	0xbb, 0xb7, 0xc4, 0xbd, 0x1e, 0x99, 0x82, 0x2a, 0xa4, 0x9f, 0x41, 0x36, 0x98, 0xbe, 0x72, 0x7a,
+	0x3d, 0xfb, 0x1c, 0x7a, 0x16, 0xab, 0x9c, 0x2f, 0xb4, 0xb7, 0x36, 0x47, 0xaf, 0xd2, 0x96, 0xdc,
+	0x69, 0x91, 0x96, 0x60, 0x30, 0x29, 0xc2, 0x5b, 0x34, 0x8a, 0x31, 0x77, 0x5a, 0x3c, 0x37, 0xa5,
+	0x7f, 0x1f, 0x54, 0x6a, 0xb7, 0xce, 0x75, 0xff, 0x4a, 0xb8, 0xd7, 0x4f, 0x0b, 0xe8, 0xfb, 0x3e,
+	0x7e, 0x1f, 0x7a, 0x74, 0x6b, 0x0a, 0xd4, 0xf8, 0xd1, 0xc7, 0xeb, 0x25, 0x8e, 0x10, 0x3a, 0x9b,
+	0xb8, 0x63, 0xd1, 0x23, 0xda, 0x9e, 0x62, 0x1a, 0x99, 0xe6, 0x94, 0x75, 0xc3, 0x75, 0x83, 0xf5,
+	0xb0, 0x6c, 0x7a, 0xed, 0xd7, 0xd0, 0xbf, 0xa8, 0x12, 0x2b, 0xe3, 0xff, 0xf3, 0xcc, 0x2f, 0xbe,
+	0x86, 0xd1, 0x16, 0xce, 0x06, 0xd0, 0x89, 0xd4, 0x7c, 0xef, 0x7b, 0x2c, 0x80, 0x2e, 0x96, 0x92,
+	0xbd, 0x16, 0x1b, 0xd2, 0x96, 0x85, 0xdd, 0x6b, 0x23, 0x58, 0x5a, 0x6d, 0xf6, 0x3a, 0x4f, 0x7e,
+	0xf5, 0xa7, 0x37, 0x07, 0xad, 0x3f, 0xbf, 0x39, 0x68, 0xfd, 0xed, 0xcd, 0x41, 0xeb, 0x77, 0x8f,
+	0xb6, 0xfe, 0x81, 0xa7, 0x0b, 0x6d, 0xe3, 0xaf, 0x4e, 0x1e, 0xd4, 0x47, 0xdf, 0xa7, 0xff, 0xdd,
+	0xbf, 0xac, 0xc5, 0xd0, 0xfd, 0x3d, 0xef, 0xd3, 0xcf, 0x57, 0xff, 0x0d, 0x00, 0x00, 0xff, 0xff,
+	0xba, 0xf8, 0x54, 0xf5, 0xd8, 0x0f, 0x00, 0x00,
 }
 
-func (x FilterStates) String() string {
-	s, ok := FilterStates_name[int32(x)]
-	if ok {
-		return s
-	}
-	return strconv.Itoa(int(x))
-}
-func (this *NTP) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*NTP)
-	if !ok {
-		that2, ok := that.(NTP)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.DayLight != that1.DayLight {
-		return false
-	}
-	if this.Server != that1.Server {
-		return false
-	}
-	if this.Timezone != that1.Timezone {
-		return false
-	}
-	return true
-}
-func (this *Mqtt) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Mqtt)
-	if !ok {
-		that2, ok := that.(Mqtt)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Enabled != that1.Enabled {
-		return false
-	}
-	if this.Server != that1.Server {
-		return false
-	}
-	return true
-}
-func (this *Network) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Network)
-	if !ok {
-		that2, ok := that.(Network)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Dhcp != that1.Dhcp {
-		return false
-	}
-	if this.Ip != that1.Ip {
-		return false
-	}
-	if this.Netmask != that1.Netmask {
-		return false
-	}
-	if this.Gateway != that1.Gateway {
-		return false
-	}
-	if this.Dns != that1.Dns {
-		return false
-	}
-	if this.AllowPost != that1.AllowPost {
-		return false
-	}
-	if !this.Mqtt.Equal(that1.Mqtt) {
-		return false
-	}
-	if !this.Ntp.Equal(that1.Ntp) {
-		return false
-	}
-	return true
-}
-func (this *Temp) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Temp)
-	if !ok {
-		that2, ok := that.(Temp)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Enabled != that1.Enabled {
-		return false
-	}
-	if this.Init != that1.Init {
-		return false
-	}
-	if len(this.Addr) != len(that1.Addr) {
-		return false
-	}
-	for i := range this.Addr {
-		if this.Addr[i] != that1.Addr[i] {
-			return false
-		}
-	}
-	return true
-}
-func (this *Limits) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Limits)
-	if !ok {
-		that2, ok := that.(Limits)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.WpMin != that1.WpMin {
-		return false
-	}
-	if this.WpMax != that1.WpMax {
-		return false
-	}
-	if this.PhMin != that1.PhMin {
-		return false
-	}
-	if this.PhMax != that1.PhMax {
-		return false
-	}
-	if this.ChMin != that1.ChMin {
-		return false
-	}
-	if this.ChMax != that1.ChMax {
-		return false
-	}
-	if this.WaitBeforeCh != that1.WaitBeforeCh {
-		return false
-	}
-	if this.ChTempThreshold != that1.ChTempThreshold {
-		return false
-	}
-	if this.ChTempWaitReset != that1.ChTempWaitReset {
-		return false
-	}
-	if this.Wp_0Derive != that1.Wp_0Derive {
-		return false
-	}
-	if this.TwMin != that1.TwMin {
-		return false
-	}
-	if this.TwMax != that1.TwMax {
-		return false
-	}
-	if this.TambMin != that1.TambMin {
-		return false
-	}
-	return true
-}
-func (this *AnalogSensor) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*AnalogSensor)
-	if !ok {
-		that2, ok := that.(AnalogSensor)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Enabled != that1.Enabled {
-		return false
-	}
-	if this.AdcPin != that1.AdcPin {
-		return false
-	}
-	if this.Threshold != that1.Threshold {
-		return false
-	}
-	if this.ThresholdAccuracy != that1.ThresholdAccuracy {
-		return false
-	}
-	if this.Vmin != that1.Vmin {
-		return false
-	}
-	if this.Vmax != that1.Vmax {
-		return false
-	}
-	if this.PrecisionFactor != that1.PrecisionFactor {
-		return false
-	}
-	return true
-}
-func (this *Sensors) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Sensors)
-	if !ok {
-		that2, ok := that.(Sensors)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Twin.Equal(that1.Twin) {
-		return false
-	}
-	if !this.Twout.Equal(that1.Twout) {
-		return false
-	}
-	if !this.Tamb.Equal(that1.Tamb) {
-		return false
-	}
-	if this.WaitForConversion != that1.WaitForConversion {
-		return false
-	}
-	if this.TempResolution != that1.TempResolution {
-		return false
-	}
-	if this.PrecisionFactor != that1.PrecisionFactor {
-		return false
-	}
-	if !this.Ph.Equal(that1.Ph) {
-		return false
-	}
-	if !this.Ch.Equal(that1.Ch) {
-		return false
-	}
-	if !this.Wp.Equal(that1.Wp) {
-		return false
-	}
-	return true
-}
-func (this *Global) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Global)
-	if !ok {
-		that2, ok := that.(Global)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.LcdBacklightDuration != that1.LcdBacklightDuration {
-		return false
-	}
-	if this.AckDuration != that1.AckDuration {
-		return false
-	}
-	if this.AckTone != that1.AckTone {
-		return false
-	}
-	if this.SerialOut != that1.SerialOut {
-		return false
-	}
-	if this.DisplayStartup != that1.DisplayStartup {
-		return false
-	}
-	if this.ForceLight != that1.ForceLight {
-		return false
-	}
-	return true
-}
-func (this *Pump) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Pump)
-	if !ok {
-		that2, ok := that.(Pump)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.ForceFilter != that1.ForceFilter {
-		return false
-	}
-	if this.ForcePh != that1.ForcePh {
-		return false
-	}
-	if this.ForceCh != that1.ForceCh {
-		return false
-	}
-	if this.Automatic != that1.Automatic {
-		return false
-	}
-	if this.ForceCheck != that1.ForceCheck {
-		return false
-	}
-	if this.ForceDuration != that1.ForceDuration {
-		return false
-	}
-	if this.ForceStartTime != that1.ForceStartTime {
-		return false
-	}
-	return true
-}
-func (this *Ads115Alarms) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Ads115Alarms)
-	if !ok {
-		that2, ok := that.(Ads115Alarms)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.NotReady != that1.NotReady {
-		return false
-	}
-	if this.NotStarted != that1.NotStarted {
-		return false
-	}
-	if this.NotConnected != that1.NotConnected {
-		return false
-	}
-	return true
-}
-func (this *Alarms) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Alarms)
-	if !ok {
-		that2, ok := that.(Alarms)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Filter != that1.Filter {
-		return false
-	}
-	if this.Ph != that1.Ph {
-		return false
-	}
-	if this.Ch != that1.Ch {
-		return false
-	}
-	if this.Rtc != that1.Rtc {
-		return false
-	}
-	if this.WpHigh != that1.WpHigh {
-		return false
-	}
-	if this.WpLow != that1.WpLow {
-		return false
-	}
-	if this.WpBroken != that1.WpBroken {
-		return false
-	}
-	if !this.Ads1115.Equal(that1.Ads1115) {
-		return false
-	}
-	if this.TwFrost != that1.TwFrost {
-		return false
-	}
-	if this.TwHigh != that1.TwHigh {
-		return false
-	}
-	if this.TambFrost != that1.TambFrost {
-		return false
-	}
-	return true
-}
-func (this *Tests) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Tests)
-	if !ok {
-		that2, ok := that.(Tests)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Enabled != that1.Enabled {
-		return false
-	}
-	if this.Twater != that1.Twater {
-		return false
-	}
-	if this.Tamb != that1.Tamb {
-		return false
-	}
-	if this.Ph != that1.Ph {
-		return false
-	}
-	if this.Pressure != that1.Pressure {
-		return false
-	}
-	return true
-}
-func (this *Metrics) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Metrics)
-	if !ok {
-		that2, ok := that.(Metrics)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Tamb != that1.Tamb {
-		return false
-	}
-	if this.Twater != that1.Twater {
-		return false
-	}
-	if this.SavedTwater != that1.SavedTwater {
-		return false
-	}
-	if this.Ph != that1.Ph {
-		return false
-	}
-	if this.Ch != that1.Ch {
-		return false
-	}
-	if this.Wp != that1.Wp {
-		return false
-	}
-	if this.WpVolt != that1.WpVolt {
-		return false
-	}
-	if this.Over_15Duration != that1.Over_15Duration {
-		return false
-	}
-	if this.Hour != that1.Hour {
-		return false
-	}
-	return true
-}
-func (this *States) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*States)
-	if !ok {
-		that2, ok := that.(States)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Startup != that1.Startup {
-		return false
-	}
-	if this.FilterOn != that1.FilterOn {
-		return false
-	}
-	if this.PhOn != that1.PhOn {
-		return false
-	}
-	if this.ChOn != that1.ChOn {
-		return false
-	}
-	if this.Automatic != that1.Automatic {
-		return false
-	}
-	if this.NetActive != that1.NetActive {
-		return false
-	}
-	if this.Ntp != that1.Ntp {
-		return false
-	}
-	if this.Rtc != that1.Rtc {
-		return false
-	}
-	if this.LightOn != that1.LightOn {
-		return false
-	}
-	return true
-}
-func (this *Versions) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Versions)
-	if !ok {
-		that2, ok := that.(Versions)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Domopool != that1.Domopool {
-		return false
-	}
-	if this.Platformio != that1.Platformio {
-		return false
-	}
-	if this.EspIdf != that1.EspIdf {
-		return false
-	}
-	if this.Xtensa != that1.Xtensa {
-		return false
-	}
-	if this.TftEspi != that1.TftEspi {
-		return false
-	}
-	if this.Dallastemp != that1.Dallastemp {
-		return false
-	}
-	if this.Ads1115 != that1.Ads1115 {
-		return false
-	}
-	if this.Nanopb != that1.Nanopb {
-		return false
-	}
-	if this.Mqtt != that1.Mqtt {
-		return false
-	}
-	return true
-}
-func (this *Infos) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Infos)
-	if !ok {
-		that2, ok := that.(Infos)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.Compile != that1.Compile {
-		return false
-	}
-	if this.BoardName != that1.BoardName {
-		return false
-	}
-	if !this.Versions.Equal(that1.Versions) {
-		return false
-	}
-	return true
-}
-func (this *Config) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Config)
-	if !ok {
-		that2, ok := that.(Config)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if !this.Network.Equal(that1.Network) {
-		return false
-	}
-	if !this.Sensors.Equal(that1.Sensors) {
-		return false
-	}
-	if !this.Global.Equal(that1.Global) {
-		return false
-	}
-	if !this.Pump.Equal(that1.Pump) {
-		return false
-	}
-	if !this.Metrics.Equal(that1.Metrics) {
-		return false
-	}
-	if !this.States.Equal(that1.States) {
-		return false
-	}
-	if !this.Alarms.Equal(that1.Alarms) {
-		return false
-	}
-	if !this.Tests.Equal(that1.Tests) {
-		return false
-	}
-	if !this.Infos.Equal(that1.Infos) {
-		return false
-	}
-	if !this.Limits.Equal(that1.Limits) {
-		return false
-	}
-	return true
-}
-func (this *Filter) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Filter)
-	if !ok {
-		that2, ok := that.(Filter)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.State != that1.State {
-		return false
-	}
-	if this.Duration != that1.Duration {
-		return false
-	}
-	if this.StartTime != that1.StartTime {
-		return false
-	}
-	return true
-}
-func (this *Switch) Equal(that interface{}) bool {
-	if that == nil {
-		return this == nil
-	}
-
-	that1, ok := that.(*Switch)
-	if !ok {
-		that2, ok := that.(Switch)
-		if ok {
-			that1 = &that2
-		} else {
-			return false
-		}
-	}
-	if that1 == nil {
-		return this == nil
-	} else if this == nil {
-		return false
-	}
-	if this.State != that1.State {
-		return false
-	}
-	return true
-}
-func (this *NTP) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 7)
-	s = append(s, "&domopool_proto.NTP{")
-	s = append(s, "DayLight: "+fmt.Sprintf("%#v", this.DayLight)+",\n")
-	s = append(s, "Server: "+fmt.Sprintf("%#v", this.Server)+",\n")
-	s = append(s, "Timezone: "+fmt.Sprintf("%#v", this.Timezone)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Mqtt) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 6)
-	s = append(s, "&domopool_proto.Mqtt{")
-	s = append(s, "Enabled: "+fmt.Sprintf("%#v", this.Enabled)+",\n")
-	s = append(s, "Server: "+fmt.Sprintf("%#v", this.Server)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Network) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 12)
-	s = append(s, "&domopool_proto.Network{")
-	s = append(s, "Dhcp: "+fmt.Sprintf("%#v", this.Dhcp)+",\n")
-	s = append(s, "Ip: "+fmt.Sprintf("%#v", this.Ip)+",\n")
-	s = append(s, "Netmask: "+fmt.Sprintf("%#v", this.Netmask)+",\n")
-	s = append(s, "Gateway: "+fmt.Sprintf("%#v", this.Gateway)+",\n")
-	s = append(s, "Dns: "+fmt.Sprintf("%#v", this.Dns)+",\n")
-	s = append(s, "AllowPost: "+fmt.Sprintf("%#v", this.AllowPost)+",\n")
-	if this.Mqtt != nil {
-		s = append(s, "Mqtt: "+fmt.Sprintf("%#v", this.Mqtt)+",\n")
-	}
-	if this.Ntp != nil {
-		s = append(s, "Ntp: "+fmt.Sprintf("%#v", this.Ntp)+",\n")
-	}
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Temp) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 7)
-	s = append(s, "&domopool_proto.Temp{")
-	s = append(s, "Enabled: "+fmt.Sprintf("%#v", this.Enabled)+",\n")
-	s = append(s, "Init: "+fmt.Sprintf("%#v", this.Init)+",\n")
-	s = append(s, "Addr: "+fmt.Sprintf("%#v", this.Addr)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Limits) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 17)
-	s = append(s, "&domopool_proto.Limits{")
-	s = append(s, "WpMin: "+fmt.Sprintf("%#v", this.WpMin)+",\n")
-	s = append(s, "WpMax: "+fmt.Sprintf("%#v", this.WpMax)+",\n")
-	s = append(s, "PhMin: "+fmt.Sprintf("%#v", this.PhMin)+",\n")
-	s = append(s, "PhMax: "+fmt.Sprintf("%#v", this.PhMax)+",\n")
-	s = append(s, "ChMin: "+fmt.Sprintf("%#v", this.ChMin)+",\n")
-	s = append(s, "ChMax: "+fmt.Sprintf("%#v", this.ChMax)+",\n")
-	s = append(s, "WaitBeforeCh: "+fmt.Sprintf("%#v", this.WaitBeforeCh)+",\n")
-	s = append(s, "ChTempThreshold: "+fmt.Sprintf("%#v", this.ChTempThreshold)+",\n")
-	s = append(s, "ChTempWaitReset: "+fmt.Sprintf("%#v", this.ChTempWaitReset)+",\n")
-	s = append(s, "Wp_0Derive: "+fmt.Sprintf("%#v", this.Wp_0Derive)+",\n")
-	s = append(s, "TwMin: "+fmt.Sprintf("%#v", this.TwMin)+",\n")
-	s = append(s, "TwMax: "+fmt.Sprintf("%#v", this.TwMax)+",\n")
-	s = append(s, "TambMin: "+fmt.Sprintf("%#v", this.TambMin)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *AnalogSensor) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 11)
-	s = append(s, "&domopool_proto.AnalogSensor{")
-	s = append(s, "Enabled: "+fmt.Sprintf("%#v", this.Enabled)+",\n")
-	s = append(s, "AdcPin: "+fmt.Sprintf("%#v", this.AdcPin)+",\n")
-	s = append(s, "Threshold: "+fmt.Sprintf("%#v", this.Threshold)+",\n")
-	s = append(s, "ThresholdAccuracy: "+fmt.Sprintf("%#v", this.ThresholdAccuracy)+",\n")
-	s = append(s, "Vmin: "+fmt.Sprintf("%#v", this.Vmin)+",\n")
-	s = append(s, "Vmax: "+fmt.Sprintf("%#v", this.Vmax)+",\n")
-	s = append(s, "PrecisionFactor: "+fmt.Sprintf("%#v", this.PrecisionFactor)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Sensors) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 13)
-	s = append(s, "&domopool_proto.Sensors{")
-	if this.Twin != nil {
-		s = append(s, "Twin: "+fmt.Sprintf("%#v", this.Twin)+",\n")
-	}
-	if this.Twout != nil {
-		s = append(s, "Twout: "+fmt.Sprintf("%#v", this.Twout)+",\n")
-	}
-	if this.Tamb != nil {
-		s = append(s, "Tamb: "+fmt.Sprintf("%#v", this.Tamb)+",\n")
-	}
-	s = append(s, "WaitForConversion: "+fmt.Sprintf("%#v", this.WaitForConversion)+",\n")
-	s = append(s, "TempResolution: "+fmt.Sprintf("%#v", this.TempResolution)+",\n")
-	s = append(s, "PrecisionFactor: "+fmt.Sprintf("%#v", this.PrecisionFactor)+",\n")
-	if this.Ph != nil {
-		s = append(s, "Ph: "+fmt.Sprintf("%#v", this.Ph)+",\n")
-	}
-	if this.Ch != nil {
-		s = append(s, "Ch: "+fmt.Sprintf("%#v", this.Ch)+",\n")
-	}
-	if this.Wp != nil {
-		s = append(s, "Wp: "+fmt.Sprintf("%#v", this.Wp)+",\n")
-	}
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Global) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 10)
-	s = append(s, "&domopool_proto.Global{")
-	s = append(s, "LcdBacklightDuration: "+fmt.Sprintf("%#v", this.LcdBacklightDuration)+",\n")
-	s = append(s, "AckDuration: "+fmt.Sprintf("%#v", this.AckDuration)+",\n")
-	s = append(s, "AckTone: "+fmt.Sprintf("%#v", this.AckTone)+",\n")
-	s = append(s, "SerialOut: "+fmt.Sprintf("%#v", this.SerialOut)+",\n")
-	s = append(s, "DisplayStartup: "+fmt.Sprintf("%#v", this.DisplayStartup)+",\n")
-	s = append(s, "ForceLight: "+fmt.Sprintf("%#v", this.ForceLight)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Pump) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 11)
-	s = append(s, "&domopool_proto.Pump{")
-	s = append(s, "ForceFilter: "+fmt.Sprintf("%#v", this.ForceFilter)+",\n")
-	s = append(s, "ForcePh: "+fmt.Sprintf("%#v", this.ForcePh)+",\n")
-	s = append(s, "ForceCh: "+fmt.Sprintf("%#v", this.ForceCh)+",\n")
-	s = append(s, "Automatic: "+fmt.Sprintf("%#v", this.Automatic)+",\n")
-	s = append(s, "ForceCheck: "+fmt.Sprintf("%#v", this.ForceCheck)+",\n")
-	s = append(s, "ForceDuration: "+fmt.Sprintf("%#v", this.ForceDuration)+",\n")
-	s = append(s, "ForceStartTime: "+fmt.Sprintf("%#v", this.ForceStartTime)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Ads115Alarms) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 7)
-	s = append(s, "&domopool_proto.Ads115Alarms{")
-	s = append(s, "NotReady: "+fmt.Sprintf("%#v", this.NotReady)+",\n")
-	s = append(s, "NotStarted: "+fmt.Sprintf("%#v", this.NotStarted)+",\n")
-	s = append(s, "NotConnected: "+fmt.Sprintf("%#v", this.NotConnected)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Alarms) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 15)
-	s = append(s, "&domopool_proto.Alarms{")
-	s = append(s, "Filter: "+fmt.Sprintf("%#v", this.Filter)+",\n")
-	s = append(s, "Ph: "+fmt.Sprintf("%#v", this.Ph)+",\n")
-	s = append(s, "Ch: "+fmt.Sprintf("%#v", this.Ch)+",\n")
-	s = append(s, "Rtc: "+fmt.Sprintf("%#v", this.Rtc)+",\n")
-	s = append(s, "WpHigh: "+fmt.Sprintf("%#v", this.WpHigh)+",\n")
-	s = append(s, "WpLow: "+fmt.Sprintf("%#v", this.WpLow)+",\n")
-	s = append(s, "WpBroken: "+fmt.Sprintf("%#v", this.WpBroken)+",\n")
-	if this.Ads1115 != nil {
-		s = append(s, "Ads1115: "+fmt.Sprintf("%#v", this.Ads1115)+",\n")
-	}
-	s = append(s, "TwFrost: "+fmt.Sprintf("%#v", this.TwFrost)+",\n")
-	s = append(s, "TwHigh: "+fmt.Sprintf("%#v", this.TwHigh)+",\n")
-	s = append(s, "TambFrost: "+fmt.Sprintf("%#v", this.TambFrost)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Tests) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 9)
-	s = append(s, "&domopool_proto.Tests{")
-	s = append(s, "Enabled: "+fmt.Sprintf("%#v", this.Enabled)+",\n")
-	s = append(s, "Twater: "+fmt.Sprintf("%#v", this.Twater)+",\n")
-	s = append(s, "Tamb: "+fmt.Sprintf("%#v", this.Tamb)+",\n")
-	s = append(s, "Ph: "+fmt.Sprintf("%#v", this.Ph)+",\n")
-	s = append(s, "Pressure: "+fmt.Sprintf("%#v", this.Pressure)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Metrics) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 13)
-	s = append(s, "&domopool_proto.Metrics{")
-	s = append(s, "Tamb: "+fmt.Sprintf("%#v", this.Tamb)+",\n")
-	s = append(s, "Twater: "+fmt.Sprintf("%#v", this.Twater)+",\n")
-	s = append(s, "SavedTwater: "+fmt.Sprintf("%#v", this.SavedTwater)+",\n")
-	s = append(s, "Ph: "+fmt.Sprintf("%#v", this.Ph)+",\n")
-	s = append(s, "Ch: "+fmt.Sprintf("%#v", this.Ch)+",\n")
-	s = append(s, "Wp: "+fmt.Sprintf("%#v", this.Wp)+",\n")
-	s = append(s, "WpVolt: "+fmt.Sprintf("%#v", this.WpVolt)+",\n")
-	s = append(s, "Over_15Duration: "+fmt.Sprintf("%#v", this.Over_15Duration)+",\n")
-	s = append(s, "Hour: "+fmt.Sprintf("%#v", this.Hour)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *States) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 13)
-	s = append(s, "&domopool_proto.States{")
-	s = append(s, "Startup: "+fmt.Sprintf("%#v", this.Startup)+",\n")
-	s = append(s, "FilterOn: "+fmt.Sprintf("%#v", this.FilterOn)+",\n")
-	s = append(s, "PhOn: "+fmt.Sprintf("%#v", this.PhOn)+",\n")
-	s = append(s, "ChOn: "+fmt.Sprintf("%#v", this.ChOn)+",\n")
-	s = append(s, "Automatic: "+fmt.Sprintf("%#v", this.Automatic)+",\n")
-	s = append(s, "NetActive: "+fmt.Sprintf("%#v", this.NetActive)+",\n")
-	s = append(s, "Ntp: "+fmt.Sprintf("%#v", this.Ntp)+",\n")
-	s = append(s, "Rtc: "+fmt.Sprintf("%#v", this.Rtc)+",\n")
-	s = append(s, "LightOn: "+fmt.Sprintf("%#v", this.LightOn)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Versions) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 13)
-	s = append(s, "&domopool_proto.Versions{")
-	s = append(s, "Domopool: "+fmt.Sprintf("%#v", this.Domopool)+",\n")
-	s = append(s, "Platformio: "+fmt.Sprintf("%#v", this.Platformio)+",\n")
-	s = append(s, "EspIdf: "+fmt.Sprintf("%#v", this.EspIdf)+",\n")
-	s = append(s, "Xtensa: "+fmt.Sprintf("%#v", this.Xtensa)+",\n")
-	s = append(s, "TftEspi: "+fmt.Sprintf("%#v", this.TftEspi)+",\n")
-	s = append(s, "Dallastemp: "+fmt.Sprintf("%#v", this.Dallastemp)+",\n")
-	s = append(s, "Ads1115: "+fmt.Sprintf("%#v", this.Ads1115)+",\n")
-	s = append(s, "Nanopb: "+fmt.Sprintf("%#v", this.Nanopb)+",\n")
-	s = append(s, "Mqtt: "+fmt.Sprintf("%#v", this.Mqtt)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Infos) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 7)
-	s = append(s, "&domopool_proto.Infos{")
-	s = append(s, "Compile: "+fmt.Sprintf("%#v", this.Compile)+",\n")
-	s = append(s, "BoardName: "+fmt.Sprintf("%#v", this.BoardName)+",\n")
-	if this.Versions != nil {
-		s = append(s, "Versions: "+fmt.Sprintf("%#v", this.Versions)+",\n")
-	}
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Config) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 14)
-	s = append(s, "&domopool_proto.Config{")
-	if this.Network != nil {
-		s = append(s, "Network: "+fmt.Sprintf("%#v", this.Network)+",\n")
-	}
-	if this.Sensors != nil {
-		s = append(s, "Sensors: "+fmt.Sprintf("%#v", this.Sensors)+",\n")
-	}
-	if this.Global != nil {
-		s = append(s, "Global: "+fmt.Sprintf("%#v", this.Global)+",\n")
-	}
-	if this.Pump != nil {
-		s = append(s, "Pump: "+fmt.Sprintf("%#v", this.Pump)+",\n")
-	}
-	if this.Metrics != nil {
-		s = append(s, "Metrics: "+fmt.Sprintf("%#v", this.Metrics)+",\n")
-	}
-	if this.States != nil {
-		s = append(s, "States: "+fmt.Sprintf("%#v", this.States)+",\n")
-	}
-	if this.Alarms != nil {
-		s = append(s, "Alarms: "+fmt.Sprintf("%#v", this.Alarms)+",\n")
-	}
-	if this.Tests != nil {
-		s = append(s, "Tests: "+fmt.Sprintf("%#v", this.Tests)+",\n")
-	}
-	if this.Infos != nil {
-		s = append(s, "Infos: "+fmt.Sprintf("%#v", this.Infos)+",\n")
-	}
-	if this.Limits != nil {
-		s = append(s, "Limits: "+fmt.Sprintf("%#v", this.Limits)+",\n")
-	}
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Filter) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 7)
-	s = append(s, "&domopool_proto.Filter{")
-	s = append(s, "State: "+fmt.Sprintf("%#v", this.State)+",\n")
-	s = append(s, "Duration: "+fmt.Sprintf("%#v", this.Duration)+",\n")
-	s = append(s, "StartTime: "+fmt.Sprintf("%#v", this.StartTime)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *Switch) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 5)
-	s = append(s, "&domopool_proto.Switch{")
-	s = append(s, "State: "+fmt.Sprintf("%#v", this.State)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func valueToGoStringDomopool(v interface{}, typ string) string {
-	rv := reflect.ValueOf(v)
-	if rv.IsNil() {
-		return "nil"
-	}
-	pv := reflect.Indirect(rv).Interface()
-	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
-}
 func (m *NTP) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -2972,6 +1932,10 @@ func (m *NTP) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Timezone != 0 {
 		i = encodeVarintDomopool(dAtA, i, uint64(m.Timezone))
 		i--
@@ -3012,6 +1976,10 @@ func (m *Mqtt) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if len(m.Server) > 0 {
 		i -= len(m.Server)
 		copy(dAtA[i:], m.Server)
@@ -3052,6 +2020,10 @@ func (m *Network) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Ntp != nil {
 		{
 			size, err := m.Ntp.MarshalToSizedBuffer(dAtA[:i])
@@ -3147,6 +2119,10 @@ func (m *Temp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if len(m.Addr) > 0 {
 		dAtA4 := make([]byte, len(m.Addr)*10)
 		var j3 int
@@ -3208,6 +2184,10 @@ func (m *Limits) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.TambMin != 0 {
 		i = encodeVarintDomopool(dAtA, i, uint64(m.TambMin))
 		i--
@@ -3305,6 +2285,10 @@ func (m *AnalogSensor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.PrecisionFactor != 0 {
 		i = encodeVarintDomopool(dAtA, i, uint64(m.PrecisionFactor))
 		i--
@@ -3371,6 +2355,10 @@ func (m *Sensors) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Wp != nil {
 		{
 			size, err := m.Wp.MarshalToSizedBuffer(dAtA[:i])
@@ -3486,6 +2474,10 @@ func (m *Global) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.ForceLight {
 		i--
 		if m.ForceLight {
@@ -3555,6 +2547,10 @@ func (m *Pump) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.ForceStartTime != 0 {
 		i = encodeVarintDomopool(dAtA, i, uint64(m.ForceStartTime))
 		i--
@@ -3638,6 +2634,10 @@ func (m *Ads115Alarms) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.NotConnected {
 		i--
 		if m.NotConnected {
@@ -3691,6 +2691,10 @@ func (m *Alarms) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.TambFrost {
 		i--
 		if m.TambFrost {
@@ -3826,6 +2830,10 @@ func (m *Tests) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Pressure != 0 {
 		i -= 4
 		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(m.Pressure))))
@@ -3883,6 +2891,10 @@ func (m *Metrics) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Hour != 0 {
 		i = encodeVarintDomopool(dAtA, i, uint64(m.Hour))
 		i--
@@ -3958,6 +2970,10 @@ func (m *States) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.LightOn {
 		i--
 		if m.LightOn {
@@ -4071,6 +3087,10 @@ func (m *Versions) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if len(m.Mqtt) > 0 {
 		i -= len(m.Mqtt)
 		copy(dAtA[i:], m.Mqtt)
@@ -4155,6 +3175,10 @@ func (m *Infos) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Versions != nil {
 		{
 			size, err := m.Versions.MarshalToSizedBuffer(dAtA[:i])
@@ -4204,6 +3228,10 @@ func (m *Config) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.Limits != nil {
 		{
 			size, err := m.Limits.MarshalToSizedBuffer(dAtA[:i])
@@ -4347,6 +3375,10 @@ func (m *Filter) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.StartTime != 0 {
 		i = encodeVarintDomopool(dAtA, i, uint64(m.StartTime))
 		i--
@@ -4385,6 +3417,10 @@ func (m *Switch) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if m.State != 0 {
 		i = encodeVarintDomopool(dAtA, i, uint64(m.State))
 		i--
@@ -4420,6 +3456,9 @@ func (m *NTP) Size() (n int) {
 	if m.Timezone != 0 {
 		n += 1 + sovDomopool(uint64(m.Timezone))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4435,6 +3474,9 @@ func (m *Mqtt) Size() (n int) {
 	l = len(m.Server)
 	if l > 0 {
 		n += 1 + l + sovDomopool(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4475,6 +3517,9 @@ func (m *Network) Size() (n int) {
 		l = m.Ntp.Size()
 		n += 1 + l + sovDomopool(uint64(l))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4496,6 +3541,9 @@ func (m *Temp) Size() (n int) {
 			l += sovDomopool(uint64(e))
 		}
 		n += 1 + sovDomopool(uint64(l)) + l
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4545,6 +3593,9 @@ func (m *Limits) Size() (n int) {
 	if m.TambMin != 0 {
 		n += 1 + sovDomopool(uint64(m.TambMin))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4574,6 +3625,9 @@ func (m *AnalogSensor) Size() (n int) {
 	}
 	if m.PrecisionFactor != 0 {
 		n += 1 + sovDomopool(uint64(m.PrecisionFactor))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4617,6 +3671,9 @@ func (m *Sensors) Size() (n int) {
 		l = m.Wp.Size()
 		n += 1 + l + sovDomopool(uint64(l))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4643,6 +3700,9 @@ func (m *Global) Size() (n int) {
 	}
 	if m.ForceLight {
 		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4674,6 +3734,9 @@ func (m *Pump) Size() (n int) {
 	if m.ForceStartTime != 0 {
 		n += 1 + sovDomopool(uint64(m.ForceStartTime))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4691,6 +3754,9 @@ func (m *Ads115Alarms) Size() (n int) {
 	}
 	if m.NotConnected {
 		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4735,6 +3801,9 @@ func (m *Alarms) Size() (n int) {
 	if m.TambFrost {
 		n += 2
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4758,6 +3827,9 @@ func (m *Tests) Size() (n int) {
 	}
 	if m.Pressure != 0 {
 		n += 5
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4795,6 +3867,9 @@ func (m *Metrics) Size() (n int) {
 	if m.Hour != 0 {
 		n += 1 + sovDomopool(uint64(m.Hour))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4830,6 +3905,9 @@ func (m *States) Size() (n int) {
 	}
 	if m.LightOn {
 		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4875,6 +3953,9 @@ func (m *Versions) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovDomopool(uint64(l))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4895,6 +3976,9 @@ func (m *Infos) Size() (n int) {
 	if m.Versions != nil {
 		l = m.Versions.Size()
 		n += 1 + l + sovDomopool(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
 	}
 	return n
 }
@@ -4945,6 +4029,9 @@ func (m *Config) Size() (n int) {
 		l = m.Limits.Size()
 		n += 1 + l + sovDomopool(uint64(l))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4963,6 +4050,9 @@ func (m *Filter) Size() (n int) {
 	if m.StartTime != 0 {
 		n += 1 + sovDomopool(uint64(m.StartTime))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4975,6 +4065,9 @@ func (m *Switch) Size() (n int) {
 	if m.State != 0 {
 		n += 1 + sovDomopool(uint64(m.State))
 	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
 	return n
 }
 
@@ -4983,306 +4076,6 @@ func sovDomopool(x uint64) (n int) {
 }
 func sozDomopool(x uint64) (n int) {
 	return sovDomopool(uint64((x << 1) ^ uint64((int64(x) >> 63))))
-}
-func (this *NTP) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&NTP{`,
-		`DayLight:` + fmt.Sprintf("%v", this.DayLight) + `,`,
-		`Server:` + fmt.Sprintf("%v", this.Server) + `,`,
-		`Timezone:` + fmt.Sprintf("%v", this.Timezone) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Mqtt) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Mqtt{`,
-		`Enabled:` + fmt.Sprintf("%v", this.Enabled) + `,`,
-		`Server:` + fmt.Sprintf("%v", this.Server) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Network) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Network{`,
-		`Dhcp:` + fmt.Sprintf("%v", this.Dhcp) + `,`,
-		`Ip:` + fmt.Sprintf("%v", this.Ip) + `,`,
-		`Netmask:` + fmt.Sprintf("%v", this.Netmask) + `,`,
-		`Gateway:` + fmt.Sprintf("%v", this.Gateway) + `,`,
-		`Dns:` + fmt.Sprintf("%v", this.Dns) + `,`,
-		`AllowPost:` + fmt.Sprintf("%v", this.AllowPost) + `,`,
-		`Mqtt:` + strings.Replace(this.Mqtt.String(), "Mqtt", "Mqtt", 1) + `,`,
-		`Ntp:` + strings.Replace(this.Ntp.String(), "NTP", "NTP", 1) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Temp) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Temp{`,
-		`Enabled:` + fmt.Sprintf("%v", this.Enabled) + `,`,
-		`Init:` + fmt.Sprintf("%v", this.Init) + `,`,
-		`Addr:` + fmt.Sprintf("%v", this.Addr) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Limits) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Limits{`,
-		`WpMin:` + fmt.Sprintf("%v", this.WpMin) + `,`,
-		`WpMax:` + fmt.Sprintf("%v", this.WpMax) + `,`,
-		`PhMin:` + fmt.Sprintf("%v", this.PhMin) + `,`,
-		`PhMax:` + fmt.Sprintf("%v", this.PhMax) + `,`,
-		`ChMin:` + fmt.Sprintf("%v", this.ChMin) + `,`,
-		`ChMax:` + fmt.Sprintf("%v", this.ChMax) + `,`,
-		`WaitBeforeCh:` + fmt.Sprintf("%v", this.WaitBeforeCh) + `,`,
-		`ChTempThreshold:` + fmt.Sprintf("%v", this.ChTempThreshold) + `,`,
-		`ChTempWaitReset:` + fmt.Sprintf("%v", this.ChTempWaitReset) + `,`,
-		`Wp_0Derive:` + fmt.Sprintf("%v", this.Wp_0Derive) + `,`,
-		`TwMin:` + fmt.Sprintf("%v", this.TwMin) + `,`,
-		`TwMax:` + fmt.Sprintf("%v", this.TwMax) + `,`,
-		`TambMin:` + fmt.Sprintf("%v", this.TambMin) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *AnalogSensor) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&AnalogSensor{`,
-		`Enabled:` + fmt.Sprintf("%v", this.Enabled) + `,`,
-		`Threshold:` + fmt.Sprintf("%v", this.Threshold) + `,`,
-		`AdcPin:` + fmt.Sprintf("%v", this.AdcPin) + `,`,
-		`ThresholdAccuracy:` + fmt.Sprintf("%v", this.ThresholdAccuracy) + `,`,
-		`Vmin:` + fmt.Sprintf("%v", this.Vmin) + `,`,
-		`Vmax:` + fmt.Sprintf("%v", this.Vmax) + `,`,
-		`PrecisionFactor:` + fmt.Sprintf("%v", this.PrecisionFactor) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Sensors) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Sensors{`,
-		`Twin:` + strings.Replace(this.Twin.String(), "Temp", "Temp", 1) + `,`,
-		`Twout:` + strings.Replace(this.Twout.String(), "Temp", "Temp", 1) + `,`,
-		`Tamb:` + strings.Replace(this.Tamb.String(), "Temp", "Temp", 1) + `,`,
-		`WaitForConversion:` + fmt.Sprintf("%v", this.WaitForConversion) + `,`,
-		`TempResolution:` + fmt.Sprintf("%v", this.TempResolution) + `,`,
-		`PrecisionFactor:` + fmt.Sprintf("%v", this.PrecisionFactor) + `,`,
-		`Ph:` + strings.Replace(this.Ph.String(), "AnalogSensor", "AnalogSensor", 1) + `,`,
-		`Ch:` + strings.Replace(this.Ch.String(), "AnalogSensor", "AnalogSensor", 1) + `,`,
-		`Wp:` + strings.Replace(this.Wp.String(), "AnalogSensor", "AnalogSensor", 1) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Global) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Global{`,
-		`LcdBacklightDuration:` + fmt.Sprintf("%v", this.LcdBacklightDuration) + `,`,
-		`AckDuration:` + fmt.Sprintf("%v", this.AckDuration) + `,`,
-		`AckTone:` + fmt.Sprintf("%v", this.AckTone) + `,`,
-		`SerialOut:` + fmt.Sprintf("%v", this.SerialOut) + `,`,
-		`DisplayStartup:` + fmt.Sprintf("%v", this.DisplayStartup) + `,`,
-		`ForceLight:` + fmt.Sprintf("%v", this.ForceLight) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Pump) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Pump{`,
-		`ForceFilter:` + fmt.Sprintf("%v", this.ForceFilter) + `,`,
-		`ForcePh:` + fmt.Sprintf("%v", this.ForcePh) + `,`,
-		`ForceCh:` + fmt.Sprintf("%v", this.ForceCh) + `,`,
-		`Automatic:` + fmt.Sprintf("%v", this.Automatic) + `,`,
-		`ForceCheck:` + fmt.Sprintf("%v", this.ForceCheck) + `,`,
-		`ForceDuration:` + fmt.Sprintf("%v", this.ForceDuration) + `,`,
-		`ForceStartTime:` + fmt.Sprintf("%v", this.ForceStartTime) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Ads115Alarms) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Ads115Alarms{`,
-		`NotReady:` + fmt.Sprintf("%v", this.NotReady) + `,`,
-		`NotStarted:` + fmt.Sprintf("%v", this.NotStarted) + `,`,
-		`NotConnected:` + fmt.Sprintf("%v", this.NotConnected) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Alarms) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Alarms{`,
-		`Filter:` + fmt.Sprintf("%v", this.Filter) + `,`,
-		`Ph:` + fmt.Sprintf("%v", this.Ph) + `,`,
-		`Ch:` + fmt.Sprintf("%v", this.Ch) + `,`,
-		`Rtc:` + fmt.Sprintf("%v", this.Rtc) + `,`,
-		`WpHigh:` + fmt.Sprintf("%v", this.WpHigh) + `,`,
-		`WpLow:` + fmt.Sprintf("%v", this.WpLow) + `,`,
-		`WpBroken:` + fmt.Sprintf("%v", this.WpBroken) + `,`,
-		`Ads1115:` + strings.Replace(this.Ads1115.String(), "Ads115Alarms", "Ads115Alarms", 1) + `,`,
-		`TwFrost:` + fmt.Sprintf("%v", this.TwFrost) + `,`,
-		`TwHigh:` + fmt.Sprintf("%v", this.TwHigh) + `,`,
-		`TambFrost:` + fmt.Sprintf("%v", this.TambFrost) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Tests) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Tests{`,
-		`Enabled:` + fmt.Sprintf("%v", this.Enabled) + `,`,
-		`Twater:` + fmt.Sprintf("%v", this.Twater) + `,`,
-		`Tamb:` + fmt.Sprintf("%v", this.Tamb) + `,`,
-		`Ph:` + fmt.Sprintf("%v", this.Ph) + `,`,
-		`Pressure:` + fmt.Sprintf("%v", this.Pressure) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Metrics) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Metrics{`,
-		`Tamb:` + fmt.Sprintf("%v", this.Tamb) + `,`,
-		`Twater:` + fmt.Sprintf("%v", this.Twater) + `,`,
-		`SavedTwater:` + fmt.Sprintf("%v", this.SavedTwater) + `,`,
-		`Ph:` + fmt.Sprintf("%v", this.Ph) + `,`,
-		`Ch:` + fmt.Sprintf("%v", this.Ch) + `,`,
-		`Wp:` + fmt.Sprintf("%v", this.Wp) + `,`,
-		`WpVolt:` + fmt.Sprintf("%v", this.WpVolt) + `,`,
-		`Over_15Duration:` + fmt.Sprintf("%v", this.Over_15Duration) + `,`,
-		`Hour:` + fmt.Sprintf("%v", this.Hour) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *States) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&States{`,
-		`Startup:` + fmt.Sprintf("%v", this.Startup) + `,`,
-		`FilterOn:` + fmt.Sprintf("%v", this.FilterOn) + `,`,
-		`PhOn:` + fmt.Sprintf("%v", this.PhOn) + `,`,
-		`ChOn:` + fmt.Sprintf("%v", this.ChOn) + `,`,
-		`Automatic:` + fmt.Sprintf("%v", this.Automatic) + `,`,
-		`NetActive:` + fmt.Sprintf("%v", this.NetActive) + `,`,
-		`Ntp:` + fmt.Sprintf("%v", this.Ntp) + `,`,
-		`Rtc:` + fmt.Sprintf("%v", this.Rtc) + `,`,
-		`LightOn:` + fmt.Sprintf("%v", this.LightOn) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Versions) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Versions{`,
-		`Domopool:` + fmt.Sprintf("%v", this.Domopool) + `,`,
-		`Platformio:` + fmt.Sprintf("%v", this.Platformio) + `,`,
-		`EspIdf:` + fmt.Sprintf("%v", this.EspIdf) + `,`,
-		`Xtensa:` + fmt.Sprintf("%v", this.Xtensa) + `,`,
-		`TftEspi:` + fmt.Sprintf("%v", this.TftEspi) + `,`,
-		`Dallastemp:` + fmt.Sprintf("%v", this.Dallastemp) + `,`,
-		`Ads1115:` + fmt.Sprintf("%v", this.Ads1115) + `,`,
-		`Nanopb:` + fmt.Sprintf("%v", this.Nanopb) + `,`,
-		`Mqtt:` + fmt.Sprintf("%v", this.Mqtt) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Infos) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Infos{`,
-		`Compile:` + fmt.Sprintf("%v", this.Compile) + `,`,
-		`BoardName:` + fmt.Sprintf("%v", this.BoardName) + `,`,
-		`Versions:` + strings.Replace(this.Versions.String(), "Versions", "Versions", 1) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Config) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Config{`,
-		`Network:` + strings.Replace(this.Network.String(), "Network", "Network", 1) + `,`,
-		`Sensors:` + strings.Replace(this.Sensors.String(), "Sensors", "Sensors", 1) + `,`,
-		`Global:` + strings.Replace(this.Global.String(), "Global", "Global", 1) + `,`,
-		`Pump:` + strings.Replace(this.Pump.String(), "Pump", "Pump", 1) + `,`,
-		`Metrics:` + strings.Replace(this.Metrics.String(), "Metrics", "Metrics", 1) + `,`,
-		`States:` + strings.Replace(this.States.String(), "States", "States", 1) + `,`,
-		`Alarms:` + strings.Replace(this.Alarms.String(), "Alarms", "Alarms", 1) + `,`,
-		`Tests:` + strings.Replace(this.Tests.String(), "Tests", "Tests", 1) + `,`,
-		`Infos:` + strings.Replace(this.Infos.String(), "Infos", "Infos", 1) + `,`,
-		`Limits:` + strings.Replace(this.Limits.String(), "Limits", "Limits", 1) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Filter) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Filter{`,
-		`State:` + fmt.Sprintf("%v", this.State) + `,`,
-		`Duration:` + fmt.Sprintf("%v", this.Duration) + `,`,
-		`StartTime:` + fmt.Sprintf("%v", this.StartTime) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func (this *Switch) String() string {
-	if this == nil {
-		return "nil"
-	}
-	s := strings.Join([]string{`&Switch{`,
-		`State:` + fmt.Sprintf("%v", this.State) + `,`,
-		`}`,
-	}, "")
-	return s
-}
-func valueToStringDomopool(v interface{}) string {
-	rv := reflect.ValueOf(v)
-	if rv.IsNil() {
-		return "nil"
-	}
-	pv := reflect.Indirect(rv).Interface()
-	return fmt.Sprintf("*%v", pv)
 }
 func (m *NTP) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -5398,6 +4191,7 @@ func (m *NTP) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -5503,6 +4297,7 @@ func (m *Mqtt) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -5796,6 +4591,7 @@ func (m *Network) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -5965,6 +4761,7 @@ func (m *Temp) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -6193,6 +4990,7 @@ func (m *Limits) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -6356,6 +5154,7 @@ func (m *AnalogSensor) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -6683,6 +5482,7 @@ func (m *Sensors) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -6845,6 +5645,7 @@ func (m *Global) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -7036,6 +5837,7 @@ func (m *Pump) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -7149,6 +5951,7 @@ func (m *Ads115Alarms) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -7438,6 +6241,7 @@ func (m *Alarms) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -7555,6 +6359,7 @@ func (m *Tests) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -7723,6 +6528,7 @@ func (m *Metrics) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -7956,6 +6762,7 @@ func (m *States) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -8284,6 +7091,7 @@ func (m *Versions) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -8437,6 +7245,7 @@ func (m *Infos) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -8850,6 +7659,7 @@ func (m *Config) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -8960,6 +7770,7 @@ func (m *Filter) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}
@@ -9032,6 +7843,7 @@ func (m *Switch) Unmarshal(dAtA []byte) error {
 			if (iNdEx + skippy) > l {
 				return io.ErrUnexpectedEOF
 			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
 			iNdEx += skippy
 		}
 	}

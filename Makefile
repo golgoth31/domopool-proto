@@ -17,6 +17,6 @@ all:
 		protoc-wrapper \
 		-I/usr/include \
 		-I. \
-		--gogoslick_out=$(GOPATH)/src \
+		--gogofast_out=$(GOPATH)/src \
 		--js_out=import_style=commonjs,binary:js \
 		domopool.proto

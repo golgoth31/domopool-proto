@@ -60,6 +60,7 @@ message AnalogSensor {
   uint32 threshold_accuracy = 4;
   float vmin = 5;
   float vmax = 6;
+  uint32 precision_factor = 7;
 }
 
 message Sensors {
@@ -68,9 +69,10 @@ message Sensors {
   Temp tamb = 3;
   bool wait_for_conversion = 4;
   uint32 temp_resolution = 5;
-  AnalogSensor ph = 6;
-  AnalogSensor ch = 7;
-  AnalogSensor wp = 8;
+  uint32 precision_factor = 6;
+  AnalogSensor ph = 7;
+  AnalogSensor ch = 8;
+  AnalogSensor wp = 9;
 }
 
 message Global {

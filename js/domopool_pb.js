@@ -1906,7 +1906,8 @@ proto.domopool.AnalogSensor.toObject = function(includeInstance, msg) {
     threshold: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
     thresholdAccuracy: jspb.Message.getFieldWithDefault(msg, 4, 0),
     vmin: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    vmax: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0)
+    vmax: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+    precisionFactor: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -1966,6 +1967,10 @@ proto.domopool.AnalogSensor.deserializeBinaryFromReader = function(msg, reader) 
     case 6:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setVmax(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPrecisionFactor(value);
       break;
     default:
       reader.skipField();
@@ -2035,6 +2040,13 @@ proto.domopool.AnalogSensor.serializeBinaryToWriter = function(message, writer) 
   if (f !== 0.0) {
     writer.writeFloat(
       6,
+      f
+    );
+  }
+  f = message.getPrecisionFactor();
+  if (f !== 0) {
+    writer.writeUint32(
+      7,
       f
     );
   }
@@ -2149,6 +2161,24 @@ proto.domopool.AnalogSensor.prototype.setVmax = function(value) {
 };
 
 
+/**
+ * optional uint32 precision_factor = 7;
+ * @return {number}
+ */
+proto.domopool.AnalogSensor.prototype.getPrecisionFactor = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.AnalogSensor} returns this
+ */
+proto.domopool.AnalogSensor.prototype.setPrecisionFactor = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
 
 
 
@@ -2186,6 +2216,7 @@ proto.domopool.Sensors.toObject = function(includeInstance, msg) {
     tamb: (f = msg.getTamb()) && proto.domopool.Temp.toObject(includeInstance, f),
     waitForConversion: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     tempResolution: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    precisionFactor: jspb.Message.getFieldWithDefault(msg, 6, 0),
     ph: (f = msg.getPh()) && proto.domopool.AnalogSensor.toObject(includeInstance, f),
     ch: (f = msg.getCh()) && proto.domopool.AnalogSensor.toObject(includeInstance, f),
     wp: (f = msg.getWp()) && proto.domopool.AnalogSensor.toObject(includeInstance, f)
@@ -2249,16 +2280,20 @@ proto.domopool.Sensors.deserializeBinaryFromReader = function(msg, reader) {
       msg.setTempResolution(value);
       break;
     case 6:
-      var value = new proto.domopool.AnalogSensor;
-      reader.readMessage(value,proto.domopool.AnalogSensor.deserializeBinaryFromReader);
-      msg.setPh(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPrecisionFactor(value);
       break;
     case 7:
       var value = new proto.domopool.AnalogSensor;
       reader.readMessage(value,proto.domopool.AnalogSensor.deserializeBinaryFromReader);
-      msg.setCh(value);
+      msg.setPh(value);
       break;
     case 8:
+      var value = new proto.domopool.AnalogSensor;
+      reader.readMessage(value,proto.domopool.AnalogSensor.deserializeBinaryFromReader);
+      msg.setCh(value);
+      break;
+    case 9:
       var value = new proto.domopool.AnalogSensor;
       reader.readMessage(value,proto.domopool.AnalogSensor.deserializeBinaryFromReader);
       msg.setWp(value);
@@ -2330,15 +2365,14 @@ proto.domopool.Sensors.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getPh();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getPrecisionFactor();
+  if (f !== 0) {
+    writer.writeUint32(
       6,
-      f,
-      proto.domopool.AnalogSensor.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getCh();
+  f = message.getPh();
   if (f != null) {
     writer.writeMessage(
       7,
@@ -2346,10 +2380,18 @@ proto.domopool.Sensors.serializeBinaryToWriter = function(message, writer) {
       proto.domopool.AnalogSensor.serializeBinaryToWriter
     );
   }
-  f = message.getWp();
+  f = message.getCh();
   if (f != null) {
     writer.writeMessage(
       8,
+      f,
+      proto.domopool.AnalogSensor.serializeBinaryToWriter
+    );
+  }
+  f = message.getWp();
+  if (f != null) {
+    writer.writeMessage(
+      9,
       f,
       proto.domopool.AnalogSensor.serializeBinaryToWriter
     );
@@ -2505,12 +2547,30 @@ proto.domopool.Sensors.prototype.setTempResolution = function(value) {
 
 
 /**
- * optional AnalogSensor ph = 6;
+ * optional uint32 precision_factor = 6;
+ * @return {number}
+ */
+proto.domopool.Sensors.prototype.getPrecisionFactor = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Sensors} returns this
+ */
+proto.domopool.Sensors.prototype.setPrecisionFactor = function(value) {
+  return jspb.Message.setProto3IntField(this, 6, value);
+};
+
+
+/**
+ * optional AnalogSensor ph = 7;
  * @return {?proto.domopool.AnalogSensor}
  */
 proto.domopool.Sensors.prototype.getPh = function() {
   return /** @type{?proto.domopool.AnalogSensor} */ (
-    jspb.Message.getWrapperField(this, proto.domopool.AnalogSensor, 6));
+    jspb.Message.getWrapperField(this, proto.domopool.AnalogSensor, 7));
 };
 
 
@@ -2519,7 +2579,7 @@ proto.domopool.Sensors.prototype.getPh = function() {
  * @return {!proto.domopool.Sensors} returns this
 */
 proto.domopool.Sensors.prototype.setPh = function(value) {
-  return jspb.Message.setWrapperField(this, 6, value);
+  return jspb.Message.setWrapperField(this, 7, value);
 };
 
 
@@ -2537,17 +2597,17 @@ proto.domopool.Sensors.prototype.clearPh = function() {
  * @return {boolean}
  */
 proto.domopool.Sensors.prototype.hasPh = function() {
-  return jspb.Message.getField(this, 6) != null;
+  return jspb.Message.getField(this, 7) != null;
 };
 
 
 /**
- * optional AnalogSensor ch = 7;
+ * optional AnalogSensor ch = 8;
  * @return {?proto.domopool.AnalogSensor}
  */
 proto.domopool.Sensors.prototype.getCh = function() {
   return /** @type{?proto.domopool.AnalogSensor} */ (
-    jspb.Message.getWrapperField(this, proto.domopool.AnalogSensor, 7));
+    jspb.Message.getWrapperField(this, proto.domopool.AnalogSensor, 8));
 };
 
 
@@ -2556,7 +2616,7 @@ proto.domopool.Sensors.prototype.getCh = function() {
  * @return {!proto.domopool.Sensors} returns this
 */
 proto.domopool.Sensors.prototype.setCh = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
+  return jspb.Message.setWrapperField(this, 8, value);
 };
 
 
@@ -2574,17 +2634,17 @@ proto.domopool.Sensors.prototype.clearCh = function() {
  * @return {boolean}
  */
 proto.domopool.Sensors.prototype.hasCh = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 8) != null;
 };
 
 
 /**
- * optional AnalogSensor wp = 8;
+ * optional AnalogSensor wp = 9;
  * @return {?proto.domopool.AnalogSensor}
  */
 proto.domopool.Sensors.prototype.getWp = function() {
   return /** @type{?proto.domopool.AnalogSensor} */ (
-    jspb.Message.getWrapperField(this, proto.domopool.AnalogSensor, 8));
+    jspb.Message.getWrapperField(this, proto.domopool.AnalogSensor, 9));
 };
 
 
@@ -2593,7 +2653,7 @@ proto.domopool.Sensors.prototype.getWp = function() {
  * @return {!proto.domopool.Sensors} returns this
 */
 proto.domopool.Sensors.prototype.setWp = function(value) {
-  return jspb.Message.setWrapperField(this, 8, value);
+  return jspb.Message.setWrapperField(this, 9, value);
 };
 
 
@@ -2611,7 +2671,7 @@ proto.domopool.Sensors.prototype.clearWp = function() {
  * @return {boolean}
  */
 proto.domopool.Sensors.prototype.hasWp = function() {
-  return jspb.Message.getField(this, 8) != null;
+  return jspb.Message.getField(this, 9) != null;
 };
 
 

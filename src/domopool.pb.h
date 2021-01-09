@@ -137,7 +137,7 @@ typedef struct _domopool_Versions {
     char tft_espi[10];
     char dallastemp[10];
     char ads1115[10];
-    char nanopb[10];
+    char nanopb[12];
     char mqtt[10];
 } domopool_Versions;
 
@@ -665,9 +665,9 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    47
 #define domopool_States_size                     18
-#define domopool_Versions_size                   213
-#define domopool_Infos_size                      476
-#define domopool_Config_size                     1372
+#define domopool_Versions_size                   215
+#define domopool_Infos_size                      478
+#define domopool_Config_size                     1374
 #define domopool_Filter_size                     14
 #define domopool_Switch_size                     2
 

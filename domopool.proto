@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package domopool;
 
-// import "google/protobuf/empty.proto";
-
 option go_package = "github.com/golgoth31/domopool-proto;domopool_proto";
 
 message NTP {

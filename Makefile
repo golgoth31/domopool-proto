@@ -1,4 +1,4 @@
-PROTOC_IMAGE := thethingsindustries/protoc:3.1.26
+PROTOC_IMAGE := thethingsindustries/protoc:3.1.31
 
 #-----------------------------------------------------------------------------
 # BUILD

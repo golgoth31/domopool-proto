@@ -153,6 +153,9 @@ message Versions {
   string xtensa = 4;
   string tft_espi = 6;
   string dallastemp = 7;
+  string ads1115 = 8;
+  string nanopb = 9;
+  string mqtt = 10;
 }
 
 message Infos {

@@ -4933,7 +4933,10 @@ proto.domopool.Versions.toObject = function(includeInstance, msg) {
     espIdf: jspb.Message.getFieldWithDefault(msg, 3, ""),
     xtensa: jspb.Message.getFieldWithDefault(msg, 4, ""),
     tftEspi: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    dallastemp: jspb.Message.getFieldWithDefault(msg, 7, "")
+    dallastemp: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    ads1115: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    nanopb: jspb.Message.getFieldWithDefault(msg, 9, ""),
+    mqtt: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -4993,6 +4996,18 @@ proto.domopool.Versions.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setDallastemp(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAds1115(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNanopb(value);
+      break;
+    case 10:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMqtt(value);
       break;
     default:
       reader.skipField();
@@ -5062,6 +5077,27 @@ proto.domopool.Versions.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getAds1115();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = message.getNanopb();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
+      f
+    );
+  }
+  f = message.getMqtt();
+  if (f.length > 0) {
+    writer.writeString(
+      10,
       f
     );
   }
@@ -5173,6 +5209,60 @@ proto.domopool.Versions.prototype.getDallastemp = function() {
  */
 proto.domopool.Versions.prototype.setDallastemp = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string ads1115 = 8;
+ * @return {string}
+ */
+proto.domopool.Versions.prototype.getAds1115 = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.domopool.Versions} returns this
+ */
+proto.domopool.Versions.prototype.setAds1115 = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional string nanopb = 9;
+ * @return {string}
+ */
+proto.domopool.Versions.prototype.getNanopb = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.domopool.Versions} returns this
+ */
+proto.domopool.Versions.prototype.setNanopb = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
+};
+
+
+/**
+ * optional string mqtt = 10;
+ * @return {string}
+ */
+proto.domopool.Versions.prototype.getMqtt = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.domopool.Versions} returns this
+ */
+proto.domopool.Versions.prototype.setMqtt = function(value) {
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 

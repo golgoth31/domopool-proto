@@ -1,4 +1,5 @@
-PROTOC_IMAGE := thethingsindustries/protoc:3.1.31
+# PROTOC_IMAGE := thethingsindustries/protoc:3.1.31
+PROTOC_IMAGE := protoc
 
 #-----------------------------------------------------------------------------
 # BUILD
@@ -6,8 +7,15 @@ PROTOC_IMAGE := thethingsindustries/protoc:3.1.31
 
 .PHONY: all
 all:
-	nanopb_generator -D src domopool.proto
 	docker run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
+		nanopb_generator \
+		-D src \
+		-x "github.com/gogo/protobuf/gogoproto/gogo.proto" \
+		domopool.proto
+
+	docker run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
+		protoc-wrapper \
+		-I/usr/include \
 		-I. \
 		--go_out=$(GOPATH)/src \
 		--js_out=import_style=commonjs,binary:js \

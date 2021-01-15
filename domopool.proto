@@ -183,17 +183,23 @@ message Config {
   Limits limits = 11;
 }
 
-enum Filter_states {
+enum Relay_states {
   def = 0;
   auto = 1;
   start = 2;
   stop = 3;
 }
 
-message Filter {
-  Filter_states state = 1;
-  uint32 duration = 2;
-  uint32 start_time = 3;
+enum Relay_names {
+  filter = 0;
+  ch = 1;
+  ph = 2;
+  light = 3;
 }
 
-message Switch { Filter_states state = 1; }
+message Relay {
+  Relay_states state = 1;
+  Relay_names relay = 2;
+  uint32 duration = 3;
+  uint32 start_time = 4;
+}

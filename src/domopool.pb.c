@@ -57,10 +57,8 @@ PB_BIND(domopool_Infos, domopool_Infos, 2)
 PB_BIND(domopool_Config, domopool_Config, 2)
 
 
-PB_BIND(domopool_Filter, domopool_Filter, AUTO)
+PB_BIND(domopool_Relay, domopool_Relay, AUTO)
 
-
-PB_BIND(domopool_Switch, domopool_Switch, AUTO)
 
 
 

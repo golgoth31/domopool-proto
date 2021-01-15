@@ -10,12 +10,19 @@
 #endif
 
 /* Enum definitions */
-typedef enum _domopool_Filter_states {
-    domopool_Filter_states_def = 0,
-    domopool_Filter_states_auto = 1,
-    domopool_Filter_states_start = 2,
-    domopool_Filter_states_stop = 3
-} domopool_Filter_states;
+typedef enum _domopool_Relay_states {
+    domopool_Relay_states_def = 0,
+    domopool_Relay_states_auto = 1,
+    domopool_Relay_states_start = 2,
+    domopool_Relay_states_stop = 3
+} domopool_Relay_states;
+
+typedef enum _domopool_Relay_names {
+    domopool_Relay_names_filter = 0,
+    domopool_Relay_names_ch = 1,
+    domopool_Relay_names_ph = 2,
+    domopool_Relay_names_light = 3
+} domopool_Relay_names;
 
 /* Struct definitions */
 typedef struct _domopool_Ads115Alarms {
@@ -33,12 +40,6 @@ typedef struct _domopool_AnalogSensor {
     float vmax;
     uint32_t precision_factor;
 } domopool_AnalogSensor;
-
-typedef struct _domopool_Filter {
-    domopool_Filter_states state;
-    uint32_t duration;
-    uint32_t start_time;
-} domopool_Filter;
 
 typedef struct _domopool_Global {
     uint32_t lcd_backlight_duration;
@@ -98,6 +99,13 @@ typedef struct _domopool_Pump {
     uint32_t force_start_time;
 } domopool_Pump;
 
+typedef struct _domopool_Relay {
+    domopool_Relay_states state;
+    domopool_Relay_names relay;
+    uint32_t duration;
+    uint32_t start_time;
+} domopool_Relay;
+
 typedef struct _domopool_States {
     bool startup;
     bool filter_on;
@@ -109,10 +117,6 @@ typedef struct _domopool_States {
     bool rtc;
     bool light_on;
 } domopool_States;
-
-typedef struct _domopool_Switch {
-    domopool_Filter_states state;
-} domopool_Switch;
 
 typedef struct _domopool_Temp {
     bool enabled;
@@ -219,9 +223,13 @@ typedef struct _domopool_Config {
 
 
 /* Helper constants for enums */
-#define _domopool_Filter_states_MIN domopool_Filter_states_def
-#define _domopool_Filter_states_MAX domopool_Filter_states_stop
-#define _domopool_Filter_states_ARRAYSIZE ((domopool_Filter_states)(domopool_Filter_states_stop+1))
+#define _domopool_Relay_states_MIN domopool_Relay_states_def
+#define _domopool_Relay_states_MAX domopool_Relay_states_stop
+#define _domopool_Relay_states_ARRAYSIZE ((domopool_Relay_states)(domopool_Relay_states_stop+1))
+
+#define _domopool_Relay_names_MIN domopool_Relay_names_filter
+#define _domopool_Relay_names_MAX domopool_Relay_names_light
+#define _domopool_Relay_names_ARRAYSIZE ((domopool_Relay_names)(domopool_Relay_names_light+1))
 
 
 #ifdef __cplusplus
@@ -246,8 +254,7 @@ extern "C" {
 #define domopool_Versions_init_default           {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
 #define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default, false, domopool_Limits_init_default}
-#define domopool_Filter_init_default             {_domopool_Filter_states_MIN, 0, 0}
-#define domopool_Switch_init_default             {_domopool_Filter_states_MIN}
+#define domopool_Relay_init_default              {_domopool_Relay_states_MIN, _domopool_Relay_names_MIN, 0, 0}
 #define domopool_NTP_init_zero                   {0, "", 0}
 #define domopool_Mqtt_init_zero                  {0, ""}
 #define domopool_Network_init_zero               {0, "", "", "", "", 0, false, domopool_Mqtt_init_zero, false, domopool_NTP_init_zero}
@@ -265,8 +272,7 @@ extern "C" {
 #define domopool_Versions_init_zero              {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
 #define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero, false, domopool_Limits_init_zero}
-#define domopool_Filter_init_zero                {_domopool_Filter_states_MIN, 0, 0}
-#define domopool_Switch_init_zero                {_domopool_Filter_states_MIN}
+#define domopool_Relay_init_zero                 {_domopool_Relay_states_MIN, _domopool_Relay_names_MIN, 0, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define domopool_Ads115Alarms_not_ready_tag      1
@@ -279,9 +285,6 @@ extern "C" {
 #define domopool_AnalogSensor_vmin_tag           5
 #define domopool_AnalogSensor_vmax_tag           6
 #define domopool_AnalogSensor_precision_factor_tag 7
-#define domopool_Filter_state_tag                1
-#define domopool_Filter_duration_tag             2
-#define domopool_Filter_start_time_tag           3
 #define domopool_Global_lcd_backlight_duration_tag 1
 #define domopool_Global_ack_duration_tag         2
 #define domopool_Global_ack_tone_tag             3
@@ -322,6 +325,10 @@ extern "C" {
 #define domopool_Pump_force_check_tag            5
 #define domopool_Pump_force_duration_tag         6
 #define domopool_Pump_force_start_time_tag       7
+#define domopool_Relay_state_tag                 1
+#define domopool_Relay_relay_tag                 2
+#define domopool_Relay_duration_tag              3
+#define domopool_Relay_start_time_tag            4
 #define domopool_States_startup_tag              1
 #define domopool_States_filter_on_tag            2
 #define domopool_States_ph_on_tag                3
@@ -331,7 +338,6 @@ extern "C" {
 #define domopool_States_ntp_tag                  7
 #define domopool_States_rtc_tag                  8
 #define domopool_States_light_on_tag             9
-#define domopool_Switch_state_tag                1
 #define domopool_Temp_enabled_tag                1
 #define domopool_Temp_init_tag                   2
 #define domopool_Temp_addr_tag                   8
@@ -597,17 +603,13 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  limits,           11)
 #define domopool_Config_infos_MSGTYPE domopool_Infos
 #define domopool_Config_limits_MSGTYPE domopool_Limits
 
-#define domopool_Filter_FIELDLIST(X, a) \
+#define domopool_Relay_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, UENUM,    state,             1) \
-X(a, STATIC,   SINGULAR, UINT32,   duration,          2) \
-X(a, STATIC,   SINGULAR, UINT32,   start_time,        3)
-#define domopool_Filter_CALLBACK NULL
-#define domopool_Filter_DEFAULT NULL
-
-#define domopool_Switch_FIELDLIST(X, a) \
-X(a, STATIC,   SINGULAR, UENUM,    state,             1)
-#define domopool_Switch_CALLBACK NULL
-#define domopool_Switch_DEFAULT NULL
+X(a, STATIC,   SINGULAR, UENUM,    relay,             2) \
+X(a, STATIC,   SINGULAR, UINT32,   duration,          3) \
+X(a, STATIC,   SINGULAR, UINT32,   start_time,        4)
+#define domopool_Relay_CALLBACK NULL
+#define domopool_Relay_DEFAULT NULL
 
 extern const pb_msgdesc_t domopool_NTP_msg;
 extern const pb_msgdesc_t domopool_Mqtt_msg;
@@ -626,8 +628,7 @@ extern const pb_msgdesc_t domopool_States_msg;
 extern const pb_msgdesc_t domopool_Versions_msg;
 extern const pb_msgdesc_t domopool_Infos_msg;
 extern const pb_msgdesc_t domopool_Config_msg;
-extern const pb_msgdesc_t domopool_Filter_msg;
-extern const pb_msgdesc_t domopool_Switch_msg;
+extern const pb_msgdesc_t domopool_Relay_msg;
 
 /* Defines for backwards compatibility with code written before nanopb-0.4.0 */
 #define domopool_NTP_fields &domopool_NTP_msg
@@ -647,8 +648,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Versions_fields &domopool_Versions_msg
 #define domopool_Infos_fields &domopool_Infos_msg
 #define domopool_Config_fields &domopool_Config_msg
-#define domopool_Filter_fields &domopool_Filter_msg
-#define domopool_Switch_fields &domopool_Switch_msg
+#define domopool_Relay_fields &domopool_Relay_msg
 
 /* Maximum encoded size of messages (where known) */
 #define domopool_NTP_size                        142
@@ -668,8 +668,7 @@ extern const pb_msgdesc_t domopool_Switch_msg;
 #define domopool_Versions_size                   215
 #define domopool_Infos_size                      478
 #define domopool_Config_size                     1366
-#define domopool_Filter_size                     14
-#define domopool_Switch_size                     2
+#define domopool_Relay_size                      16
 
 #ifdef __cplusplus
 } /* extern "C" */

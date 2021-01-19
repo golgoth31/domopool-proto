@@ -24,7 +24,7 @@ PB_BIND(domopool_Limits, domopool_Limits, AUTO)
 PB_BIND(domopool_AnalogSensor, domopool_AnalogSensor, AUTO)
 
 
-PB_BIND(domopool_Sensors, domopool_Sensors, AUTO)
+PB_BIND(domopool_Sensors, domopool_Sensors, 2)
 
 
 PB_BIND(domopool_Global, domopool_Global, AUTO)

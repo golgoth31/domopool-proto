@@ -196,6 +196,9 @@ typedef struct _domopool_Sensors {
     domopool_AnalogSensor ch;
     bool has_wp;
     domopool_AnalogSensor wp;
+    uint32_t adc_mode;
+    uint32_t adc_datarate;
+    uint32_t adc_gain;
 } domopool_Sensors;
 
 typedef struct _domopool_Config {
@@ -243,7 +246,7 @@ extern "C" {
 #define domopool_Temp_init_default               {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
 #define domopool_Limits_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_default       {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default}
+#define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, 0, 0, 0}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
@@ -261,7 +264,7 @@ extern "C" {
 #define domopool_Temp_init_zero                  {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
 #define domopool_Limits_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_zero          {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero}
+#define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, 0, 0, 0}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
@@ -386,6 +389,9 @@ extern "C" {
 #define domopool_Sensors_ph_tag                  7
 #define domopool_Sensors_ch_tag                  8
 #define domopool_Sensors_wp_tag                  9
+#define domopool_Sensors_adc_mode_tag            10
+#define domopool_Sensors_adc_datarate_tag        11
+#define domopool_Sensors_adc_gain_tag            12
 #define domopool_Config_network_tag              1
 #define domopool_Config_sensors_tag              2
 #define domopool_Config_global_tag               3
@@ -469,7 +475,10 @@ X(a, STATIC,   SINGULAR, UINT32,   temp_resolution,   5) \
 X(a, STATIC,   SINGULAR, UINT32,   precision_factor,   6) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ph,                7) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ch,                8) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  wp,                9)
+X(a, STATIC,   OPTIONAL, MESSAGE,  wp,                9) \
+X(a, STATIC,   SINGULAR, UINT32,   adc_mode,         10) \
+X(a, STATIC,   SINGULAR, UINT32,   adc_datarate,     11) \
+X(a, STATIC,   SINGULAR, UINT32,   adc_gain,         12)
 #define domopool_Sensors_CALLBACK NULL
 #define domopool_Sensors_DEFAULT NULL
 #define domopool_Sensors_twin_MSGTYPE domopool_Temp
@@ -657,7 +666,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Temp_size                       52
 #define domopool_Limits_size                     66
 #define domopool_AnalogSensor_size               35
-#define domopool_Sensors_size                    287
+#define domopool_Sensors_size                    305
 #define domopool_Global_size                     27
 #define domopool_Pump_size                       22
 #define domopool_Ads115Alarms_size               6
@@ -667,7 +676,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_States_size                     18
 #define domopool_Versions_size                   215
 #define domopool_Infos_size                      478
-#define domopool_Config_size                     1366
+#define domopool_Config_size                     1384
 #define domopool_Relay_size                      16
 
 #ifdef __cplusplus

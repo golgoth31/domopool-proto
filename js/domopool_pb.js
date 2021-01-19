@@ -2200,7 +2200,10 @@ proto.domopool.Sensors.toObject = function(includeInstance, msg) {
     precisionFactor: jspb.Message.getFieldWithDefault(msg, 6, 0),
     ph: (f = msg.getPh()) && proto.domopool.AnalogSensor.toObject(includeInstance, f),
     ch: (f = msg.getCh()) && proto.domopool.AnalogSensor.toObject(includeInstance, f),
-    wp: (f = msg.getWp()) && proto.domopool.AnalogSensor.toObject(includeInstance, f)
+    wp: (f = msg.getWp()) && proto.domopool.AnalogSensor.toObject(includeInstance, f),
+    adcMode: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    adcDatarate: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    adcGain: jspb.Message.getFieldWithDefault(msg, 12, 0)
   };
 
   if (includeInstance) {
@@ -2278,6 +2281,18 @@ proto.domopool.Sensors.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.domopool.AnalogSensor;
       reader.readMessage(value,proto.domopool.AnalogSensor.deserializeBinaryFromReader);
       msg.setWp(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAdcMode(value);
+      break;
+    case 11:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAdcDatarate(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAdcGain(value);
       break;
     default:
       reader.skipField();
@@ -2375,6 +2390,27 @@ proto.domopool.Sensors.serializeBinaryToWriter = function(message, writer) {
       9,
       f,
       proto.domopool.AnalogSensor.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdcMode();
+  if (f !== 0) {
+    writer.writeUint32(
+      10,
+      f
+    );
+  }
+  f = message.getAdcDatarate();
+  if (f !== 0) {
+    writer.writeUint32(
+      11,
+      f
+    );
+  }
+  f = message.getAdcGain();
+  if (f !== 0) {
+    writer.writeUint32(
+      12,
+      f
     );
   }
 };
@@ -2653,6 +2689,60 @@ proto.domopool.Sensors.prototype.clearWp = function() {
  */
 proto.domopool.Sensors.prototype.hasWp = function() {
   return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional uint32 adc_mode = 10;
+ * @return {number}
+ */
+proto.domopool.Sensors.prototype.getAdcMode = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Sensors} returns this
+ */
+proto.domopool.Sensors.prototype.setAdcMode = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
+};
+
+
+/**
+ * optional uint32 adc_datarate = 11;
+ * @return {number}
+ */
+proto.domopool.Sensors.prototype.getAdcDatarate = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Sensors} returns this
+ */
+proto.domopool.Sensors.prototype.setAdcDatarate = function(value) {
+  return jspb.Message.setProto3IntField(this, 11, value);
+};
+
+
+/**
+ * optional uint32 adc_gain = 12;
+ * @return {number}
+ */
+proto.domopool.Sensors.prototype.getAdcGain = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Sensors} returns this
+ */
+proto.domopool.Sensors.prototype.setAdcGain = function(value) {
+  return jspb.Message.setProto3IntField(this, 12, value);
 };
 
 

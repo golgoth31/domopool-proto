@@ -81,6 +81,7 @@ message Sensors {
   AnalogSensor wp = 9;
   uint32 adc_mode = 10;
   uint32 adc_datarate = 11;
+  uint32 adc_gain = 12;
 }
 
 message Global {

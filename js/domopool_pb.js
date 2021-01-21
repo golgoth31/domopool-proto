@@ -4870,7 +4870,8 @@ proto.domopool.States.toObject = function(includeInstance, msg) {
     netActive: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     ntp: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     rtc: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    lightOn: jspb.Message.getBooleanFieldWithDefault(msg, 9, false)
+    lightOn: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    mqttConnected: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
   };
 
   if (includeInstance) {
@@ -4942,6 +4943,10 @@ proto.domopool.States.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setLightOn(value);
+      break;
+    case 10:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setMqttConnected(value);
       break;
     default:
       reader.skipField();
@@ -5032,6 +5037,13 @@ proto.domopool.States.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       9,
+      f
+    );
+  }
+  f = message.getMqttConnected();
+  if (f) {
+    writer.writeBool(
+      10,
       f
     );
   }
@@ -5197,6 +5209,24 @@ proto.domopool.States.prototype.getLightOn = function() {
  */
 proto.domopool.States.prototype.setLightOn = function(value) {
   return jspb.Message.setProto3BooleanField(this, 9, value);
+};
+
+
+/**
+ * optional bool mqtt_connected = 10;
+ * @return {boolean}
+ */
+proto.domopool.States.prototype.getMqttConnected = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 10, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.States} returns this
+ */
+proto.domopool.States.prototype.setMqttConnected = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 10, value);
 };
 
 

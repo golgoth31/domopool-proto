@@ -109,6 +109,11 @@ message Ads115Alarms {
   bool not_connected = 3;
 }
 
+message MqttAlarms {
+  bool metrics = 1;
+  bool states = 2;
+}
+
 message Alarms {
   bool filter = 1;
   bool ph = 2;
@@ -121,6 +126,7 @@ message Alarms {
   bool tw_frost = 10;
   bool tw_high = 11;
   bool tamb_frost = 12;
+  MqttAlarms mqtt = 13;
 }
 
 message Tests {

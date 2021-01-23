@@ -6675,9 +6675,10 @@ proto.domopool.Relay.prototype.setStartTime = function(value) {
  * @enum {number}
  */
 proto.domopool.Relay_states = {
-  AUTO: 0,
-  START: 1,
-  STOP: 2
+  DEF: 0,
+  AUTO: 1,
+  START: 2,
+  STOP: 3
 };
 
 /**

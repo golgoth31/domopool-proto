@@ -11,10 +11,9 @@
 
 /* Enum definitions */
 typedef enum _domopool_Relay_states {
-    domopool_Relay_states_def = 0,
-    domopool_Relay_states_auto = 1,
-    domopool_Relay_states_start = 2,
-    domopool_Relay_states_stop = 3
+    domopool_Relay_states_auto = 0,
+    domopool_Relay_states_start = 1,
+    domopool_Relay_states_stop = 2
 } domopool_Relay_states;
 
 typedef enum _domopool_Relay_names {
@@ -235,7 +234,7 @@ typedef struct _domopool_Config {
 
 
 /* Helper constants for enums */
-#define _domopool_Relay_states_MIN domopool_Relay_states_def
+#define _domopool_Relay_states_MIN domopool_Relay_states_auto
 #define _domopool_Relay_states_MAX domopool_Relay_states_stop
 #define _domopool_Relay_states_ARRAYSIZE ((domopool_Relay_states)(domopool_Relay_states_stop+1))
 

@@ -1910,7 +1910,8 @@ proto.domopool.AnalogSensor.toObject = function(includeInstance, msg) {
     thresholdAccuracy: jspb.Message.getFieldWithDefault(msg, 4, 0),
     vmin: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     vmax: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    precisionFactor: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    precisionFactor: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    autoCal: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
   };
 
   if (includeInstance) {
@@ -1974,6 +1975,10 @@ proto.domopool.AnalogSensor.deserializeBinaryFromReader = function(msg, reader) 
     case 7:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setPrecisionFactor(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAutoCal(value);
       break;
     default:
       reader.skipField();
@@ -2050,6 +2055,13 @@ proto.domopool.AnalogSensor.serializeBinaryToWriter = function(message, writer) 
   if (f !== 0) {
     writer.writeUint32(
       7,
+      f
+    );
+  }
+  f = message.getAutoCal();
+  if (f) {
+    writer.writeBool(
+      8,
       f
     );
   }
@@ -2179,6 +2191,24 @@ proto.domopool.AnalogSensor.prototype.getPrecisionFactor = function() {
  */
 proto.domopool.AnalogSensor.prototype.setPrecisionFactor = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional bool auto_cal = 8;
+ * @return {boolean}
+ */
+proto.domopool.AnalogSensor.prototype.getAutoCal = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.AnalogSensor} returns this
+ */
+proto.domopool.AnalogSensor.prototype.setAutoCal = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 

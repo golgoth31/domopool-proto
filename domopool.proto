@@ -67,6 +67,7 @@ message AnalogSensor {
   float vmin = 5;
   float vmax = 6;
   uint32 precision_factor = 7;
+  bool auto_cal = 8;
 }
 
 message Sensors {

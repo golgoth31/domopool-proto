@@ -195,10 +195,9 @@ message Config {
 }
 
 enum Relay_states {
-  def = 0;
-  auto = 1;
-  start = 2;
-  stop = 3;
+  auto = 0;
+  start = 1;
+  stop = 2;
 }
 
 enum Relay_names {

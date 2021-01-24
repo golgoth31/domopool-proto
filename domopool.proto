@@ -148,6 +148,7 @@ message Metrics {
   float wp_volt = 7;
   uint32 over_15_duration = 8;
   uint32 hour = 9;
+  uint32 time = 10;
 }
 
 message States {

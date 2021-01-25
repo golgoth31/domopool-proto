@@ -113,6 +113,7 @@ message Ads115Alarms {
 message MqttAlarms {
   bool metrics = 1;
   bool states = 2;
+  bool alarms = 3;
 }
 
 message Alarms {

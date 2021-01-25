@@ -87,6 +87,7 @@ typedef struct _domopool_Mqtt {
 typedef struct _domopool_MqttAlarms {
     bool metrics;
     bool states;
+    bool alarms;
 } domopool_MqttAlarms;
 
 typedef struct _domopool_NTP {
@@ -259,7 +260,7 @@ extern "C" {
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
-#define domopool_MqttAlarms_init_default         {0, 0}
+#define domopool_MqttAlarms_init_default         {0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -278,7 +279,7 @@ extern "C" {
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
-#define domopool_MqttAlarms_init_zero            {0, 0}
+#define domopool_MqttAlarms_init_zero            {0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -333,6 +334,7 @@ extern "C" {
 #define domopool_Mqtt_server_tag                 2
 #define domopool_MqttAlarms_metrics_tag          1
 #define domopool_MqttAlarms_states_tag           2
+#define domopool_MqttAlarms_alarms_tag           3
 #define domopool_NTP_day_light_tag               1
 #define domopool_NTP_server_tag                  2
 #define domopool_NTP_timezone_tag                3
@@ -536,7 +538,8 @@ X(a, STATIC,   SINGULAR, BOOL,     not_connected,     3)
 
 #define domopool_MqttAlarms_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     metrics,           1) \
-X(a, STATIC,   SINGULAR, BOOL,     states,            2)
+X(a, STATIC,   SINGULAR, BOOL,     states,            2) \
+X(a, STATIC,   SINGULAR, BOOL,     alarms,            3)
 #define domopool_MqttAlarms_CALLBACK NULL
 #define domopool_MqttAlarms_DEFAULT NULL
 
@@ -700,14 +703,14 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Global_size                     27
 #define domopool_Pump_size                       22
 #define domopool_Ads115Alarms_size               6
-#define domopool_MqttAlarms_size                 4
-#define domopool_Alarms_size                     34
+#define domopool_MqttAlarms_size                 6
+#define domopool_Alarms_size                     36
 #define domopool_Tests_size                      22
 #define domopool_Metrics_size                    53
 #define domopool_States_size                     20
 #define domopool_Versions_size                   215
 #define domopool_Infos_size                      478
-#define domopool_Config_size                     1404
+#define domopool_Config_size                     1406
 #define domopool_Relay_size                      16
 
 #ifdef __cplusplus

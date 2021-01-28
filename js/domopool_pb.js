@@ -3612,7 +3612,8 @@ proto.domopool.MqttAlarms.toObject = function(includeInstance, msg) {
   var f, obj = {
     metrics: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     states: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    alarms: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
+    alarms: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
+    temps: jspb.Message.getBooleanFieldWithDefault(msg, 4, false)
   };
 
   if (includeInstance) {
@@ -3661,6 +3662,10 @@ proto.domopool.MqttAlarms.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setAlarms(value);
       break;
+    case 4:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setTemps(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -3708,6 +3713,13 @@ proto.domopool.MqttAlarms.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       3,
+      f
+    );
+  }
+  f = message.getTemps();
+  if (f) {
+    writer.writeBool(
+      4,
       f
     );
   }
@@ -3765,6 +3777,24 @@ proto.domopool.MqttAlarms.prototype.getAlarms = function() {
  */
 proto.domopool.MqttAlarms.prototype.setAlarms = function(value) {
   return jspb.Message.setProto3BooleanField(this, 3, value);
+};
+
+
+/**
+ * optional bool temps = 4;
+ * @return {boolean}
+ */
+proto.domopool.MqttAlarms.prototype.getTemps = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.MqttAlarms} returns this
+ */
+proto.domopool.MqttAlarms.prototype.setTemps = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 

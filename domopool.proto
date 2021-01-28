@@ -114,6 +114,7 @@ message MqttAlarms {
   bool metrics = 1;
   bool states = 2;
   bool alarms = 3;
+  bool temps = 4;
 }
 
 message Alarms {

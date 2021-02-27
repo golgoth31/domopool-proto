@@ -48,6 +48,7 @@ typedef struct _domopool_Global {
     bool serial_out;
     bool display_startup;
     bool force_light;
+    uint32_t wdt_duration;
 } domopool_Global;
 
 typedef struct _domopool_Limits {
@@ -258,7 +259,7 @@ extern "C" {
 #define domopool_Limits_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_default       {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, 0, 0, 0}
-#define domopool_Global_init_default             {0, 0, 0, 0, 0, 0}
+#define domopool_Global_init_default             {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
 #define domopool_MqttAlarms_init_default         {0, 0, 0, 0}
@@ -277,7 +278,7 @@ extern "C" {
 #define domopool_Limits_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_zero          {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, 0, 0, 0}
-#define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0}
+#define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
 #define domopool_MqttAlarms_init_zero            {0, 0, 0, 0}
@@ -308,6 +309,7 @@ extern "C" {
 #define domopool_Global_serial_out_tag           4
 #define domopool_Global_display_startup_tag      5
 #define domopool_Global_force_light_tag          6
+#define domopool_Global_wdt_duration_tag         7
 #define domopool_Limits_wp_min_tag               1
 #define domopool_Limits_wp_max_tag               2
 #define domopool_Limits_ph_min_tag               3
@@ -516,7 +518,8 @@ X(a, STATIC,   SINGULAR, UINT32,   ack_duration,      2) \
 X(a, STATIC,   SINGULAR, DOUBLE,   ack_tone,          3) \
 X(a, STATIC,   SINGULAR, BOOL,     serial_out,        4) \
 X(a, STATIC,   SINGULAR, BOOL,     display_startup,   5) \
-X(a, STATIC,   SINGULAR, BOOL,     force_light,       6)
+X(a, STATIC,   SINGULAR, BOOL,     force_light,       6) \
+X(a, STATIC,   SINGULAR, UINT32,   wdt_duration,      7)
 #define domopool_Global_CALLBACK NULL
 #define domopool_Global_DEFAULT NULL
 
@@ -703,7 +706,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Limits_size                     66
 #define domopool_AnalogSensor_size               37
 #define domopool_Sensors_size                    311
-#define domopool_Global_size                     27
+#define domopool_Global_size                     33
 #define domopool_Pump_size                       22
 #define domopool_Ads115Alarms_size               6
 #define domopool_MqttAlarms_size                 8
@@ -713,7 +716,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_States_size                     20
 #define domopool_Versions_size                   215
 #define domopool_Infos_size                      478
-#define domopool_Config_size                     1408
+#define domopool_Config_size                     1414
 #define domopool_Relay_size                      16
 
 #ifdef __cplusplus

@@ -92,6 +92,7 @@ message Global {
   bool serial_out = 4;
   bool display_startup = 5;
   bool force_light = 6;
+  uint32 wdt_duration = 7;
 }
 
 message Pump {

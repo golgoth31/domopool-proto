@@ -2835,7 +2835,8 @@ proto.domopool.Global.toObject = function(includeInstance, msg) {
     ackTone: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     serialOut: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
     displayStartup: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    forceLight: jspb.Message.getBooleanFieldWithDefault(msg, 6, false)
+    forceLight: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    wdtDuration: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -2895,6 +2896,10 @@ proto.domopool.Global.deserializeBinaryFromReader = function(msg, reader) {
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setForceLight(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setWdtDuration(value);
       break;
     default:
       reader.skipField();
@@ -2964,6 +2969,13 @@ proto.domopool.Global.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       6,
+      f
+    );
+  }
+  f = message.getWdtDuration();
+  if (f !== 0) {
+    writer.writeUint32(
+      7,
       f
     );
   }
@@ -3075,6 +3087,24 @@ proto.domopool.Global.prototype.getForceLight = function() {
  */
 proto.domopool.Global.prototype.setForceLight = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
+ * optional uint32 wdt_duration = 7;
+ * @return {number}
+ */
+proto.domopool.Global.prototype.getWdtDuration = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Global} returns this
+ */
+proto.domopool.Global.prototype.setWdtDuration = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 

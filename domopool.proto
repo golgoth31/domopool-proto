@@ -2,15 +2,15 @@ syntax = "proto3";
 
 package domopool;
 
-import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+// import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
 option go_package = "github.com/golgoth31/domopool-proto;domopool_proto";
-// Enable custom Marshal method.
-option (gogoproto.marshaler_all) = true;
-// Enable custom Unmarshal method.
-option (gogoproto.unmarshaler_all) = true;
-// Enable custom Size method (Required by Marshal and Unmarshal).
-option (gogoproto.sizer_all) = true;
+// // Enable custom Marshal method.
+// option (gogoproto.marshaler_all) = true;
+// // Enable custom Unmarshal method.
+// option (gogoproto.unmarshaler_all) = true;
+// // Enable custom Size method (Required by Marshal and Unmarshal).
+// option (gogoproto.sizer_all) = true;
 
 message NTP {
   uint32 day_light = 1; // 3600 if daylight is observed or 0 if not

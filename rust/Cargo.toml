@@ -1,6 +1,6 @@
 [package]
 name = "domopool-proto"
-version = "0.1.0"
+version = "__tag_ref__"
 authors = ["David Sabatie <david.sabatie@notrenet.com>"]
 edition = "2018"
 

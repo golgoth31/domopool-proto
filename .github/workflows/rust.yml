@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set tag to rust/Cargo.toml
-        run: sed -i "s/__tag_ref__/$GITHUB_REF/g" rust/Cargo.toml
+        run: sed -i "s/__tag_ref__/"$GITHUB_REF"/g" rust/Cargo.toml
       - name: Build
         run: cargo build --verbose --manifest-path rust/Cargo.toml
       - name: Run tests

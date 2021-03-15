@@ -16,9 +16,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set tag to rust/Cargo.toml
         run: |
-          TAG=$(echo $GITHUB_REF | cut -d"/" -f3)
+          TAG=$(echo $GITHUB_REF | cut -d"/" -f3 | tr -d "v")
           echo "tag value: $TAG"
           sed -i "s:__tag_ref__:$TAG:g" rust/Cargo.toml
+          cat rust/Cargo.toml
       - name: Build
         run: cargo build --verbose --manifest-path rust/Cargo.toml
       - name: Run tests

@@ -77,7 +77,7 @@ typedef struct _domopool_Metrics {
     float wp_volt;
     uint32_t over_15_duration;
     uint32_t hour;
-    char time[20];
+    char time[30];
 } domopool_Metrics;
 
 typedef struct _domopool_Mqtt {
@@ -712,11 +712,11 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_MqttAlarms_size                 8
 #define domopool_Alarms_size                     38
 #define domopool_Tests_size                      22
-#define domopool_Metrics_size                    68
+#define domopool_Metrics_size                    78
 #define domopool_States_size                     20
 #define domopool_Versions_size                   215
 #define domopool_Infos_size                      478
-#define domopool_Config_size                     1429
+#define domopool_Config_size                     1439
 #define domopool_Relay_size                      16
 
 #ifdef __cplusplus

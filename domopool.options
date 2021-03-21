@@ -15,3 +15,4 @@ domopool.Versions.dallastemp max_size:10
 domopool.Versions.nanopb max_size:12
 domopool.Versions.ads1115 max_size:10
 domopool.Versions.mqtt max_size:10
+domopool.Metrics.time max_size:20

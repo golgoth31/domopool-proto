@@ -22,7 +22,7 @@ jobs:
           cat rust/Cargo.toml
       - name: Build
         run: cargo build --verbose --manifest-path rust/Cargo.toml
-      - name: Run tests
-        run: cargo test --verbose --manifest-path rust/Cargo.toml
-      - name: Publish
-        run: cargo publish --verbose --manifest-path rust/Cargo.toml --dry-run
+      # - name: Run tests
+      #   run: cargo test --verbose --manifest-path rust/Cargo.toml
+      # - name: Publish
+      #   run: cargo publish --verbose --manifest-path rust/Cargo.toml --dry-run

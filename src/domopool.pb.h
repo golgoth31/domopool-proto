@@ -77,7 +77,7 @@ typedef struct _domopool_Metrics {
     float wp_volt;
     uint32_t over_15_duration;
     uint32_t hour;
-    uint32_t time;
+    char time[20];
 } domopool_Metrics;
 
 typedef struct _domopool_Mqtt {
@@ -265,7 +265,7 @@ extern "C" {
 #define domopool_MqttAlarms_init_default         {0, 0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
-#define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_default           {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
@@ -284,7 +284,7 @@ extern "C" {
 #define domopool_MqttAlarms_init_zero            {0, 0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
-#define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_zero              {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
@@ -586,7 +586,7 @@ X(a, STATIC,   SINGULAR, FLOAT,    wp,                6) \
 X(a, STATIC,   SINGULAR, FLOAT,    wp_volt,           7) \
 X(a, STATIC,   SINGULAR, UINT32,   over_15_duration,   8) \
 X(a, STATIC,   SINGULAR, UINT32,   hour,              9) \
-X(a, STATIC,   SINGULAR, UINT32,   time,             10)
+X(a, STATIC,   SINGULAR, STRING,   time,             10)
 #define domopool_Metrics_CALLBACK NULL
 #define domopool_Metrics_DEFAULT NULL
 
@@ -712,11 +712,11 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_MqttAlarms_size                 8
 #define domopool_Alarms_size                     38
 #define domopool_Tests_size                      22
-#define domopool_Metrics_size                    53
+#define domopool_Metrics_size                    68
 #define domopool_States_size                     20
 #define domopool_Versions_size                   215
 #define domopool_Infos_size                      478
-#define domopool_Config_size                     1414
+#define domopool_Config_size                     1429
 #define domopool_Relay_size                      16
 
 #ifdef __cplusplus

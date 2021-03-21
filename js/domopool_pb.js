@@ -4619,7 +4619,7 @@ proto.domopool.Metrics.toObject = function(includeInstance, msg) {
     wpVolt: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     over15Duration: jspb.Message.getFieldWithDefault(msg, 8, 0),
     hour: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    time: jspb.Message.getFieldWithDefault(msg, 10, 0)
+    time: jspb.Message.getFieldWithDefault(msg, 10, "")
   };
 
   if (includeInstance) {
@@ -4693,7 +4693,7 @@ proto.domopool.Metrics.deserializeBinaryFromReader = function(msg, reader) {
       msg.setHour(value);
       break;
     case 10:
-      var value = /** @type {number} */ (reader.readUint32());
+      var value = /** @type {string} */ (reader.readString());
       msg.setTime(value);
       break;
     default:
@@ -4789,8 +4789,8 @@ proto.domopool.Metrics.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getTime();
-  if (f !== 0) {
-    writer.writeUint32(
+  if (f.length > 0) {
+    writer.writeString(
       10,
       f
     );
@@ -4961,20 +4961,20 @@ proto.domopool.Metrics.prototype.setHour = function(value) {
 
 
 /**
- * optional uint32 time = 10;
- * @return {number}
+ * optional string time = 10;
+ * @return {string}
  */
 proto.domopool.Metrics.prototype.getTime = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.domopool.Metrics} returns this
  */
 proto.domopool.Metrics.prototype.setTime = function(value) {
-  return jspb.Message.setProto3IntField(this, 10, value);
+  return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 

@@ -7,6 +7,8 @@
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 var jspb = require('google-protobuf');
 var goog = jspb;
@@ -1251,8 +1253,10 @@ proto.domopool.Temp.deserializeBinaryFromReader = function(msg, reader) {
       msg.setInit(value);
       break;
     case 8:
-      var value = /** @type {!Array<number>} */ (reader.readPackedUint32());
-      msg.setAddrList(value);
+      var values = /** @type {!Array<number>} */ (reader.isDelimited() ? reader.readPackedUint32() : [reader.readUint32()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addAddr(values[i]);
+      }
       break;
     default:
       reader.skipField();

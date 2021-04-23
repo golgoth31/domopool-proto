@@ -159,6 +159,7 @@ message States {
   bool rtc = 8;
   bool light_on = 9;
   bool mqtt_connected = 10;
+  bool recover = 11;
 }
 
 message Versions {

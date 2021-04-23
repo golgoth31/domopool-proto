@@ -131,6 +131,7 @@ typedef struct _domopool_States {
     bool rtc; 
     bool light_on; 
     bool mqtt_connected; 
+    bool recover; 
 } domopool_States;
 
 typedef struct _domopool_Temp { 
@@ -271,7 +272,7 @@ extern "C" {
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
-#define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_default           {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
 #define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default, false, domopool_Limits_init_default}
@@ -290,7 +291,7 @@ extern "C" {
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
-#define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_zero              {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
 #define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero, false, domopool_Limits_init_zero}
@@ -369,6 +370,7 @@ extern "C" {
 #define domopool_States_rtc_tag                  8
 #define domopool_States_light_on_tag             9
 #define domopool_States_mqtt_connected_tag       10
+#define domopool_States_recover_tag              11
 #define domopool_Temp_enabled_tag                1
 #define domopool_Temp_init_tag                   2
 #define domopool_Temp_addr_tag                   8
@@ -607,7 +609,8 @@ X(a, STATIC,   SINGULAR, BOOL,     net_active,        6) \
 X(a, STATIC,   SINGULAR, BOOL,     ntp,               7) \
 X(a, STATIC,   SINGULAR, BOOL,     rtc,               8) \
 X(a, STATIC,   SINGULAR, BOOL,     light_on,          9) \
-X(a, STATIC,   SINGULAR, BOOL,     mqtt_connected,   10)
+X(a, STATIC,   SINGULAR, BOOL,     mqtt_connected,   10) \
+X(a, STATIC,   SINGULAR, BOOL,     recover,          11)
 #define domopool_States_CALLBACK NULL
 #define domopool_States_DEFAULT NULL
 
@@ -709,7 +712,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     38
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1441
+#define domopool_Config_size                     1443
 #define domopool_Global_size                     33
 #define domopool_Infos_size                      478
 #define domopool_Limits_size                     66
@@ -721,7 +724,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Pump_size                       24
 #define domopool_Relay_size                      16
 #define domopool_Sensors_size                    311
-#define domopool_States_size                     20
+#define domopool_States_size                     22
 #define domopool_Temp_size                       52
 #define domopool_Tests_size                      22
 #define domopool_Versions_size                   215

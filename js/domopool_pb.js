@@ -5053,7 +5053,8 @@ proto.domopool.States.toObject = function(includeInstance, msg) {
     ntp: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     rtc: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     lightOn: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
-    mqttConnected: jspb.Message.getBooleanFieldWithDefault(msg, 10, false)
+    mqttConnected: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
+    recover: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
   };
 
   if (includeInstance) {
@@ -5129,6 +5130,10 @@ proto.domopool.States.deserializeBinaryFromReader = function(msg, reader) {
     case 10:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setMqttConnected(value);
+      break;
+    case 11:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setRecover(value);
       break;
     default:
       reader.skipField();
@@ -5226,6 +5231,13 @@ proto.domopool.States.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       10,
+      f
+    );
+  }
+  f = message.getRecover();
+  if (f) {
+    writer.writeBool(
+      11,
       f
     );
   }
@@ -5409,6 +5421,24 @@ proto.domopool.States.prototype.getMqttConnected = function() {
  */
 proto.domopool.States.prototype.setMqttConnected = function(value) {
   return jspb.Message.setProto3BooleanField(this, 10, value);
+};
+
+
+/**
+ * optional bool recover = 11;
+ * @return {boolean}
+ */
+proto.domopool.States.prototype.getRecover = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 11, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.States} returns this
+ */
+proto.domopool.States.prototype.setRecover = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 11, value);
 };
 
 

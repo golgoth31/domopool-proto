@@ -92,9 +92,10 @@ message Pump {
   bool force_ph = 2;
   bool force_ch = 3;
   bool automatic = 4;
-  bool force_check = 5;
-  uint32 force_duration = 6;
-  uint32 force_start_time = 7;
+  bool recover = 5;
+  bool force_check = 6;
+  uint32 force_duration = 7;
+  uint32 force_start_time = 8;
 }
 
 message Ads115Alarms {

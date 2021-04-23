@@ -3146,9 +3146,10 @@ proto.domopool.Pump.toObject = function(includeInstance, msg) {
     forcePh: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
     forceCh: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
     automatic: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    forceCheck: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    forceDuration: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    forceStartTime: jspb.Message.getFieldWithDefault(msg, 7, 0)
+    recover: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    forceCheck: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    forceDuration: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    forceStartTime: jspb.Message.getFieldWithDefault(msg, 8, 0)
   };
 
   if (includeInstance) {
@@ -3203,13 +3204,17 @@ proto.domopool.Pump.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
-      msg.setForceCheck(value);
+      msg.setRecover(value);
       break;
     case 6:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setForceCheck(value);
+      break;
+    case 7:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setForceDuration(value);
       break;
-    case 7:
+    case 8:
       var value = /** @type {number} */ (reader.readUint32());
       msg.setForceStartTime(value);
       break;
@@ -3270,24 +3275,31 @@ proto.domopool.Pump.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getForceCheck();
+  f = message.getRecover();
   if (f) {
     writer.writeBool(
       5,
       f
     );
   }
+  f = message.getForceCheck();
+  if (f) {
+    writer.writeBool(
+      6,
+      f
+    );
+  }
   f = message.getForceDuration();
   if (f !== 0) {
     writer.writeUint32(
-      6,
+      7,
       f
     );
   }
   f = message.getForceStartTime();
   if (f !== 0) {
     writer.writeUint32(
-      7,
+      8,
       f
     );
   }
@@ -3367,10 +3379,10 @@ proto.domopool.Pump.prototype.setAutomatic = function(value) {
 
 
 /**
- * optional bool force_check = 5;
+ * optional bool recover = 5;
  * @return {boolean}
  */
-proto.domopool.Pump.prototype.getForceCheck = function() {
+proto.domopool.Pump.prototype.getRecover = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
@@ -3379,34 +3391,34 @@ proto.domopool.Pump.prototype.getForceCheck = function() {
  * @param {boolean} value
  * @return {!proto.domopool.Pump} returns this
  */
-proto.domopool.Pump.prototype.setForceCheck = function(value) {
+proto.domopool.Pump.prototype.setRecover = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
 /**
- * optional uint32 force_duration = 6;
+ * optional bool force_check = 6;
+ * @return {boolean}
+ */
+proto.domopool.Pump.prototype.getForceCheck = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.Pump} returns this
+ */
+proto.domopool.Pump.prototype.setForceCheck = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 6, value);
+};
+
+
+/**
+ * optional uint32 force_duration = 7;
  * @return {number}
  */
 proto.domopool.Pump.prototype.getForceDuration = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.domopool.Pump} returns this
- */
-proto.domopool.Pump.prototype.setForceDuration = function(value) {
-  return jspb.Message.setProto3IntField(this, 6, value);
-};
-
-
-/**
- * optional uint32 force_start_time = 7;
- * @return {number}
- */
-proto.domopool.Pump.prototype.getForceStartTime = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -3415,8 +3427,26 @@ proto.domopool.Pump.prototype.getForceStartTime = function() {
  * @param {number} value
  * @return {!proto.domopool.Pump} returns this
  */
-proto.domopool.Pump.prototype.setForceStartTime = function(value) {
+proto.domopool.Pump.prototype.setForceDuration = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional uint32 force_start_time = 8;
+ * @return {number}
+ */
+proto.domopool.Pump.prototype.getForceStartTime = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.domopool.Pump} returns this
+ */
+proto.domopool.Pump.prototype.setForceStartTime = function(value) {
+  return jspb.Message.setProto3IntField(this, 8, value);
 };
 
 

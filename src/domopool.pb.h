@@ -107,6 +107,7 @@ typedef struct _domopool_Pump {
     bool force_ph; 
     bool force_ch; 
     bool automatic; 
+    bool recover; 
     bool force_check; 
     uint32_t force_duration; 
     uint32_t force_start_time; 
@@ -264,7 +265,7 @@ extern "C" {
 #define domopool_AnalogSensor_init_default       {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, 0, 0, 0}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0}
+#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
 #define domopool_MqttAlarms_init_default         {0, 0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default}
@@ -283,7 +284,7 @@ extern "C" {
 #define domopool_AnalogSensor_init_zero          {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, 0, 0, 0}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0}
+#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
 #define domopool_MqttAlarms_init_zero            {0, 0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero}
@@ -350,9 +351,10 @@ extern "C" {
 #define domopool_Pump_force_ph_tag               2
 #define domopool_Pump_force_ch_tag               3
 #define domopool_Pump_automatic_tag              4
-#define domopool_Pump_force_check_tag            5
-#define domopool_Pump_force_duration_tag         6
-#define domopool_Pump_force_start_time_tag       7
+#define domopool_Pump_recover_tag                5
+#define domopool_Pump_force_check_tag            6
+#define domopool_Pump_force_duration_tag         7
+#define domopool_Pump_force_start_time_tag       8
 #define domopool_Relay_state_tag                 1
 #define domopool_Relay_relay_tag                 2
 #define domopool_Relay_duration_tag              3
@@ -532,9 +534,10 @@ X(a, STATIC,   SINGULAR, BOOL,     force_filter,      1) \
 X(a, STATIC,   SINGULAR, BOOL,     force_ph,          2) \
 X(a, STATIC,   SINGULAR, BOOL,     force_ch,          3) \
 X(a, STATIC,   SINGULAR, BOOL,     automatic,         4) \
-X(a, STATIC,   SINGULAR, BOOL,     force_check,       5) \
-X(a, STATIC,   SINGULAR, UINT32,   force_duration,    6) \
-X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   7)
+X(a, STATIC,   SINGULAR, BOOL,     recover,           5) \
+X(a, STATIC,   SINGULAR, BOOL,     force_check,       6) \
+X(a, STATIC,   SINGULAR, UINT32,   force_duration,    7) \
+X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   8)
 #define domopool_Pump_CALLBACK NULL
 #define domopool_Pump_DEFAULT NULL
 
@@ -706,7 +709,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     38
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1439
+#define domopool_Config_size                     1441
 #define domopool_Global_size                     33
 #define domopool_Infos_size                      478
 #define domopool_Limits_size                     66
@@ -715,7 +718,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Mqtt_size                       132
 #define domopool_NTP_size                        142
 #define domopool_Network_size                    348
-#define domopool_Pump_size                       22
+#define domopool_Pump_size                       24
 #define domopool_Relay_size                      16
 #define domopool_Sensors_size                    311
 #define domopool_States_size                     20

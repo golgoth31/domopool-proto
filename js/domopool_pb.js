@@ -6866,10 +6866,11 @@ proto.domopool.Relay_states = {
  * @enum {number}
  */
 proto.domopool.Relay_names = {
-  FILTER: 0,
-  CH: 1,
-  PH: 2,
-  LIGHT: 3
+  UNUSED: 0,
+  FILTER: 1,
+  CH: 2,
+  PH: 3,
+  LIGHT: 4
 };
 
 goog.object.extend(exports, proto.domopool);

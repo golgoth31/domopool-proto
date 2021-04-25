@@ -17,10 +17,11 @@ typedef enum _domopool_Relay_states {
 } domopool_Relay_states;
 
 typedef enum _domopool_Relay_names { 
-    domopool_Relay_names_filter = 0, 
-    domopool_Relay_names_ch = 1, 
-    domopool_Relay_names_ph = 2, 
-    domopool_Relay_names_light = 3 
+    domopool_Relay_names_unused = 0, 
+    domopool_Relay_names_filter = 1, 
+    domopool_Relay_names_ch = 2, 
+    domopool_Relay_names_ph = 3, 
+    domopool_Relay_names_light = 4 
 } domopool_Relay_names;
 
 /* Struct definitions */
@@ -248,7 +249,7 @@ typedef struct _domopool_Config {
 #define _domopool_Relay_states_MAX domopool_Relay_states_stop
 #define _domopool_Relay_states_ARRAYSIZE ((domopool_Relay_states)(domopool_Relay_states_stop+1))
 
-#define _domopool_Relay_names_MIN domopool_Relay_names_filter
+#define _domopool_Relay_names_MIN domopool_Relay_names_unused
 #define _domopool_Relay_names_MAX domopool_Relay_names_light
 #define _domopool_Relay_names_ARRAYSIZE ((domopool_Relay_names)(domopool_Relay_names_light+1))
 

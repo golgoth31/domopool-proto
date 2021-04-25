@@ -200,10 +200,11 @@ enum Relay_states {
 }
 
 enum Relay_names {
-  filter = 0;
-  ch = 1;
-  ph = 2;
-  light = 3;
+  unused = 0;
+  filter = 1;
+  ch = 2;
+  ph = 3;
+  light = 4;
 }
 
 message Relay {

@@ -78,7 +78,8 @@ typedef struct _domopool_Metrics {
     float ch; 
     float wp; 
     float wp_volt; 
-    uint32_t over_15_duration; 
+    uint32_t over_ch_t_high_duration; 
+    uint32_t over_ch_t_low_duration; 
     uint32_t hour; 
     /* uint32 time = 10; */
     char time[30]; 
@@ -271,7 +272,7 @@ extern "C" {
 #define domopool_MqttAlarms_init_default         {0, 0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
-#define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
+#define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_default           {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
@@ -290,7 +291,7 @@ extern "C" {
 #define domopool_MqttAlarms_init_zero            {0, 0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
-#define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
+#define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Versions_init_zero              {"", 0, "", "", "", "", "", "", ""}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
@@ -337,9 +338,10 @@ extern "C" {
 #define domopool_Metrics_ch_tag                  5
 #define domopool_Metrics_wp_tag                  6
 #define domopool_Metrics_wp_volt_tag             7
-#define domopool_Metrics_over_15_duration_tag    8
-#define domopool_Metrics_hour_tag                9
-#define domopool_Metrics_time_tag                10
+#define domopool_Metrics_over_ch_t_high_duration_tag 8
+#define domopool_Metrics_over_ch_t_low_duration_tag 9
+#define domopool_Metrics_hour_tag                10
+#define domopool_Metrics_time_tag                11
 #define domopool_Mqtt_enabled_tag                1
 #define domopool_Mqtt_server_tag                 2
 #define domopool_MqttAlarms_metrics_tag          1
@@ -595,9 +597,10 @@ X(a, STATIC,   SINGULAR, FLOAT,    ph,                4) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch,                5) \
 X(a, STATIC,   SINGULAR, FLOAT,    wp,                6) \
 X(a, STATIC,   SINGULAR, FLOAT,    wp_volt,           7) \
-X(a, STATIC,   SINGULAR, UINT32,   over_15_duration,   8) \
-X(a, STATIC,   SINGULAR, UINT32,   hour,              9) \
-X(a, STATIC,   SINGULAR, STRING,   time,             10)
+X(a, STATIC,   SINGULAR, UINT32,   over_ch_t_high_duration,   8) \
+X(a, STATIC,   SINGULAR, UINT32,   over_ch_t_low_duration,   9) \
+X(a, STATIC,   SINGULAR, UINT32,   hour,             10) \
+X(a, STATIC,   SINGULAR, STRING,   time,             11)
 #define domopool_Metrics_CALLBACK NULL
 #define domopool_Metrics_DEFAULT NULL
 
@@ -714,11 +717,11 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     38
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1449
+#define domopool_Config_size                     1455
 #define domopool_Global_size                     33
 #define domopool_Infos_size                      478
 #define domopool_Limits_size                     72
-#define domopool_Metrics_size                    78
+#define domopool_Metrics_size                    84
 #define domopool_MqttAlarms_size                 8
 #define domopool_Mqtt_size                       132
 #define domopool_NTP_size                        142

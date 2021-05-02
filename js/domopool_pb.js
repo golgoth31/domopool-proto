@@ -4682,7 +4682,7 @@ proto.domopool.Metrics.toObject = function(includeInstance, msg) {
     wp: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
     wpVolt: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0),
     overChTHighDuration: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    overChTLowDuration: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    underChTLowDuration: jspb.Message.getFieldWithDefault(msg, 9, 0),
     hour: jspb.Message.getFieldWithDefault(msg, 10, 0),
     time: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
@@ -4755,7 +4755,7 @@ proto.domopool.Metrics.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 9:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setOverChTLowDuration(value);
+      msg.setUnderChTLowDuration(value);
       break;
     case 10:
       var value = /** @type {number} */ (reader.readUint32());
@@ -4850,7 +4850,7 @@ proto.domopool.Metrics.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getOverChTLowDuration();
+  f = message.getUnderChTLowDuration();
   if (f !== 0) {
     writer.writeUint32(
       9,
@@ -5019,10 +5019,10 @@ proto.domopool.Metrics.prototype.setOverChTHighDuration = function(value) {
 
 
 /**
- * optional uint32 over_ch_t_low_duration = 9;
+ * optional uint32 under_ch_t_low_duration = 9;
  * @return {number}
  */
-proto.domopool.Metrics.prototype.getOverChTLowDuration = function() {
+proto.domopool.Metrics.prototype.getUnderChTLowDuration = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
@@ -5031,7 +5031,7 @@ proto.domopool.Metrics.prototype.getOverChTLowDuration = function() {
  * @param {number} value
  * @return {!proto.domopool.Metrics} returns this
  */
-proto.domopool.Metrics.prototype.setOverChTLowDuration = function(value) {
+proto.domopool.Metrics.prototype.setUnderChTLowDuration = function(value) {
   return jspb.Message.setProto3IntField(this, 9, value);
 };
 

@@ -79,7 +79,7 @@ typedef struct _domopool_Metrics {
     float wp; 
     float wp_volt; 
     uint32_t over_ch_t_high_duration; 
-    uint32_t over_ch_t_low_duration; 
+    uint32_t under_ch_t_low_duration; 
     uint32_t hour; 
     /* uint32 time = 10; */
     char time[30]; 
@@ -339,7 +339,7 @@ extern "C" {
 #define domopool_Metrics_wp_tag                  6
 #define domopool_Metrics_wp_volt_tag             7
 #define domopool_Metrics_over_ch_t_high_duration_tag 8
-#define domopool_Metrics_over_ch_t_low_duration_tag 9
+#define domopool_Metrics_under_ch_t_low_duration_tag 9
 #define domopool_Metrics_hour_tag                10
 #define domopool_Metrics_time_tag                11
 #define domopool_Mqtt_enabled_tag                1
@@ -598,7 +598,7 @@ X(a, STATIC,   SINGULAR, FLOAT,    ch,                5) \
 X(a, STATIC,   SINGULAR, FLOAT,    wp,                6) \
 X(a, STATIC,   SINGULAR, FLOAT,    wp_volt,           7) \
 X(a, STATIC,   SINGULAR, UINT32,   over_ch_t_high_duration,   8) \
-X(a, STATIC,   SINGULAR, UINT32,   over_ch_t_low_duration,   9) \
+X(a, STATIC,   SINGULAR, UINT32,   under_ch_t_low_duration,   9) \
 X(a, STATIC,   SINGULAR, UINT32,   hour,             10) \
 X(a, STATIC,   SINGULAR, STRING,   time,             11)
 #define domopool_Metrics_CALLBACK NULL

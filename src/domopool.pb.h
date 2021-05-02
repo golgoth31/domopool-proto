@@ -59,8 +59,8 @@ typedef struct _domopool_Limits {
     float ch_min; 
     float ch_max; 
     /* number of hour to wait when temp is above 15 to activate ch */
-    uint32_t wait_before_allow_ch; 
-    uint32_t wait_before_deny_ch; 
+    uint32_t ch_wait_before_allow; 
+    uint32_t ch_wait_before_deny; 
     /* temp threshold to activate ch */
     float ch_temp_threshold_high; 
     float ch_temp_threshold_low; 
@@ -322,8 +322,8 @@ extern "C" {
 #define domopool_Limits_ph_max_tag               4
 #define domopool_Limits_ch_min_tag               5
 #define domopool_Limits_ch_max_tag               6
-#define domopool_Limits_wait_before_allow_ch_tag 7
-#define domopool_Limits_wait_before_deny_ch_tag  8
+#define domopool_Limits_ch_wait_before_allow_tag 7
+#define domopool_Limits_ch_wait_before_deny_tag  8
 #define domopool_Limits_ch_temp_threshold_high_tag 9
 #define domopool_Limits_ch_temp_threshold_low_tag 10
 #define domopool_Limits_wp_0_derive_tag          11
@@ -477,8 +477,8 @@ X(a, STATIC,   SINGULAR, FLOAT,    ph_min,            3) \
 X(a, STATIC,   SINGULAR, FLOAT,    ph_max,            4) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch_min,            5) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch_max,            6) \
-X(a, STATIC,   SINGULAR, UINT32,   wait_before_allow_ch,   7) \
-X(a, STATIC,   SINGULAR, UINT32,   wait_before_deny_ch,   8) \
+X(a, STATIC,   SINGULAR, UINT32,   ch_wait_before_allow,   7) \
+X(a, STATIC,   SINGULAR, UINT32,   ch_wait_before_deny,   8) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch_temp_threshold_high,   9) \
 X(a, STATIC,   SINGULAR, FLOAT,    ch_temp_threshold_low,  10) \
 X(a, STATIC,   SINGULAR, FLOAT,    wp_0_derive,      11) \

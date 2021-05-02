@@ -1422,8 +1422,8 @@ proto.domopool.Limits.toObject = function(includeInstance, msg) {
     phMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     chMin: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     chMax: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    waitBeforeAllowCh: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    waitBeforeDenyCh: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    chWaitBeforeAllow: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    chWaitBeforeDeny: jspb.Message.getFieldWithDefault(msg, 8, 0),
     chTempThresholdHigh: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
     chTempThresholdLow: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0),
     wp0Derive: jspb.Message.getFloatingPointFieldWithDefault(msg, 11, 0.0),
@@ -1492,11 +1492,11 @@ proto.domopool.Limits.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setWaitBeforeAllowCh(value);
+      msg.setChWaitBeforeAllow(value);
       break;
     case 8:
       var value = /** @type {number} */ (reader.readUint32());
-      msg.setWaitBeforeDenyCh(value);
+      msg.setChWaitBeforeDeny(value);
       break;
     case 9:
       var value = /** @type {number} */ (reader.readFloat());
@@ -1593,14 +1593,14 @@ proto.domopool.Limits.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getWaitBeforeAllowCh();
+  f = message.getChWaitBeforeAllow();
   if (f !== 0) {
     writer.writeUint32(
       7,
       f
     );
   }
-  f = message.getWaitBeforeDenyCh();
+  f = message.getChWaitBeforeDeny();
   if (f !== 0) {
     writer.writeUint32(
       8,
@@ -1761,10 +1761,10 @@ proto.domopool.Limits.prototype.setChMax = function(value) {
 
 
 /**
- * optional uint32 wait_before_allow_ch = 7;
+ * optional uint32 ch_wait_before_allow = 7;
  * @return {number}
  */
-proto.domopool.Limits.prototype.getWaitBeforeAllowCh = function() {
+proto.domopool.Limits.prototype.getChWaitBeforeAllow = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
@@ -1773,16 +1773,16 @@ proto.domopool.Limits.prototype.getWaitBeforeAllowCh = function() {
  * @param {number} value
  * @return {!proto.domopool.Limits} returns this
  */
-proto.domopool.Limits.prototype.setWaitBeforeAllowCh = function(value) {
+proto.domopool.Limits.prototype.setChWaitBeforeAllow = function(value) {
   return jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
 /**
- * optional uint32 wait_before_deny_ch = 8;
+ * optional uint32 ch_wait_before_deny = 8;
  * @return {number}
  */
-proto.domopool.Limits.prototype.getWaitBeforeDenyCh = function() {
+proto.domopool.Limits.prototype.getChWaitBeforeDeny = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
@@ -1791,7 +1791,7 @@ proto.domopool.Limits.prototype.getWaitBeforeDenyCh = function() {
  * @param {number} value
  * @return {!proto.domopool.Limits} returns this
  */
-proto.domopool.Limits.prototype.setWaitBeforeDenyCh = function(value) {
+proto.domopool.Limits.prototype.setChWaitBeforeDeny = function(value) {
   return jspb.Message.setProto3IntField(this, 8, value);
 };
 

@@ -1152,8 +1152,8 @@ pub struct Limits {
     pub ph_max: f32,
     pub ch_min: f32,
     pub ch_max: f32,
-    pub wait_before_allow_ch: u32,
-    pub wait_before_deny_ch: u32,
+    pub ch_wait_before_allow: u32,
+    pub ch_wait_before_deny: u32,
     pub ch_temp_threshold_high: f32,
     pub ch_temp_threshold_low: f32,
     pub wp_0_derive: f32,
@@ -1266,34 +1266,34 @@ impl Limits {
         self.ch_max = v;
     }
 
-    // uint32 wait_before_allow_ch = 7;
+    // uint32 ch_wait_before_allow = 7;
 
 
-    pub fn get_wait_before_allow_ch(&self) -> u32 {
-        self.wait_before_allow_ch
+    pub fn get_ch_wait_before_allow(&self) -> u32 {
+        self.ch_wait_before_allow
     }
-    pub fn clear_wait_before_allow_ch(&mut self) {
-        self.wait_before_allow_ch = 0;
-    }
-
-    // Param is passed by value, moved
-    pub fn set_wait_before_allow_ch(&mut self, v: u32) {
-        self.wait_before_allow_ch = v;
-    }
-
-    // uint32 wait_before_deny_ch = 8;
-
-
-    pub fn get_wait_before_deny_ch(&self) -> u32 {
-        self.wait_before_deny_ch
-    }
-    pub fn clear_wait_before_deny_ch(&mut self) {
-        self.wait_before_deny_ch = 0;
+    pub fn clear_ch_wait_before_allow(&mut self) {
+        self.ch_wait_before_allow = 0;
     }
 
     // Param is passed by value, moved
-    pub fn set_wait_before_deny_ch(&mut self, v: u32) {
-        self.wait_before_deny_ch = v;
+    pub fn set_ch_wait_before_allow(&mut self, v: u32) {
+        self.ch_wait_before_allow = v;
+    }
+
+    // uint32 ch_wait_before_deny = 8;
+
+
+    pub fn get_ch_wait_before_deny(&self) -> u32 {
+        self.ch_wait_before_deny
+    }
+    pub fn clear_ch_wait_before_deny(&mut self) {
+        self.ch_wait_before_deny = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_ch_wait_before_deny(&mut self, v: u32) {
+        self.ch_wait_before_deny = v;
     }
 
     // float ch_temp_threshold_high = 9;
@@ -1443,14 +1443,14 @@ impl ::protobuf::Message for Limits {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
                     let tmp = is.read_uint32()?;
-                    self.wait_before_allow_ch = tmp;
+                    self.ch_wait_before_allow = tmp;
                 },
                 8 => {
                     if wire_type != ::protobuf::wire_format::WireTypeVarint {
                         return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
                     }
                     let tmp = is.read_uint32()?;
-                    self.wait_before_deny_ch = tmp;
+                    self.ch_wait_before_deny = tmp;
                 },
                 9 => {
                     if wire_type != ::protobuf::wire_format::WireTypeFixed32 {
@@ -1524,11 +1524,11 @@ impl ::protobuf::Message for Limits {
         if self.ch_max != 0. {
             my_size += 5;
         }
-        if self.wait_before_allow_ch != 0 {
-            my_size += ::protobuf::rt::value_size(7, self.wait_before_allow_ch, ::protobuf::wire_format::WireTypeVarint);
+        if self.ch_wait_before_allow != 0 {
+            my_size += ::protobuf::rt::value_size(7, self.ch_wait_before_allow, ::protobuf::wire_format::WireTypeVarint);
         }
-        if self.wait_before_deny_ch != 0 {
-            my_size += ::protobuf::rt::value_size(8, self.wait_before_deny_ch, ::protobuf::wire_format::WireTypeVarint);
+        if self.ch_wait_before_deny != 0 {
+            my_size += ::protobuf::rt::value_size(8, self.ch_wait_before_deny, ::protobuf::wire_format::WireTypeVarint);
         }
         if self.ch_temp_threshold_high != 0. {
             my_size += 5;
@@ -1572,11 +1572,11 @@ impl ::protobuf::Message for Limits {
         if self.ch_max != 0. {
             os.write_float(6, self.ch_max)?;
         }
-        if self.wait_before_allow_ch != 0 {
-            os.write_uint32(7, self.wait_before_allow_ch)?;
+        if self.ch_wait_before_allow != 0 {
+            os.write_uint32(7, self.ch_wait_before_allow)?;
         }
-        if self.wait_before_deny_ch != 0 {
-            os.write_uint32(8, self.wait_before_deny_ch)?;
+        if self.ch_wait_before_deny != 0 {
+            os.write_uint32(8, self.ch_wait_before_deny)?;
         }
         if self.ch_temp_threshold_high != 0. {
             os.write_float(9, self.ch_temp_threshold_high)?;
@@ -1665,14 +1665,14 @@ impl ::protobuf::Message for Limits {
                 |m: &mut Limits| { &mut m.ch_max },
             ));
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
-                "wait_before_allow_ch",
-                |m: &Limits| { &m.wait_before_allow_ch },
-                |m: &mut Limits| { &mut m.wait_before_allow_ch },
+                "ch_wait_before_allow",
+                |m: &Limits| { &m.ch_wait_before_allow },
+                |m: &mut Limits| { &mut m.ch_wait_before_allow },
             ));
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint32>(
-                "wait_before_deny_ch",
-                |m: &Limits| { &m.wait_before_deny_ch },
-                |m: &mut Limits| { &mut m.wait_before_deny_ch },
+                "ch_wait_before_deny",
+                |m: &Limits| { &m.ch_wait_before_deny },
+                |m: &mut Limits| { &mut m.ch_wait_before_deny },
             ));
             fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeFloat>(
                 "ch_temp_threshold_high",
@@ -1726,8 +1726,8 @@ impl ::protobuf::Clear for Limits {
         self.ph_max = 0.;
         self.ch_min = 0.;
         self.ch_max = 0.;
-        self.wait_before_allow_ch = 0;
-        self.wait_before_deny_ch = 0;
+        self.ch_wait_before_allow = 0;
+        self.ch_wait_before_deny = 0;
         self.ch_temp_threshold_high = 0.;
         self.ch_temp_threshold_low = 0.;
         self.wp_0_derive = 0.;
@@ -7712,9 +7712,9 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     wpMin\x12\x15\n\x06wp_max\x18\x02\x20\x01(\x02R\x05wpMax\x12\x15\n\x06ph\
     _min\x18\x03\x20\x01(\x02R\x05phMin\x12\x15\n\x06ph_max\x18\x04\x20\x01(\
     \x02R\x05phMax\x12\x15\n\x06ch_min\x18\x05\x20\x01(\x02R\x05chMin\x12\
-    \x15\n\x06ch_max\x18\x06\x20\x01(\x02R\x05chMax\x12/\n\x14wait_before_al\
-    low_ch\x18\x07\x20\x01(\rR\x11waitBeforeAllowCh\x12-\n\x13wait_before_de\
-    ny_ch\x18\x08\x20\x01(\rR\x10waitBeforeDenyCh\x123\n\x16ch_temp_threshol\
+    \x15\n\x06ch_max\x18\x06\x20\x01(\x02R\x05chMax\x12/\n\x14ch_wait_before\
+    _allow\x18\x07\x20\x01(\rR\x11chWaitBeforeAllow\x12-\n\x13ch_wait_before\
+    _deny\x18\x08\x20\x01(\rR\x10chWaitBeforeDeny\x123\n\x16ch_temp_threshol\
     d_high\x18\t\x20\x01(\x02R\x13chTempThresholdHigh\x121\n\x15ch_temp_thre\
     shold_low\x18\n\x20\x01(\x02R\x12chTempThresholdLow\x12\x1e\n\x0bwp_0_de\
     rive\x18\x0b\x20\x01(\x02R\twp0Derive\x12\x15\n\x06tw_min\x18\x0c\x20\

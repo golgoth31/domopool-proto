@@ -40,8 +40,8 @@ message Limits {
   float ch_min = 5;
   float ch_max = 6;
   // number of hour to wait when temp is above 15 to activate ch
-  uint32 wait_before_allow_ch = 7;
-  uint32 wait_before_deny_ch = 8;
+  uint32 ch_wait_before_allow = 7;
+  uint32 ch_wait_before_deny = 8;
   // temp threshold to activate ch
   float ch_temp_threshold_high = 9;
   float ch_temp_threshold_low = 10;

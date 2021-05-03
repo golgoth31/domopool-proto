@@ -1200,7 +1200,7 @@ proto.domopool.Temp.toObject = function(includeInstance, msg) {
   var f, obj = {
     enabled: jspb.Message.getBooleanFieldWithDefault(msg, 1, false),
     init: jspb.Message.getBooleanFieldWithDefault(msg, 2, false),
-    addr: jspb.Message.getFieldWithDefault(msg, 8, "")
+    addr: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -1245,7 +1245,7 @@ proto.domopool.Temp.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setInit(value);
       break;
-    case 8:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setAddr(value);
       break;
@@ -1295,7 +1295,7 @@ proto.domopool.Temp.serializeBinaryToWriter = function(message, writer) {
   f = message.getAddr();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      3,
       f
     );
   }
@@ -1339,11 +1339,11 @@ proto.domopool.Temp.prototype.setInit = function(value) {
 
 
 /**
- * optional string addr = 8;
+ * optional string addr = 3;
  * @return {string}
  */
 proto.domopool.Temp.prototype.getAddr = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
@@ -1352,7 +1352,7 @@ proto.domopool.Temp.prototype.getAddr = function() {
  * @return {!proto.domopool.Temp} returns this
  */
 proto.domopool.Temp.prototype.setAddr = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

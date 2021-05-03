@@ -376,7 +376,7 @@ extern "C" {
 #define domopool_States_recover_tag              11
 #define domopool_Temp_enabled_tag                1
 #define domopool_Temp_init_tag                   2
-#define domopool_Temp_addr_tag                   8
+#define domopool_Temp_addr_tag                   3
 #define domopool_Tests_enabled_tag               1
 #define domopool_Tests_twater_tag                2
 #define domopool_Tests_tamb_tag                  3
@@ -469,7 +469,7 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  ntp,               8)
 #define domopool_Temp_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     enabled,           1) \
 X(a, STATIC,   SINGULAR, BOOL,     init,              2) \
-X(a, STATIC,   SINGULAR, STRING,   addr,              8)
+X(a, STATIC,   SINGULAR, STRING,   addr,              3)
 #define domopool_Temp_CALLBACK NULL
 #define domopool_Temp_DEFAULT NULL
 

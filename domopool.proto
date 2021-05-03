@@ -29,7 +29,7 @@ message Network {
 message Temp {
   bool enabled = 1;
   bool init = 2;
-  string addr = 8;
+  string addr = 3;
   // repeated uint32 addr = 8;
 }
 

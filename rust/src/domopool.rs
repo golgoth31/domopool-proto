@@ -967,7 +967,7 @@ impl Temp {
         self.init = v;
     }
 
-    // string addr = 8;
+    // string addr = 3;
 
 
     pub fn get_addr(&self) -> &str {
@@ -1017,7 +1017,7 @@ impl ::protobuf::Message for Temp {
                     let tmp = is.read_bool()?;
                     self.init = tmp;
                 },
-                8 => {
+                3 => {
                     ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.addr)?;
                 },
                 _ => {
@@ -1039,7 +1039,7 @@ impl ::protobuf::Message for Temp {
             my_size += 2;
         }
         if !self.addr.is_empty() {
-            my_size += ::protobuf::rt::string_size(8, &self.addr);
+            my_size += ::protobuf::rt::string_size(3, &self.addr);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
@@ -1054,7 +1054,7 @@ impl ::protobuf::Message for Temp {
             os.write_bool(2, self.init)?;
         }
         if !self.addr.is_empty() {
-            os.write_string(8, &self.addr)?;
+            os.write_string(3, &self.addr)?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -7778,7 +7778,7 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12\"\n\x04mqtt\x18\x07\x20\x01(\x0b2\x0e.domopool.MqttR\x04mqtt\x12\
     \x1f\n\x03ntp\x18\x08\x20\x01(\x0b2\r.domopool.NTPR\x03ntp\"H\n\x04Temp\
     \x12\x18\n\x07enabled\x18\x01\x20\x01(\x08R\x07enabled\x12\x12\n\x04init\
-    \x18\x02\x20\x01(\x08R\x04init\x12\x12\n\x04addr\x18\x08\x20\x01(\tR\x04\
+    \x18\x02\x20\x01(\x08R\x04init\x12\x12\n\x04addr\x18\x03\x20\x01(\tR\x04\
     addr\"\xc3\x03\n\x06Limits\x12\x15\n\x06wp_min\x18\x01\x20\x01(\x02R\x05\
     wpMin\x12\x15\n\x06wp_max\x18\x02\x20\x01(\x02R\x05wpMax\x12\x15\n\x06ph\
     _min\x18\x03\x20\x01(\x02R\x05phMin\x12\x15\n\x06ph_max\x18\x04\x20\x01(\

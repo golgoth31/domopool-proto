@@ -124,6 +124,7 @@ message Alarms {
   bool tw_high = 11;
   bool tamb_frost = 12;
   MqttAlarms mqtt = 13;
+  bool reboot = 14;
 }
 
 message Tests {

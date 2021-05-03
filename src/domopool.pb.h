@@ -177,6 +177,7 @@ typedef struct _domopool_Alarms {
     bool tamb_frost; 
     bool has_mqtt;
     domopool_MqttAlarms mqtt; 
+    bool reboot; 
 } domopool_Alarms;
 
 typedef struct _domopool_Infos { 
@@ -270,7 +271,7 @@ extern "C" {
 #define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
 #define domopool_MqttAlarms_init_default         {0, 0, 0, 0}
-#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default}
+#define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default, 0}
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -289,7 +290,7 @@ extern "C" {
 #define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
 #define domopool_MqttAlarms_init_zero            {0, 0, 0, 0}
-#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero}
+#define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero, 0}
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
@@ -403,6 +404,7 @@ extern "C" {
 #define domopool_Alarms_tw_high_tag              11
 #define domopool_Alarms_tamb_frost_tag           12
 #define domopool_Alarms_mqtt_tag                 13
+#define domopool_Alarms_reboot_tag               14
 #define domopool_Infos_compile_tag               1
 #define domopool_Infos_board_name_tag            2
 #define domopool_Infos_versions_tag              3
@@ -574,7 +576,8 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  ads1115,           9) \
 X(a, STATIC,   SINGULAR, BOOL,     tw_frost,         10) \
 X(a, STATIC,   SINGULAR, BOOL,     tw_high,          11) \
 X(a, STATIC,   SINGULAR, BOOL,     tamb_frost,       12) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  mqtt,             13)
+X(a, STATIC,   OPTIONAL, MESSAGE,  mqtt,             13) \
+X(a, STATIC,   SINGULAR, BOOL,     reboot,           14)
 #define domopool_Alarms_CALLBACK NULL
 #define domopool_Alarms_DEFAULT NULL
 #define domopool_Alarms_ads1115_MSGTYPE domopool_Ads115Alarms
@@ -715,9 +718,9 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 
 /* Maximum encoded size of messages (where known) */
 #define domopool_Ads115Alarms_size               6
-#define domopool_Alarms_size                     38
+#define domopool_Alarms_size                     40
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1455
+#define domopool_Config_size                     1457
 #define domopool_Global_size                     33
 #define domopool_Infos_size                      478
 #define domopool_Limits_size                     72

@@ -29,7 +29,8 @@ message Network {
 message Temp {
   bool enabled = 1;
   bool init = 2;
-  repeated uint32 addr = 8;
+  string addr = 8;
+  // repeated uint32 addr = 8;
 }
 
 message Limits {

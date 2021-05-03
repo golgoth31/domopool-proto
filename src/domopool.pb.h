@@ -138,8 +138,7 @@ typedef struct _domopool_States {
 typedef struct _domopool_Temp { 
     bool enabled; 
     bool init; 
-    pb_size_t addr_count;
-    uint32_t addr[8]; 
+    char addr[31]; /* repeated uint32 addr = 8; */
 } domopool_Temp;
 
 typedef struct _domopool_Tests { 
@@ -263,7 +262,7 @@ extern "C" {
 #define domopool_NTP_init_default                {0, "", 0}
 #define domopool_Mqtt_init_default               {0, ""}
 #define domopool_Network_init_default            {0, "", "", "", "", 0, false, domopool_Mqtt_init_default, false, domopool_NTP_init_default}
-#define domopool_Temp_init_default               {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
+#define domopool_Temp_init_default               {0, 0, ""}
 #define domopool_Limits_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_default       {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, 0, 0, 0}
@@ -282,7 +281,7 @@ extern "C" {
 #define domopool_NTP_init_zero                   {0, "", 0}
 #define domopool_Mqtt_init_zero                  {0, ""}
 #define domopool_Network_init_zero               {0, "", "", "", "", 0, false, domopool_Mqtt_init_zero, false, domopool_NTP_init_zero}
-#define domopool_Temp_init_zero                  {0, 0, 0, {0, 0, 0, 0, 0, 0, 0, 0}}
+#define domopool_Temp_init_zero                  {0, 0, ""}
 #define domopool_Limits_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_AnalogSensor_init_zero          {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, 0, 0, 0}
@@ -470,7 +469,7 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  ntp,               8)
 #define domopool_Temp_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     enabled,           1) \
 X(a, STATIC,   SINGULAR, BOOL,     init,              2) \
-X(a, STATIC,   REPEATED, UINT32,   addr,              8)
+X(a, STATIC,   SINGULAR, STRING,   addr,              8)
 #define domopool_Temp_CALLBACK NULL
 #define domopool_Temp_DEFAULT NULL
 
@@ -720,7 +719,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     40
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1457
+#define domopool_Config_size                     1409
 #define domopool_Global_size                     33
 #define domopool_Infos_size                      478
 #define domopool_Limits_size                     72
@@ -731,9 +730,9 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Network_size                    348
 #define domopool_Pump_size                       24
 #define domopool_Relay_size                      16
-#define domopool_Sensors_size                    311
+#define domopool_Sensors_size                    263
 #define domopool_States_size                     22
-#define domopool_Temp_size                       52
+#define domopool_Temp_size                       36
 #define domopool_Tests_size                      22
 #define domopool_Versions_size                   215
 

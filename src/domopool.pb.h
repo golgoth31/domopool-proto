@@ -20,7 +20,8 @@ typedef enum _domopool_Relay_names {
     domopool_Relay_names_filter = 0, 
     domopool_Relay_names_ch = 1, 
     domopool_Relay_names_ph = 2, 
-    domopool_Relay_names_light = 3 
+    domopool_Relay_names_all = 3, 
+    domopool_Relay_names_light = 4 
 } domopool_Relay_names;
 
 /* Struct definitions */

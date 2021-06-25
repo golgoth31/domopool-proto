@@ -206,7 +206,8 @@ enum Relay_names {
   filter = 0;
   ch = 1;
   ph = 2;
-  light = 3;
+  all = 3;
+  light = 4;
 }
 
 message Relay {

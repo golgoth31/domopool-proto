@@ -151,14 +151,14 @@ typedef struct _domopool_Tests {
 } domopool_Tests;
 
 typedef struct _domopool_Versions { 
-    char domopool[10]; 
+    char domopool[20]; 
     uint32_t platformio; 
     char esp_idf[128]; 
     char xtensa[10]; 
     char tft_espi[10]; 
     char dallastemp[10]; 
     char ads1115[10]; 
-    char nanopb[12]; 
+    char nanopb[20]; 
     char mqtt[10]; 
     char arduinojson[10]; 
 } domopool_Versions;
@@ -723,9 +723,9 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     40
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1420
+#define domopool_Config_size                     1438
 #define domopool_Global_size                     33
-#define domopool_Infos_size                      489
+#define domopool_Infos_size                      507
 #define domopool_Limits_size                     72
 #define domopool_Metrics_size                    84
 #define domopool_MqttAlarms_size                 8
@@ -738,7 +738,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_States_size                     22
 #define domopool_Temp_size                       36
 #define domopool_Tests_size                      22
-#define domopool_Versions_size                   226
+#define domopool_Versions_size                   244
 
 #ifdef __cplusplus
 } /* extern "C" */

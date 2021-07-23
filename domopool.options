@@ -7,12 +7,12 @@ domopool.Network.gateway max_size:15
 domopool.Network.dns max_size:15
 domopool.Infos.compile max_size:128
 domopool.Infos.board_name max_size:128
-domopool.Versions.domopool max_size:10
+domopool.Versions.domopool max_size:20
 domopool.Versions.esp_idf max_size:128
 domopool.Versions.xtensa max_size:10
 domopool.Versions.tft_espi max_size:10
 domopool.Versions.dallastemp max_size:10
-domopool.Versions.nanopb max_size:12
+domopool.Versions.nanopb max_size:20
 domopool.Versions.ads1115 max_size:10
 domopool.Versions.mqtt max_size:10
 domopool.Versions.arduinojson max_size:10

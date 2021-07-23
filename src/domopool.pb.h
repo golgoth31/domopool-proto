@@ -160,6 +160,7 @@ typedef struct _domopool_Versions {
     char ads1115[10]; 
     char nanopb[12]; 
     char mqtt[10]; 
+    char arduinojson[10]; 
 } domopool_Versions;
 
 typedef struct _domopool_Alarms { 
@@ -275,7 +276,7 @@ extern "C" {
 #define domopool_Tests_init_default              {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_default            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_default             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define domopool_Versions_init_default           {"", 0, "", "", "", "", "", "", ""}
+#define domopool_Versions_init_default           {"", 0, "", "", "", "", "", "", "", ""}
 #define domopool_Infos_init_default              {"", "", false, domopool_Versions_init_default}
 #define domopool_Config_init_default             {false, domopool_Network_init_default, false, domopool_Sensors_init_default, false, domopool_Global_init_default, false, domopool_Pump_init_default, false, domopool_Metrics_init_default, false, domopool_States_init_default, false, domopool_Alarms_init_default, false, domopool_Tests_init_default, false, domopool_Infos_init_default, false, domopool_Limits_init_default}
 #define domopool_Relay_init_default              {_domopool_Relay_states_MIN, _domopool_Relay_names_MIN, 0, 0}
@@ -294,7 +295,7 @@ extern "C" {
 #define domopool_Tests_init_zero                 {0, 0, 0, 0, 0}
 #define domopool_Metrics_init_zero               {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""}
 #define domopool_States_init_zero                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define domopool_Versions_init_zero              {"", 0, "", "", "", "", "", "", ""}
+#define domopool_Versions_init_zero              {"", 0, "", "", "", "", "", "", "", ""}
 #define domopool_Infos_init_zero                 {"", "", false, domopool_Versions_init_zero}
 #define domopool_Config_init_zero                {false, domopool_Network_init_zero, false, domopool_Sensors_init_zero, false, domopool_Global_init_zero, false, domopool_Pump_init_zero, false, domopool_Metrics_init_zero, false, domopool_States_init_zero, false, domopool_Alarms_init_zero, false, domopool_Tests_init_zero, false, domopool_Infos_init_zero, false, domopool_Limits_init_zero}
 #define domopool_Relay_init_zero                 {_domopool_Relay_states_MIN, _domopool_Relay_names_MIN, 0, 0}
@@ -392,6 +393,7 @@ extern "C" {
 #define domopool_Versions_ads1115_tag            8
 #define domopool_Versions_nanopb_tag             9
 #define domopool_Versions_mqtt_tag               10
+#define domopool_Versions_arduinojson_tag        11
 #define domopool_Alarms_filter_tag               1
 #define domopool_Alarms_ph_tag                   2
 #define domopool_Alarms_ch_tag                   3
@@ -631,7 +633,8 @@ X(a, STATIC,   SINGULAR, STRING,   tft_espi,          6) \
 X(a, STATIC,   SINGULAR, STRING,   dallastemp,        7) \
 X(a, STATIC,   SINGULAR, STRING,   ads1115,           8) \
 X(a, STATIC,   SINGULAR, STRING,   nanopb,            9) \
-X(a, STATIC,   SINGULAR, STRING,   mqtt,             10)
+X(a, STATIC,   SINGULAR, STRING,   mqtt,             10) \
+X(a, STATIC,   SINGULAR, STRING,   arduinojson,      11)
 #define domopool_Versions_CALLBACK NULL
 #define domopool_Versions_DEFAULT NULL
 
@@ -720,9 +723,9 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     40
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1409
+#define domopool_Config_size                     1420
 #define domopool_Global_size                     33
-#define domopool_Infos_size                      478
+#define domopool_Infos_size                      489
 #define domopool_Limits_size                     72
 #define domopool_Metrics_size                    84
 #define domopool_MqttAlarms_size                 8
@@ -735,7 +738,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_States_size                     22
 #define domopool_Temp_size                       36
 #define domopool_Tests_size                      22
-#define domopool_Versions_size                   215
+#define domopool_Versions_size                   226
 
 #ifdef __cplusplus
 } /* extern "C" */

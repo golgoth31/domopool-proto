@@ -175,6 +175,7 @@ message Versions {
   string ads1115 = 8;
   string nanopb = 9;
   string mqtt = 10;
+  string arduinojson = 11;
 }
 
 message Infos {

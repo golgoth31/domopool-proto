@@ -28,7 +28,7 @@ goog.exportSymbol('proto.domopool.MqttAlarms', null, global);
 goog.exportSymbol('proto.domopool.NTP', null, global);
 goog.exportSymbol('proto.domopool.Network', null, global);
 goog.exportSymbol('proto.domopool.Pump', null, global);
-goog.exportSymbol('proto.domopool.PumpTime', null, global);
+goog.exportSymbol('proto.domopool.Pump_time', null, global);
 goog.exportSymbol('proto.domopool.Relay', null, global);
 goog.exportSymbol('proto.domopool.Relay_names', null, global);
 goog.exportSymbol('proto.domopool.Relay_states', null, global);
@@ -3154,7 +3154,7 @@ proto.domopool.Pump.toObject = function(includeInstance, msg) {
     forceCheck: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     forceDuration: jspb.Message.getFieldWithDefault(msg, 7, 0),
     forceStartTime: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    pumpTime: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    time: jspb.Message.getFieldWithDefault(msg, 9, 0)
   };
 
   if (includeInstance) {
@@ -3224,8 +3224,8 @@ proto.domopool.Pump.deserializeBinaryFromReader = function(msg, reader) {
       msg.setForceStartTime(value);
       break;
     case 9:
-      var value = /** @type {!proto.domopool.PumpTime} */ (reader.readEnum());
-      msg.setPumpTime(value);
+      var value = /** @type {!proto.domopool.Pump_time} */ (reader.readEnum());
+      msg.setTime(value);
       break;
     default:
       reader.skipField();
@@ -3312,7 +3312,7 @@ proto.domopool.Pump.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getPumpTime();
+  f = message.getTime();
   if (f !== 0.0) {
     writer.writeEnum(
       9,
@@ -3467,19 +3467,19 @@ proto.domopool.Pump.prototype.setForceStartTime = function(value) {
 
 
 /**
- * optional PumpTime pump_time = 9;
- * @return {!proto.domopool.PumpTime}
+ * optional Pump_time time = 9;
+ * @return {!proto.domopool.Pump_time}
  */
-proto.domopool.Pump.prototype.getPumpTime = function() {
-  return /** @type {!proto.domopool.PumpTime} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+proto.domopool.Pump.prototype.getTime = function() {
+  return /** @type {!proto.domopool.Pump_time} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
 };
 
 
 /**
- * @param {!proto.domopool.PumpTime} value
+ * @param {!proto.domopool.Pump_time} value
  * @return {!proto.domopool.Pump} returns this
  */
-proto.domopool.Pump.prototype.setPumpTime = function(value) {
+proto.domopool.Pump.prototype.setTime = function(value) {
   return jspb.Message.setProto3EnumField(this, 9, value);
 };
 
@@ -6980,7 +6980,7 @@ proto.domopool.Relay.prototype.setStartTime = function(value) {
 /**
  * @enum {number}
  */
-proto.domopool.PumpTime = {
+proto.domopool.Pump_time = {
   DYNAMIC: 0,
   MID_DAY: 1,
   FULL_DAY: 2

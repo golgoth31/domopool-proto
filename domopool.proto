@@ -88,6 +88,12 @@ message Global {
   uint32 wdt_duration = 7;
 }
 
+message PumpTime {
+  bool dynamic = 1;
+  bool mid_day = 2;
+  bool full_day = 3;
+}
+
 message Pump {
   bool force_filter = 1;
   bool force_ph = 2;
@@ -97,6 +103,7 @@ message Pump {
   bool force_check = 6;
   uint32 force_duration = 7;
   uint32 force_start_time = 8;
+  PumpTime pump_time = 9;
 }
 
 message Ads115Alarms {

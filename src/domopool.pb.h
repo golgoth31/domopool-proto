@@ -104,16 +104,11 @@ typedef struct _domopool_NTP {
     uint32_t timezone; /* UTC offset in s: UTC+1=3600 */
 } domopool_NTP;
 
-typedef struct _domopool_Pump { 
-    bool force_filter; 
-    bool force_ph; 
-    bool force_ch; 
-    bool automatic; 
-    bool recover; 
-    bool force_check; 
-    uint32_t force_duration; 
-    uint32_t force_start_time; 
-} domopool_Pump;
+typedef struct _domopool_PumpTime { 
+    bool dynamic; 
+    bool mid_day; 
+    bool full_day; 
+} domopool_PumpTime;
 
 typedef struct _domopool_Relay { 
     domopool_Relay_states state; 
@@ -201,6 +196,19 @@ typedef struct _domopool_Network {
     domopool_NTP ntp; 
 } domopool_Network;
 
+typedef struct _domopool_Pump { 
+    bool force_filter; 
+    bool force_ph; 
+    bool force_ch; 
+    bool automatic; 
+    bool recover; 
+    bool force_check; 
+    uint32_t force_duration; 
+    uint32_t force_start_time; 
+    bool has_pump_time;
+    domopool_PumpTime pump_time; 
+} domopool_Pump;
+
 typedef struct _domopool_Sensors { 
     bool has_twin;
     domopool_Temp twin; 
@@ -269,7 +277,8 @@ extern "C" {
 #define domopool_AnalogSensor_init_default       {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, 0, 0, 0}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_PumpTime_init_default           {0, 0, 0}
+#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0, 0, false, domopool_PumpTime_init_default}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
 #define domopool_MqttAlarms_init_default         {0, 0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default, 0}
@@ -288,7 +297,8 @@ extern "C" {
 #define domopool_AnalogSensor_init_zero          {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, 0, 0, 0}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0, 0}
+#define domopool_PumpTime_init_zero              {0, 0, 0}
+#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0, 0, false, domopool_PumpTime_init_zero}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
 #define domopool_MqttAlarms_init_zero            {0, 0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero, 0}
@@ -353,14 +363,9 @@ extern "C" {
 #define domopool_NTP_day_light_tag               1
 #define domopool_NTP_server_tag                  2
 #define domopool_NTP_timezone_tag                3
-#define domopool_Pump_force_filter_tag           1
-#define domopool_Pump_force_ph_tag               2
-#define domopool_Pump_force_ch_tag               3
-#define domopool_Pump_automatic_tag              4
-#define domopool_Pump_recover_tag                5
-#define domopool_Pump_force_check_tag            6
-#define domopool_Pump_force_duration_tag         7
-#define domopool_Pump_force_start_time_tag       8
+#define domopool_PumpTime_dynamic_tag            1
+#define domopool_PumpTime_mid_day_tag            2
+#define domopool_PumpTime_full_day_tag           3
 #define domopool_Relay_state_tag                 1
 #define domopool_Relay_relay_tag                 2
 #define domopool_Relay_duration_tag              3
@@ -418,6 +423,15 @@ extern "C" {
 #define domopool_Network_allow_post_tag          6
 #define domopool_Network_mqtt_tag                7
 #define domopool_Network_ntp_tag                 8
+#define domopool_Pump_force_filter_tag           1
+#define domopool_Pump_force_ph_tag               2
+#define domopool_Pump_force_ch_tag               3
+#define domopool_Pump_automatic_tag              4
+#define domopool_Pump_recover_tag                5
+#define domopool_Pump_force_check_tag            6
+#define domopool_Pump_force_duration_tag         7
+#define domopool_Pump_force_start_time_tag       8
+#define domopool_Pump_pump_time_tag              9
 #define domopool_Sensors_twin_tag                1
 #define domopool_Sensors_twout_tag               2
 #define domopool_Sensors_tamb_tag                3
@@ -539,6 +553,13 @@ X(a, STATIC,   SINGULAR, UINT32,   wdt_duration,      7)
 #define domopool_Global_CALLBACK NULL
 #define domopool_Global_DEFAULT NULL
 
+#define domopool_PumpTime_FIELDLIST(X, a) \
+X(a, STATIC,   SINGULAR, BOOL,     dynamic,           1) \
+X(a, STATIC,   SINGULAR, BOOL,     mid_day,           2) \
+X(a, STATIC,   SINGULAR, BOOL,     full_day,          3)
+#define domopool_PumpTime_CALLBACK NULL
+#define domopool_PumpTime_DEFAULT NULL
+
 #define domopool_Pump_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     force_filter,      1) \
 X(a, STATIC,   SINGULAR, BOOL,     force_ph,          2) \
@@ -547,9 +568,11 @@ X(a, STATIC,   SINGULAR, BOOL,     automatic,         4) \
 X(a, STATIC,   SINGULAR, BOOL,     recover,           5) \
 X(a, STATIC,   SINGULAR, BOOL,     force_check,       6) \
 X(a, STATIC,   SINGULAR, UINT32,   force_duration,    7) \
-X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   8)
+X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   8) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  pump_time,         9)
 #define domopool_Pump_CALLBACK NULL
 #define domopool_Pump_DEFAULT NULL
+#define domopool_Pump_pump_time_MSGTYPE domopool_PumpTime
 
 #define domopool_Ads115Alarms_FIELDLIST(X, a) \
 X(a, STATIC,   SINGULAR, BOOL,     not_ready,         1) \
@@ -686,6 +709,7 @@ extern const pb_msgdesc_t domopool_Limits_msg;
 extern const pb_msgdesc_t domopool_AnalogSensor_msg;
 extern const pb_msgdesc_t domopool_Sensors_msg;
 extern const pb_msgdesc_t domopool_Global_msg;
+extern const pb_msgdesc_t domopool_PumpTime_msg;
 extern const pb_msgdesc_t domopool_Pump_msg;
 extern const pb_msgdesc_t domopool_Ads115Alarms_msg;
 extern const pb_msgdesc_t domopool_MqttAlarms_msg;
@@ -707,6 +731,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_AnalogSensor_fields &domopool_AnalogSensor_msg
 #define domopool_Sensors_fields &domopool_Sensors_msg
 #define domopool_Global_fields &domopool_Global_msg
+#define domopool_PumpTime_fields &domopool_PumpTime_msg
 #define domopool_Pump_fields &domopool_Pump_msg
 #define domopool_Ads115Alarms_fields &domopool_Ads115Alarms_msg
 #define domopool_MqttAlarms_fields &domopool_MqttAlarms_msg
@@ -723,7 +748,7 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Ads115Alarms_size               6
 #define domopool_Alarms_size                     40
 #define domopool_AnalogSensor_size               37
-#define domopool_Config_size                     1438
+#define domopool_Config_size                     1446
 #define domopool_Global_size                     33
 #define domopool_Infos_size                      507
 #define domopool_Limits_size                     72
@@ -732,7 +757,8 @@ extern const pb_msgdesc_t domopool_Relay_msg;
 #define domopool_Mqtt_size                       132
 #define domopool_NTP_size                        142
 #define domopool_Network_size                    348
-#define domopool_Pump_size                       24
+#define domopool_PumpTime_size                   6
+#define domopool_Pump_size                       32
 #define domopool_Relay_size                      16
 #define domopool_Sensors_size                    263
 #define domopool_States_size                     22

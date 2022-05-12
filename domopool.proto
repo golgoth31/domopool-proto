@@ -88,10 +88,10 @@ message Global {
   uint32 wdt_duration = 7;
 }
 
-message PumpTime {
-  bool dynamic = 1;
-  bool mid_day = 2;
-  bool full_day = 3;
+enum PumpTime {
+  dynamic = 0;
+  mid_day = 1;
+  full_day = 2;
 }
 
 message Pump {

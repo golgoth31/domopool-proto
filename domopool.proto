@@ -88,9 +88,9 @@ message Global {
   uint32 wdt_duration = 7;
 }
 
-enum Pump_time {
+enum Pump_timing {
   dynamic = 0;
-  mid_day = 1;
+  half_day = 1;
   full_day = 2;
 }
 
@@ -103,7 +103,7 @@ message Pump {
   bool force_check = 6;
   uint32 force_duration = 7;
   uint32 force_start_time = 8;
-  Pump_time time = 9;
+  Pump_timing timing = 9;
 }
 
 message Ads115Alarms {

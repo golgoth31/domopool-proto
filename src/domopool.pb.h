@@ -10,11 +10,11 @@
 #endif
 
 /* Enum definitions */
-typedef enum _domopool_Pump_time { 
-    domopool_Pump_time_dynamic = 0, 
-    domopool_Pump_time_mid_day = 1, 
-    domopool_Pump_time_full_day = 2 
-} domopool_Pump_time;
+typedef enum _domopool_Pump_timing { 
+    domopool_Pump_timing_dynamic = 0, 
+    domopool_Pump_timing_half_day = 1, 
+    domopool_Pump_timing_full_day = 2 
+} domopool_Pump_timing;
 
 typedef enum _domopool_Relay_states { 
     domopool_Relay_states_auto = 0, 
@@ -119,7 +119,7 @@ typedef struct _domopool_Pump {
     bool force_check; 
     uint32_t force_duration; 
     uint32_t force_start_time; 
-    domopool_Pump_time time; 
+    domopool_Pump_timing timing; 
 } domopool_Pump;
 
 typedef struct _domopool_Relay { 
@@ -254,9 +254,9 @@ typedef struct _domopool_Config {
 
 
 /* Helper constants for enums */
-#define _domopool_Pump_time_MIN domopool_Pump_time_dynamic
-#define _domopool_Pump_time_MAX domopool_Pump_time_full_day
-#define _domopool_Pump_time_ARRAYSIZE ((domopool_Pump_time)(domopool_Pump_time_full_day+1))
+#define _domopool_Pump_timing_MIN domopool_Pump_timing_dynamic
+#define _domopool_Pump_timing_MAX domopool_Pump_timing_full_day
+#define _domopool_Pump_timing_ARRAYSIZE ((domopool_Pump_timing)(domopool_Pump_timing_full_day+1))
 
 #define _domopool_Relay_states_MIN domopool_Relay_states_auto
 #define _domopool_Relay_states_MAX domopool_Relay_states_stop
@@ -280,7 +280,7 @@ extern "C" {
 #define domopool_AnalogSensor_init_default       {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_default            {false, domopool_Temp_init_default, false, domopool_Temp_init_default, false, domopool_Temp_init_default, 0, 0, 0, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, false, domopool_AnalogSensor_init_default, 0, 0, 0}
 #define domopool_Global_init_default             {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0, 0, _domopool_Pump_time_MIN}
+#define domopool_Pump_init_default               {0, 0, 0, 0, 0, 0, 0, 0, _domopool_Pump_timing_MIN}
 #define domopool_Ads115Alarms_init_default       {0, 0, 0}
 #define domopool_MqttAlarms_init_default         {0, 0, 0, 0}
 #define domopool_Alarms_init_default             {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_default, 0, 0, 0, false, domopool_MqttAlarms_init_default, 0}
@@ -299,7 +299,7 @@ extern "C" {
 #define domopool_AnalogSensor_init_zero          {0, 0, 0, 0, 0, 0, 0, 0}
 #define domopool_Sensors_init_zero               {false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, false, domopool_Temp_init_zero, 0, 0, 0, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, false, domopool_AnalogSensor_init_zero, 0, 0, 0}
 #define domopool_Global_init_zero                {0, 0, 0, 0, 0, 0, 0}
-#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0, 0, _domopool_Pump_time_MIN}
+#define domopool_Pump_init_zero                  {0, 0, 0, 0, 0, 0, 0, 0, _domopool_Pump_timing_MIN}
 #define domopool_Ads115Alarms_init_zero          {0, 0, 0}
 #define domopool_MqttAlarms_init_zero            {0, 0, 0, 0}
 #define domopool_Alarms_init_zero                {0, 0, 0, 0, 0, 0, 0, false, domopool_Ads115Alarms_init_zero, 0, 0, 0, false, domopool_MqttAlarms_init_zero, 0}
@@ -372,7 +372,7 @@ extern "C" {
 #define domopool_Pump_force_check_tag            6
 #define domopool_Pump_force_duration_tag         7
 #define domopool_Pump_force_start_time_tag       8
-#define domopool_Pump_time_tag                   9
+#define domopool_Pump_timing_tag                 9
 #define domopool_Relay_state_tag                 1
 #define domopool_Relay_relay_tag                 2
 #define domopool_Relay_duration_tag              3
@@ -560,7 +560,7 @@ X(a, STATIC,   SINGULAR, BOOL,     recover,           5) \
 X(a, STATIC,   SINGULAR, BOOL,     force_check,       6) \
 X(a, STATIC,   SINGULAR, UINT32,   force_duration,    7) \
 X(a, STATIC,   SINGULAR, UINT32,   force_start_time,   8) \
-X(a, STATIC,   SINGULAR, UENUM,    time,              9)
+X(a, STATIC,   SINGULAR, UENUM,    timing,            9)
 #define domopool_Pump_CALLBACK NULL
 #define domopool_Pump_DEFAULT NULL
 

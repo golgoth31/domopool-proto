@@ -3190,7 +3190,7 @@ pub struct Pump {
     pub force_check: bool,
     pub force_duration: u32,
     pub force_start_time: u32,
-    pub time: Pump_time,
+    pub timing: Pump_timing,
     // special fields
     pub unknown_fields: ::protobuf::UnknownFields,
     pub cached_size: ::protobuf::CachedSize,
@@ -3327,19 +3327,19 @@ impl Pump {
         self.force_start_time = v;
     }
 
-    // .domopool.Pump_time time = 9;
+    // .domopool.Pump_timing timing = 9;
 
 
-    pub fn get_time(&self) -> Pump_time {
-        self.time
+    pub fn get_timing(&self) -> Pump_timing {
+        self.timing
     }
-    pub fn clear_time(&mut self) {
-        self.time = Pump_time::dynamic;
+    pub fn clear_timing(&mut self) {
+        self.timing = Pump_timing::dynamic;
     }
 
     // Param is passed by value, moved
-    pub fn set_time(&mut self, v: Pump_time) {
-        self.time = v;
+    pub fn set_timing(&mut self, v: Pump_timing) {
+        self.timing = v;
     }
 }
 
@@ -3409,7 +3409,7 @@ impl ::protobuf::Message for Pump {
                     self.force_start_time = tmp;
                 },
                 9 => {
-                    ::protobuf::rt::read_proto3_enum_with_unknown_fields_into(wire_type, is, &mut self.time, 9, &mut self.unknown_fields)?
+                    ::protobuf::rt::read_proto3_enum_with_unknown_fields_into(wire_type, is, &mut self.timing, 9, &mut self.unknown_fields)?
                 },
                 _ => {
                     ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
@@ -3447,8 +3447,8 @@ impl ::protobuf::Message for Pump {
         if self.force_start_time != 0 {
             my_size += ::protobuf::rt::value_size(8, self.force_start_time, ::protobuf::wire_format::WireTypeVarint);
         }
-        if self.time != Pump_time::dynamic {
-            my_size += ::protobuf::rt::enum_size(9, self.time);
+        if self.timing != Pump_timing::dynamic {
+            my_size += ::protobuf::rt::enum_size(9, self.timing);
         }
         my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
         self.cached_size.set(my_size);
@@ -3480,8 +3480,8 @@ impl ::protobuf::Message for Pump {
         if self.force_start_time != 0 {
             os.write_uint32(8, self.force_start_time)?;
         }
-        if self.time != Pump_time::dynamic {
-            os.write_enum(9, ::protobuf::ProtobufEnum::value(&self.time))?;
+        if self.timing != Pump_timing::dynamic {
+            os.write_enum(9, ::protobuf::ProtobufEnum::value(&self.timing))?;
         }
         os.write_unknown_fields(self.get_unknown_fields())?;
         ::std::result::Result::Ok(())
@@ -3561,10 +3561,10 @@ impl ::protobuf::Message for Pump {
                 |m: &Pump| { &m.force_start_time },
                 |m: &mut Pump| { &mut m.force_start_time },
             ));
-            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<Pump_time>>(
-                "time",
-                |m: &Pump| { &m.time },
-                |m: &mut Pump| { &mut m.time },
+            fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeEnum<Pump_timing>>(
+                "timing",
+                |m: &Pump| { &m.timing },
+                |m: &mut Pump| { &mut m.timing },
             ));
             ::protobuf::reflect::MessageDescriptor::new_pb_name::<Pump>(
                 "Pump",
@@ -3590,7 +3590,7 @@ impl ::protobuf::Clear for Pump {
         self.force_check = false;
         self.force_duration = 0;
         self.force_start_time = 0;
-        self.time = Pump_time::dynamic;
+        self.timing = Pump_timing::dynamic;
         self.unknown_fields.clear();
     }
 }
@@ -7730,31 +7730,31 @@ impl ::protobuf::reflect::ProtobufValue for Relay {
 }
 
 #[derive(Clone,PartialEq,Eq,Debug,Hash)]
-pub enum Pump_time {
+pub enum Pump_timing {
     dynamic = 0,
-    mid_day = 1,
+    half_day = 1,
     full_day = 2,
 }
 
-impl ::protobuf::ProtobufEnum for Pump_time {
+impl ::protobuf::ProtobufEnum for Pump_timing {
     fn value(&self) -> i32 {
         *self as i32
     }
 
-    fn from_i32(value: i32) -> ::std::option::Option<Pump_time> {
+    fn from_i32(value: i32) -> ::std::option::Option<Pump_timing> {
         match value {
-            0 => ::std::option::Option::Some(Pump_time::dynamic),
-            1 => ::std::option::Option::Some(Pump_time::mid_day),
-            2 => ::std::option::Option::Some(Pump_time::full_day),
+            0 => ::std::option::Option::Some(Pump_timing::dynamic),
+            1 => ::std::option::Option::Some(Pump_timing::half_day),
+            2 => ::std::option::Option::Some(Pump_timing::full_day),
             _ => ::std::option::Option::None
         }
     }
 
     fn values() -> &'static [Self] {
-        static values: &'static [Pump_time] = &[
-            Pump_time::dynamic,
-            Pump_time::mid_day,
-            Pump_time::full_day,
+        static values: &'static [Pump_timing] = &[
+            Pump_timing::dynamic,
+            Pump_timing::half_day,
+            Pump_timing::full_day,
         ];
         values
     }
@@ -7762,21 +7762,21 @@ impl ::protobuf::ProtobufEnum for Pump_time {
     fn enum_descriptor_static() -> &'static ::protobuf::reflect::EnumDescriptor {
         static descriptor: ::protobuf::rt::LazyV2<::protobuf::reflect::EnumDescriptor> = ::protobuf::rt::LazyV2::INIT;
         descriptor.get(|| {
-            ::protobuf::reflect::EnumDescriptor::new_pb_name::<Pump_time>("Pump_time", file_descriptor_proto())
+            ::protobuf::reflect::EnumDescriptor::new_pb_name::<Pump_timing>("Pump_timing", file_descriptor_proto())
         })
     }
 }
 
-impl ::std::marker::Copy for Pump_time {
+impl ::std::marker::Copy for Pump_timing {
 }
 
-impl ::std::default::Default for Pump_time {
+impl ::std::default::Default for Pump_timing {
     fn default() -> Self {
-        Pump_time::dynamic
+        Pump_timing::dynamic
     }
 }
 
-impl ::protobuf::reflect::ProtobufValue for Pump_time {
+impl ::protobuf::reflect::ProtobufValue for Pump_timing {
     fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
         ::protobuf::reflect::ReflectValueRef::Enum(::protobuf::ProtobufEnum::descriptor(self))
     }
@@ -7943,22 +7943,22 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x03\x20\x01(\x01R\x07ackTone\x12\x1d\n\nserial_out\x18\x04\x20\x01(\x08\
     R\tserialOut\x12'\n\x0fdisplay_startup\x18\x05\x20\x01(\x08R\x0edisplayS\
     tartup\x12\x1f\n\x0bforce_light\x18\x06\x20\x01(\x08R\nforceLight\x12!\n\
-    \x0cwdt_duration\x18\x07\x20\x01(\rR\x0bwdtDuration\"\xb2\x02\n\x04Pump\
+    \x0cwdt_duration\x18\x07\x20\x01(\rR\x0bwdtDuration\"\xb8\x02\n\x04Pump\
     \x12!\n\x0cforce_filter\x18\x01\x20\x01(\x08R\x0bforceFilter\x12\x19\n\
     \x08force_ph\x18\x02\x20\x01(\x08R\x07forcePh\x12\x19\n\x08force_ch\x18\
     \x03\x20\x01(\x08R\x07forceCh\x12\x1c\n\tautomatic\x18\x04\x20\x01(\x08R\
     \tautomatic\x12\x18\n\x07recover\x18\x05\x20\x01(\x08R\x07recover\x12\
     \x1f\n\x0bforce_check\x18\x06\x20\x01(\x08R\nforceCheck\x12%\n\x0eforce_\
     duration\x18\x07\x20\x01(\rR\rforceDuration\x12(\n\x10force_start_time\
-    \x18\x08\x20\x01(\rR\x0eforceStartTime\x12'\n\x04time\x18\t\x20\x01(\x0e\
-    2\x13.domopool.Pump_timeR\x04time\"q\n\x0cAds115Alarms\x12\x1b\n\tnot_re\
-    ady\x18\x01\x20\x01(\x08R\x08notReady\x12\x1f\n\x0bnot_started\x18\x02\
-    \x20\x01(\x08R\nnotStarted\x12#\n\rnot_connected\x18\x03\x20\x01(\x08R\
-    \x0cnotConnected\"l\n\nMqttAlarms\x12\x18\n\x07metrics\x18\x01\x20\x01(\
-    \x08R\x07metrics\x12\x16\n\x06states\x18\x02\x20\x01(\x08R\x06states\x12\
-    \x16\n\x06alarms\x18\x03\x20\x01(\x08R\x06alarms\x12\x14\n\x05temps\x18\
-    \x04\x20\x01(\x08R\x05temps\"\xe6\x02\n\x06Alarms\x12\x16\n\x06filter\
-    \x18\x01\x20\x01(\x08R\x06filter\x12\x0e\n\x02ph\x18\x02\x20\x01(\x08R\
+    \x18\x08\x20\x01(\rR\x0eforceStartTime\x12-\n\x06timing\x18\t\x20\x01(\
+    \x0e2\x15.domopool.Pump_timingR\x06timing\"q\n\x0cAds115Alarms\x12\x1b\n\
+    \tnot_ready\x18\x01\x20\x01(\x08R\x08notReady\x12\x1f\n\x0bnot_started\
+    \x18\x02\x20\x01(\x08R\nnotStarted\x12#\n\rnot_connected\x18\x03\x20\x01\
+    (\x08R\x0cnotConnected\"l\n\nMqttAlarms\x12\x18\n\x07metrics\x18\x01\x20\
+    \x01(\x08R\x07metrics\x12\x16\n\x06states\x18\x02\x20\x01(\x08R\x06state\
+    s\x12\x16\n\x06alarms\x18\x03\x20\x01(\x08R\x06alarms\x12\x14\n\x05temps\
+    \x18\x04\x20\x01(\x08R\x05temps\"\xe6\x02\n\x06Alarms\x12\x16\n\x06filte\
+    r\x18\x01\x20\x01(\x08R\x06filter\x12\x0e\n\x02ph\x18\x02\x20\x01(\x08R\
     \x02ph\x12\x0e\n\x02ch\x18\x03\x20\x01(\x08R\x02ch\x12\x10\n\x03rtc\x18\
     \x05\x20\x01(\x08R\x03rtc\x12\x17\n\x07wp_high\x18\x06\x20\x01(\x08R\x06\
     wpHigh\x12\x15\n\x06wp_low\x18\x07\x20\x01(\x08R\x05wpLow\x12\x1b\n\twp_\
@@ -8012,16 +8012,16 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x12,\n\x05state\x18\x01\x20\x01(\x0e2\x16.domopool.Relay_statesR\x05sta\
     te\x12+\n\x05relay\x18\x02\x20\x01(\x0e2\x15.domopool.Relay_namesR\x05re\
     lay\x12\x1a\n\x08duration\x18\x03\x20\x01(\rR\x08duration\x12\x1d\n\nsta\
-    rt_time\x18\x04\x20\x01(\rR\tstartTime*3\n\tPump_time\x12\x0b\n\x07dynam\
-    ic\x10\0\x12\x0b\n\x07mid_day\x10\x01\x12\x0c\n\x08full_day\x10\x02*-\n\
-    \x0cRelay_states\x12\x08\n\x04auto\x10\0\x12\t\n\x05start\x10\x01\x12\
-    \x08\n\x04stop\x10\x02*=\n\x0bRelay_names\x12\n\n\x06filter\x10\0\x12\
-    \x06\n\x02ch\x10\x01\x12\x06\n\x02ph\x10\x02\x12\x07\n\x03all\x10\x03\
-    \x12\t\n\x05light\x10\x04B4Z2github.com/golgoth31/domopool-proto;domopoo\
-    l_protoJ\x9eH\n\x07\x12\x05\0\0\xe1\x01\x01\n\x08\n\x01\x0c\x12\x03\0\0\
-    \x12\n\x08\n\x01\x02\x12\x03\x02\0\x11\n\x08\n\x01\x08\x12\x03\x04\0I\n\
-    \t\n\x02\x08\x0b\x12\x03\x04\0I\n\n\n\x02\x04\0\x12\x04\x06\0\n\x01\n\n\
-    \n\x03\x04\0\x01\x12\x03\x06\x08\x0b\n7\n\x04\x04\0\x02\0\x12\x03\x07\
+    rt_time\x18\x04\x20\x01(\rR\tstartTime*6\n\x0bPump_timing\x12\x0b\n\x07d\
+    ynamic\x10\0\x12\x0c\n\x08half_day\x10\x01\x12\x0c\n\x08full_day\x10\x02\
+    *-\n\x0cRelay_states\x12\x08\n\x04auto\x10\0\x12\t\n\x05start\x10\x01\
+    \x12\x08\n\x04stop\x10\x02*=\n\x0bRelay_names\x12\n\n\x06filter\x10\0\
+    \x12\x06\n\x02ch\x10\x01\x12\x06\n\x02ph\x10\x02\x12\x07\n\x03all\x10\
+    \x03\x12\t\n\x05light\x10\x04B4Z2github.com/golgoth31/domopool-proto;dom\
+    opool_protoJ\x9eH\n\x07\x12\x05\0\0\xe1\x01\x01\n\x08\n\x01\x0c\x12\x03\
+    \0\0\x12\n\x08\n\x01\x02\x12\x03\x02\0\x11\n\x08\n\x01\x08\x12\x03\x04\0\
+    I\n\t\n\x02\x08\x0b\x12\x03\x04\0I\n\n\n\x02\x04\0\x12\x04\x06\0\n\x01\n\
+    \n\n\x03\x04\0\x01\x12\x03\x06\x08\x0b\n7\n\x04\x04\0\x02\0\x12\x03\x07\
     \x02\x17\"*\x203600\x20if\x20daylight\x20is\x20observed\x20or\x200\x20if\
     \x20not\n\n\x0c\n\x05\x04\0\x02\0\x05\x12\x03\x07\x02\x08\n\x0c\n\x05\
     \x04\0\x02\0\x01\x12\x03\x07\t\x12\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03\
@@ -8188,11 +8188,11 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \x0b\n\x04\x04\x07\x02\x06\x12\x03W\x02\x1a\n\x0c\n\x05\x04\x07\x02\x06\
     \x05\x12\x03W\x02\x08\n\x0c\n\x05\x04\x07\x02\x06\x01\x12\x03W\t\x15\n\
     \x0c\n\x05\x04\x07\x02\x06\x03\x12\x03W\x18\x19\n\n\n\x02\x05\0\x12\x04Z\
-    \0^\x01\n\n\n\x03\x05\0\x01\x12\x03Z\x05\x0e\n\x0b\n\x04\x05\0\x02\0\x12\
+    \0^\x01\n\n\n\x03\x05\0\x01\x12\x03Z\x05\x10\n\x0b\n\x04\x05\0\x02\0\x12\
     \x03[\x02\x0e\n\x0c\n\x05\x05\0\x02\0\x01\x12\x03[\x02\t\n\x0c\n\x05\x05\
-    \0\x02\0\x02\x12\x03[\x0c\r\n\x0b\n\x04\x05\0\x02\x01\x12\x03\\\x02\x0e\
-    \n\x0c\n\x05\x05\0\x02\x01\x01\x12\x03\\\x02\t\n\x0c\n\x05\x05\0\x02\x01\
-    \x02\x12\x03\\\x0c\r\n\x0b\n\x04\x05\0\x02\x02\x12\x03]\x02\x0f\n\x0c\n\
+    \0\x02\0\x02\x12\x03[\x0c\r\n\x0b\n\x04\x05\0\x02\x01\x12\x03\\\x02\x0f\
+    \n\x0c\n\x05\x05\0\x02\x01\x01\x12\x03\\\x02\n\n\x0c\n\x05\x05\0\x02\x01\
+    \x02\x12\x03\\\r\x0e\n\x0b\n\x04\x05\0\x02\x02\x12\x03]\x02\x0f\n\x0c\n\
     \x05\x05\0\x02\x02\x01\x12\x03]\x02\n\n\x0c\n\x05\x05\0\x02\x02\x02\x12\
     \x03]\r\x0e\n\n\n\x02\x04\x08\x12\x04`\0j\x01\n\n\n\x03\x04\x08\x01\x12\
     \x03`\x08\x0c\n\x0b\n\x04\x04\x08\x02\0\x12\x03a\x02\x18\n\x0c\n\x05\x04\
@@ -8217,13 +8217,13 @@ static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x0b\n\x04\x04\x08\x02\x07\x12\x03h\x02\x1e\n\x0c\n\x05\x04\x08\x02\
     \x07\x05\x12\x03h\x02\x08\n\x0c\n\x05\x04\x08\x02\x07\x01\x12\x03h\t\x19\
     \n\x0c\n\x05\x04\x08\x02\x07\x03\x12\x03h\x1c\x1d\n\x0b\n\x04\x04\x08\
-    \x02\x08\x12\x03i\x02\x15\n\x0c\n\x05\x04\x08\x02\x08\x06\x12\x03i\x02\
-    \x0b\n\x0c\n\x05\x04\x08\x02\x08\x01\x12\x03i\x0c\x10\n\x0c\n\x05\x04\
-    \x08\x02\x08\x03\x12\x03i\x13\x14\n\n\n\x02\x04\t\x12\x04l\0p\x01\n\n\n\
-    \x03\x04\t\x01\x12\x03l\x08\x14\n\x0b\n\x04\x04\t\x02\0\x12\x03m\x02\x15\
-    \n\x0c\n\x05\x04\t\x02\0\x05\x12\x03m\x02\x06\n\x0c\n\x05\x04\t\x02\0\
-    \x01\x12\x03m\x07\x10\n\x0c\n\x05\x04\t\x02\0\x03\x12\x03m\x13\x14\n\x0b\
-    \n\x04\x04\t\x02\x01\x12\x03n\x02\x17\n\x0c\n\x05\x04\t\x02\x01\x05\x12\
+    \x02\x08\x12\x03i\x02\x19\n\x0c\n\x05\x04\x08\x02\x08\x06\x12\x03i\x02\r\
+    \n\x0c\n\x05\x04\x08\x02\x08\x01\x12\x03i\x0e\x14\n\x0c\n\x05\x04\x08\
+    \x02\x08\x03\x12\x03i\x17\x18\n\n\n\x02\x04\t\x12\x04l\0p\x01\n\n\n\x03\
+    \x04\t\x01\x12\x03l\x08\x14\n\x0b\n\x04\x04\t\x02\0\x12\x03m\x02\x15\n\
+    \x0c\n\x05\x04\t\x02\0\x05\x12\x03m\x02\x06\n\x0c\n\x05\x04\t\x02\0\x01\
+    \x12\x03m\x07\x10\n\x0c\n\x05\x04\t\x02\0\x03\x12\x03m\x13\x14\n\x0b\n\
+    \x04\x04\t\x02\x01\x12\x03n\x02\x17\n\x0c\n\x05\x04\t\x02\x01\x05\x12\
     \x03n\x02\x06\n\x0c\n\x05\x04\t\x02\x01\x01\x12\x03n\x07\x12\n\x0c\n\x05\
     \x04\t\x02\x01\x03\x12\x03n\x15\x16\n\x0b\n\x04\x04\t\x02\x02\x12\x03o\
     \x02\x19\n\x0c\n\x05\x04\t\x02\x02\x05\x12\x03o\x02\x06\n\x0c\n\x05\x04\

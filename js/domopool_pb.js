@@ -5148,7 +5148,10 @@ proto.domopool.States.toObject = function(includeInstance, msg) {
     rtc: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
     lightOn: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
     mqttConnected: jspb.Message.getBooleanFieldWithDefault(msg, 10, false),
-    recover: jspb.Message.getBooleanFieldWithDefault(msg, 11, false)
+    recover: jspb.Message.getBooleanFieldWithDefault(msg, 11, false),
+    dynamic: jspb.Message.getBooleanFieldWithDefault(msg, 12, false),
+    halfDay: jspb.Message.getBooleanFieldWithDefault(msg, 13, false),
+    fullDay: jspb.Message.getBooleanFieldWithDefault(msg, 14, false)
   };
 
   if (includeInstance) {
@@ -5228,6 +5231,18 @@ proto.domopool.States.deserializeBinaryFromReader = function(msg, reader) {
     case 11:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setRecover(value);
+      break;
+    case 12:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setDynamic(value);
+      break;
+    case 13:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setHalfDay(value);
+      break;
+    case 14:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFullDay(value);
       break;
     default:
       reader.skipField();
@@ -5332,6 +5347,27 @@ proto.domopool.States.serializeBinaryToWriter = function(message, writer) {
   if (f) {
     writer.writeBool(
       11,
+      f
+    );
+  }
+  f = message.getDynamic();
+  if (f) {
+    writer.writeBool(
+      12,
+      f
+    );
+  }
+  f = message.getHalfDay();
+  if (f) {
+    writer.writeBool(
+      13,
+      f
+    );
+  }
+  f = message.getFullDay();
+  if (f) {
+    writer.writeBool(
+      14,
       f
     );
   }
@@ -5533,6 +5569,60 @@ proto.domopool.States.prototype.getRecover = function() {
  */
 proto.domopool.States.prototype.setRecover = function(value) {
   return jspb.Message.setProto3BooleanField(this, 11, value);
+};
+
+
+/**
+ * optional bool dynamic = 12;
+ * @return {boolean}
+ */
+proto.domopool.States.prototype.getDynamic = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 12, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.States} returns this
+ */
+proto.domopool.States.prototype.setDynamic = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 12, value);
+};
+
+
+/**
+ * optional bool half_day = 13;
+ * @return {boolean}
+ */
+proto.domopool.States.prototype.getHalfDay = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 13, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.States} returns this
+ */
+proto.domopool.States.prototype.setHalfDay = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 13, value);
+};
+
+
+/**
+ * optional bool full_day = 14;
+ * @return {boolean}
+ */
+proto.domopool.States.prototype.getFullDay = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 14, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.domopool.States} returns this
+ */
+proto.domopool.States.prototype.setFullDay = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 14, value);
 };
 
 

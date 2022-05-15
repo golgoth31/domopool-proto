@@ -170,6 +170,9 @@ message States {
   bool light_on = 9;
   bool mqtt_connected = 10;
   bool recover = 11;
+  bool dynamic = 12;
+  bool half_day = 13;
+  bool full_day = 14;
 }
 
 message Versions {

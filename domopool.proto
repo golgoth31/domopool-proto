@@ -89,9 +89,10 @@ message Global {
 }
 
 enum Pump_timing {
-  dynamic = 0;
-  half_day = 1;
-  full_day = 2;
+  nothing = 0;
+  dynamic = 1;
+  half_day = 2;
+  full_day = 3;
 }
 
 message Pump {

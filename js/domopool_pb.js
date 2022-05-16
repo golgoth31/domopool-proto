@@ -7071,9 +7071,10 @@ proto.domopool.Relay.prototype.setStartTime = function(value) {
  * @enum {number}
  */
 proto.domopool.Pump_timing = {
-  DYNAMIC: 0,
-  HALF_DAY: 1,
-  FULL_DAY: 2
+  NOTHING: 0,
+  DYNAMIC: 1,
+  HALF_DAY: 2,
+  FULL_DAY: 3
 };
 
 /**

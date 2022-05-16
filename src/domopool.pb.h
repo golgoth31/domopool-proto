@@ -11,9 +11,10 @@
 
 /* Enum definitions */
 typedef enum _domopool_Pump_timing { 
-    domopool_Pump_timing_dynamic = 0, 
-    domopool_Pump_timing_half_day = 1, 
-    domopool_Pump_timing_full_day = 2 
+    domopool_Pump_timing_nothing = 0, 
+    domopool_Pump_timing_dynamic = 1, 
+    domopool_Pump_timing_half_day = 2, 
+    domopool_Pump_timing_full_day = 3 
 } domopool_Pump_timing;
 
 typedef enum _domopool_Relay_states { 
@@ -257,7 +258,7 @@ typedef struct _domopool_Config {
 
 
 /* Helper constants for enums */
-#define _domopool_Pump_timing_MIN domopool_Pump_timing_dynamic
+#define _domopool_Pump_timing_MIN domopool_Pump_timing_nothing
 #define _domopool_Pump_timing_MAX domopool_Pump_timing_full_day
 #define _domopool_Pump_timing_ARRAYSIZE ((domopool_Pump_timing)(domopool_Pump_timing_full_day+1))
 

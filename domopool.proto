@@ -34,8 +34,8 @@ message Temp {
 }
 
 message Limits {
-  float wp_min = 1;
-  float wp_max = 2;
+  uint32 wp_min = 1;
+  uint32 wp_max = 2;
   float ph_min = 3;
   float ph_max = 4;
   float ch_min = 5;
@@ -46,7 +46,7 @@ message Limits {
   // temp threshold to activate ch
   float ch_temp_threshold_high = 9;
   float ch_temp_threshold_low = 10;
-  float wp_0_derive = 11;
+  uint32 wp_0_derive = 11;
   float tw_min = 12;
   float tw_max = 13;
   float tamb_min = 14;
@@ -55,12 +55,13 @@ message Limits {
 message AnalogSensor {
   bool enabled = 1;
   uint32 adc_pin = 3;
-  float threshold = 2;
+  uint32 threshold = 2;
   uint32 threshold_accuracy = 4;
-  float vmin = 5;
-  float vmax = 6;
+  uint32 vmin = 5;
+  uint32 vmax = 6;
   uint32 precision_factor = 7;
   bool auto_cal = 8;
+  uint32 v_accuracy=9;
 }
 
 message Sensors {
@@ -150,8 +151,8 @@ message Metrics {
   float saved_twater = 3;
   float ph = 4;
   float ch = 5;
-  float wp = 6;
-  float wp_volt = 7;
+  uint32 wp = 6;
+  uint32 wp_volt = 7;
   uint32 over_ch_t_high_duration = 8;
   uint32 under_ch_t_low_duration = 9;
   uint32 hour = 10;

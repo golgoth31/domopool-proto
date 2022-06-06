@@ -135,6 +135,7 @@ message Alarms {
   bool tamb_frost = 12;
   MqttAlarms mqtt = 13;
   bool reboot = 14;
+  uint32 wp_value = 15;
 }
 
 message Tests {

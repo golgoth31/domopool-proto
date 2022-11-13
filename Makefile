@@ -6,13 +6,13 @@ PROTOC_IMAGE := protoc
 
 .PHONY: all
 all:
-	docker build -t protoc .
-	docker run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
+	podman build -t protoc .
+	podman run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
 		nanopb_generator \
 		-D src \
 		domopool.proto
 
-	docker run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
+	podman run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
 		protoc \
 		-I/usr/include \
 		-I. \
@@ -21,14 +21,14 @@ all:
 		--rust_out=rust/src \
 		domopool.proto
 
-	# docker run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
+	# podman run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
 	# 	protoc \
 	# 	-I/usr/include \
 	# 	-I. \
 	# 	--rust_out=. \
 	# 	domopool.proto
 
-	# docker run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
+	# podman run --rm -v $$(pwd):$$(pwd) -w $$(pwd) $(PROTOC_IMAGE) \
 	# 	protoc-wrapper \
 	# 	-I/usr/include \
 	# 	-I. \

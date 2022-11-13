@@ -1,5 +1,5 @@
 module github.com/golgoth31/domopool-proto
 
-go 1.15
+go 1.19
 
-require google.golang.org/protobuf v1.26.0
+require google.golang.org/protobuf v1.28.1
